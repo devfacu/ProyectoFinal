@@ -30,20 +30,19 @@ public class Login {
 
         http.headers().frameOptions().sameOrigin().and()
                 .authorizeRequests()
-                .antMatchers()
+                .antMatchers("/css/*", "/js/*", "/img/*")
                 .permitAll()
                 .and().formLogin()
                 .loginPage("/")
                 .loginProcessingUrl("")
                 .usernameParameter("mail")
                 .passwordParameter("password")
-                .defaultSuccessUrl("/")
+                .defaultSuccessUrl("/inicio")
                 .permitAll()
                 .and().logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/")
                 .permitAll();
-
     }
 
 }

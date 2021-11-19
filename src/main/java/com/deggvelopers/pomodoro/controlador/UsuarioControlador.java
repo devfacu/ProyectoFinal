@@ -18,24 +18,30 @@ public class UsuarioControlador {
 
     @GetMapping("/registro")
     public String registrar() {
-        return ".html";
+        return "registro.html";
     }
 
-    @PostMapping("/")
-    public String registrarUsuario(String nombre, String apellido, String mail, String password) throws Exception {
-        usuarioServicio.registrarUsuario(nombre, apellido, mail, password);
-        return "gracias.html";
+    @PostMapping("/registrar")
+    public String registrarUsuario(String nombre, String apellido, String mail, String password, @RequestParam(required = false) String error, ModelMap model) throws Exception {
+
+        try {
+            usuarioServicio.registrarUsuario(nombre, apellido, mail, password);
+        } catch (Exception e) {
+            model.put("error", e.getMessage());  
+        }
+
+        return"gracias.html";
     }
 
     @GetMapping("/")
     public String login(@RequestParam(required = false) String error, ModelMap model) {
+
         if (error != null) {
-            model.put("error", "Nombre de usuario o contrase�a incorrecto .");
+            model.put("error", "Nombre de usuario o contraseña incorrecto .");
             return "login.html";
         } else {
-            return "principal.html"; 
+            return "principal.html";
         }
-        
     }
 
 }

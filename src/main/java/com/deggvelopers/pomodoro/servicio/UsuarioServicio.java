@@ -16,27 +16,30 @@ public class UsuarioServicio {
     public Usuario registrarUsuario(@Validated String nombre, String apellido, String mail, String password) throws Exception {
         Usuario usuario = new Usuario();
 
-        if (nombre == null || nombre.isEmpty()) {
-            throw new Exception("Al registrarse le falto completar algun campo");
-        }
-
-        if (apellido == null || nombre.isEmpty()) {
-            throw new Exception("Al registrarse le falto completar algun campo");
-        }
-
-        if (mail == null || nombre.isEmpty()) {
-            throw new Exception("Al registrarse le falto completar algun campo");
-        }
-
-        if (password == null || nombre.isEmpty()) {
-            throw new Exception("Al registrarse le falto completar algun campo");
-        }
-
         usuario.setNombre(nombre);
         usuario.setApellido(apellido);
         usuario.setMail(mail);
         usuario.setPassword(password);
 
+        if (nombre == null || nombre.isEmpty() && !nombre.matches("^[a-zA-Z]*$")) {
+            throw new Exception("Al registrarse le falto completar algun campo");
+        }
+
+        if (apellido == null || nombre.isEmpty() && !apellido.matches("^[a-zA-Z]*$")) {
+            throw new Exception("Al registrarse le falto completar algun campo");
+        }
+
+        if (mail == null || nombre.isEmpty() && !mail.matches("^[a-zA-Z]*$")) {
+            throw new Exception("Al registrarse le falto completar algun campo");
+        }
+
+        if (password == null || nombre.isEmpty() && !password.matches("^[a-zA-Z]*$")) {
+            throw new Exception("Al registrarse le falto completar algun campo");
+        }
         return usuario;
+    }
+
+    public static boolean validacion(String datos) {
+        return datos.matches("a-zA-Z*");
     }
 }
