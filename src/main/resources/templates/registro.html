@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="es">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="estilos/styles.css">
+  <title>Registro</title>
+</head>
+
+<header class="p-2 text-white">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <a th:href="@{index.html}"
+        class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+        <img src="images/icono2.png" class="img-fluid" alt="">
+      </a>
+
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <li><a th:href="@{index.html} class=" nav-link px-2 text-white">Inicio</a></li>
+      </ul>
+
+      <div class="text-end">
+        <a th:href="@{login.html}"><button type="button" class="btn-success">Iniciar Sesión</button></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<br>
+
+<body class="px-lg-5 py-lg-5">
+
+  <div class="contenedor container col-4 px-5 py-4 rounded-3 border border-5 text-white">
+
+    <form th:action="@{/registrarUsuario}" method="post">
+
+      <div class="col mb-2">
+        <h3 class="text-decoration-underline text-center">Registro</h3>
+      </div>
+      <div class="container">
+        <div class="col mb-2">
+          <label for="inputEmail3" class="col-sm-2 col-form-label">Nombre*</label>
+          <div class="col-sm-12">
+            <input type="text" required class="form-control" id="Nombre">
+          </div>
+        </div>
+
+        <div class="col mb-2">
+          <label for="inputEmail3" class="col-sm-2 col-form-label">Apellido*</label>
+          <div class="col-sm-12">
+            <input type="text" required class="form-control" id="Apellido">
+          </div>
+        </div>
+
+        <div class="col mb-2">
+          <label for="inputEmail3" class="col-sm-2 col-form-label">Email*</label>
+          <div class="col-sm-12">
+            <input type="email" required class="form-control" id="Email">
+          </div>
+        </div>
+
+        <div class="col mb-2">
+          <label for="inputPassword3" class="col-sm-2 col-form-label">Contraseña*</label>
+          <div class="col-sm-12">
+            <input type="password" required class="form-control" id="Contraseña1">
+          </div>
+        </div>
+
+        <div class="col mb-2">
+          <label for="inputPassword3" class="col-sm-8 col-form-label">Repita Contraseña*</label>
+          <div class="col-sm-12">
+            <input type="password" required class="form-control" id="Contraseña2">
+          </div>
+        </div>
+        <div class="container">
+          <p>*(Campos obligatorios)</p>
+        </div>
+        <div class="col my-3 d-grid gap-2 col-12">
+          <button type="submit" class="btn btn-success">Enviar</button>
+        </div>
+
+        <div class="container col-sm-12">
+          <a th:href="@{index.html}" class="link-danger">¿Ya estas registrado? Iniciar Sesión</a>
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+
+
+
+
+  <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
