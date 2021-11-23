@@ -1,0 +1,26 @@
+img{
+    width: 80px;
+}
+p{
+    
+    font-weight: bolder;
+}
+header{
+    background-color: #1FAB89;
+}
+
+body{
+    background-color: #D7FBE8;
+  
+}
+
+.contenedor{
+    background-color: #62D2A2;
+    border-color: #1FAB89;
+    border-radius: 5px;
+    
+}
+
+button{
+    background-color: #9DF3C4;
+}
