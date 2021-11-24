@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="es"></html>
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="es">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="estilos/styles.css">
+  <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+  <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}">
   <title>Registro</title>
 </head>
 
@@ -16,7 +15,7 @@
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
       <a th:href="@{index.html}"
         class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-        <img src="images/icono2.png" class="img-fluid" alt="">
+        <img src="/static/img/logo2.png" class="img-fluid" alt="">
       </a>
 
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
