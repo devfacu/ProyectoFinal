@@ -1,15 +1,64 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
 
-    <!-- jQuery -->
-    <source src="../static/js/jquery-3.6.0.js" th:src="@{/js/jquery-3.6.0.js}"/>
-    <title>Document</title>
+    <!-- Personalized CSS -->
+    <link rel="stylesheet" href="../static/css/personal.css" th:href="@{/css/personal.css}">
+
+    <!-- Google Font Pacifico -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <title>Pomodoro</title>
 </head>
 <body>
-    
+    <div class="container">
+        <!-- Heading -->
+        <h1 class="text-center my-5 heading">Pomodoro App</h1>
+
+        <!-- Main Timer -->
+        <div class="container timer">
+            <div class="row">
+                <div class="col-4">
+                    <h1 id="minutes">00</h1>
+                </div>
+                <div class="col-2">
+                    <h1>:</h1>
+                </div>
+                <div class="col-4">
+                    <h1 id="seconds">00</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <h3 id="done"></h3>
+        </div>
+
+        <!-- Botones Reset y Start -->
+        <div class="container d-flex justify-content-center align-items-center my-5">
+            <button id="btn-start" class="timer_btn timer_btn-control timer_btn-start">
+                <span class="material-icons">play_arrow</span>
+            </button>
+            <button id="btn-start" class="timer_btn timer_btn-reset">
+                <span class="material-icons">timer</span>
+            </button>
+            
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="../static/js/bootstrap.bundle.min.js" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+    <!-- jQuery -->
+    <script src="../static/js/jquery-3.6.0.js" th:src="@{/js/jquery-3.6.0.js}"></script>
+    <!-- Personalizes JS -->
+    <script src="../static/js/main.js" th:src="@{/js/main.js}"></script>
 </body>
 </html>
