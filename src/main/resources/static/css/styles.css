@@ -21,11 +21,23 @@
 body {
 
 /* background: linear-gradient(black,#df4747) ; */
-background-color: rgb(65, 65, 65);
+background-color: #D7FBE8;
 font-family: arial;
-color: white;
+color:white
 
 }
+.btn{
+    background-color: #62D2A2;
+    box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.4) ;
+    border-color:none;
+}
+.borderedit{
+    background-color: #9DF3C4;
+    border: 2px solid #1FAB89;
+    border-radius: 10px;
+    box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.4) ;
+}
+
 
 .imgx {
     border-width: 1px;
@@ -40,10 +52,12 @@ color: white;
     margin: auto;
     display: block;
     border-radius: 10px;
+    box-shadow: rgba(0,0,0,0.5);
    }
-    
-
-
-
+      
+h1{
+    font-family: 'Pacifico', cursive;  
+    text-shadow: 2px 2px rgba(0,0,0,0.3);   
+}
 
     
