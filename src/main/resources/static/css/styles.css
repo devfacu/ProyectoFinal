@@ -69,3 +69,89 @@ color:white
     text-shadow: 2px 2px rgba(0,0,0,0.3);   
 }
 /* Facu */
+/* Facu */
+    
+/* Fran */
+
+
+.login{
+ background: #1FAB89;
+}
+
+.main-container{
+    width: 1100px;
+    height: 400px;
+    background: #fff;
+    margin-top: 150px;
+    margin-left: 65px;
+    padding: 40px 40px 40px 40px;
+    border-radius: 10px;
+
+}
+
+.caja-imagen{
+    width: 300px;
+    height: 300px;
+    background: transparent;
+}
+
+.caja-imagen img{
+width: 300px;
+height: 300px;
+margin-top: 80px;
+margin-left: 50px;
+display: inline;
+margin-right: 0px;
+box-sizing: border-box;
+}
+
+.caja-form{
+width: 500px;
+height: 300px;
+background: transparent;
+margin-left: 600px;
+margin-top: -292px;
+}
+
+.pre-control{
+font-family: Georgia, 'Times New Roman', Times, serif;
+padding-top: 10px;
+padding-bottom: 10px;
+border-top: 10px;
+border-bottom: 10px;
+margin-top: 10px;
+margin-bottom: 10px;
+font-size: 20px;
+}
+
+.control{
+    width: 100%;
+    height: 20px;
+    border-radius: 5px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+padding-top: 10px;
+padding-bottom: 10px;
+border-top: 10px;
+border-bottom: 10px;
+margin-top: 10px;
+margin-bottom: 10px;
+background: #D7FBE8;
+}
+
+.titulo{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 30px;
+}
+
+.boton{
+    margin-left: 85%;
+    padding: 5px 15px;
+    background: #62D2A2;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.derivada{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-top: -20px;
+}
