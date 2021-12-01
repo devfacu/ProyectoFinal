@@ -6,35 +6,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}">
     <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+    <!-- Google Font Pacifico -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <title>Pomodoro</title>
 </head>
 <body class="login">
+
     <!--la seccion va a conter 2 cajas, una con la imagen y la otra con el formulario-->
-    <section class="main-container">
+    <section class="main-container container">
         <!--imagen-->
-        <div class="caja-imagen">
+        <div class="caja-imagen container">
             <img src="../static/img/logo2.png" alt="logo2">
+        </div>
+
+        <div class="container">
+            <h1 class="nombre-app">
+                Pomodoro App
+            </h1>   
         </div>
         
         <!--formulario-->
         <form th:action="@{/usuario/login}" method="post">
             <div class="caja-form">
-                <h5 class="titulo">Login</h5>
+                <h5 class="titulo">¡Bienvenido!</h5>
                 <p th:if="${error != null}" th:text="${error}" class ="danger"></p>
-                <label class="pre-control" for="email">Email</label>
+                <div class="container">
+                    <label class="pre-control" for="email">Email</label>
+                    <br>
+                    <input class="control" type="text" name="email" value="" placeholder="Ingrese su email">
+                </div> 
                 <br>
-                <input class="control" type="text" name="email" value="" placeholder="Ingrese su email">
+                <div class="container">
+                    <label class="pre-control" for="password">Contraseña</label>
+                    <br>
+                    <input class="control" type="password" name="contrasena" value="" placeholder="Ingrese su contraseña">
+                </div>
                 <br>
-                <label class="pre-control" for="password">Contraseña</label>
-                <br>
-                <input class="control" type="password" name="contrasena" value="" placeholder="Ingrese su contraseña">
-                <br>
-                <input class="boton" type="button" value="Ingresar">
-                <p class="derivada"><a href="#">¿Olvidaste tu contraseña?</a></p>
+                <div class="container">
+                    <input class="btn boton btn-success" type="submit" value="Ingresar">
+                </div>
+                <div class="container">
+                    <p class="derivada"><a href="#">¿Olvidaste tu contraseña?</a></p>
+                </div>
+                
                 
             </div>
         </form>
       
     </section>
+    <!-- Bootstrap JS Bundle -->
+    <script src="../static/js/bootstrap.bundle.min.js" th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>
