@@ -17,7 +17,7 @@
 <body class="bodyIndex">
     <div class="container-lg col-8 my-5 borderedit">
         <div class="col-4 container mt-4">
-        <img src="../static/img/logo2.png" alt="logo2" class="imgx">
+        <img src="../static/img/logo2.png"  th:src="@{/img/logo2.png}" alt="logo2" class="imgx">
         </div>
         <div class="col-4 container d-flex justify-content-center mb-4">
             <h1 class="marca">Pomodoro app</h1>
@@ -36,6 +36,8 @@
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>
     </div>
+    <!-- Bootstrap JS Bundle -->
+    <script src="../static/js/bootstrap.bundle.min.js" th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </body>
 
 </html>
