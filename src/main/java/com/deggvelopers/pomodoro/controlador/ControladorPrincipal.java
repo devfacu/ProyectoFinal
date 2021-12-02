@@ -50,7 +50,7 @@ public class ControladorPrincipal {
 
     @PostMapping("/registrar")
     public String registrar(ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String email,
-            @RequestParam String contrasena1, @RequestParam String contrasena2) {
+            @RequestParam String contrasena1, @RequestParam String contrasena2) throws Exception {
 
         try {
             usuarioServicio.registrar(nombre, apellido, email, contrasena1);
@@ -63,6 +63,7 @@ public class ControladorPrincipal {
             modelo.put("clave2", contrasena2);
             return "registro.html";
         }
+
         modelo.put("titulo", "Bienvenido a Pomodoro App");
         modelo.put("descripcion", "Tu usuario fue registrado de manera satisfactoria");
         return "exito.html";
