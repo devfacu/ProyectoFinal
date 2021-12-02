@@ -26,7 +26,7 @@
         </div>
         
         <!--formulario-->
-        <form th:action="@{/usuario/login}" method="post">
+        <form th:action="@{/logincheck}" method="post">
             <div class="caja-form">
                 <h5 class="titulo">¡Bienvenido!</h5>
                 <p th:if="${error != null}" th:text="${error}" class ="danger"></p>
