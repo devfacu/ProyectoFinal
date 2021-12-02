@@ -30,64 +30,62 @@ button{
       
 /* Geri */
 
-body {
-
-/* background: linear-gradient(black,#df4747) ; */
-background-color: #D7FBE8;
-font-family: arial;
-color:white
-
-}
-.btn{
-    background-color: #62D2A2;
-    box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.4) ;
-    border-color:none;
-}
-.borderedit{
-    background-color: #9DF3C4;
-    border: 2px solid #1FAB89;
-    border-radius: 10px;
-    box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.4) ;
-}
-
-
-.imgx {
-    border-width: 1px;
-    border-color: white;
-    padding-top: 36px;
-    padding-right: 12px;
-    padding-left: 12px;
-    padding-bottom: 3px;  
-   /*  align-items: center; */
-    width: 230px  ;
-    background-color: transparent;
-    margin: auto;
-    display: block;
-    border-radius: 10px;
-    box-shadow: rgba(0,0,0,0.5);
-   }
-      
-h1{
-    font-family: 'Pacifico', cursive;  
-    text-shadow: 2px 2px rgba(0,0,0,0.3);   
-}
+.bodyIndex {
+    background-color: #D7FBE8;
+    font-family: arial;
+    color:white
+    }
+    
+    .but {
+        background-color: #62D2A2;
+        box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.4) ;
+        border-color:none;
+    }
+    
+    .borderedit{
+        background-color: #9DF3C4;
+        border: 2px solid #1FAB89;
+        border-radius: 10px;
+        box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.4) ;
+    }
+    
+    .imgx {
+        border-width: 1px;
+        border-color: white;
+        padding-top: 36px;
+        padding-right: 12px;
+        padding-left: 12px;
+        padding-bottom: 3px;  
+        width: 230px  ;
+        background-color: transparent;
+        margin: auto;
+        display: block;
+        border-radius: 10px;
+        box-shadow: rgba(0,0,0,0.5);
+       }
+          
+    .marca{
+        font-family: 'Pacifico', cursive;  
+        text-shadow: 2px 2px rgba(0,0,0,0.3);   
+    }
 /* Facu */
     
 /* Fran */
 
 
 .login{
- background: #1FAB89;
+ background: #D7FBE8;
 }
 
 .main-container{
     width: 1100px;
     height: 400px;
-    background: #fff;
+    background: #9DF3C4;
     margin-top: 150px;
     margin-left: 65px;
     padding: 40px 40px 40px 40px;
     border-radius: 10px;
+    box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.4) ;
 
 }
 
@@ -98,10 +96,9 @@ h1{
 }
 
 .caja-imagen img{
-width: 300px;
-height: 300px;
-margin-top: 80px;
-margin-left: 50px;
+width: 250px;
+margin-top: 10px;
+margin-left: 120px;
 display: inline;
 margin-right: 0px;
 box-sizing: border-box;
@@ -112,48 +109,76 @@ width: 500px;
 height: 300px;
 background: transparent;
 margin-left: 600px;
-margin-top: -292px;
+margin-top: -350px;
 }
 
 .pre-control{
-font-family: Georgia, 'Times New Roman', Times, serif;
 padding-top: 10px;
 padding-bottom: 10px;
-border-top: 10px;
-border-bottom: 10px;
-margin-top: 10px;
-margin-bottom: 10px;
 font-size: 20px;
 }
 
 .control{
-    width: 100%;
-    height: 20px;
-    border-radius: 5px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+width: 100%;
+height: 35px;
+border-radius: 5px;
 padding-top: 10px;
 padding-bottom: 10px;
-border-top: 10px;
-border-bottom: 10px;
-margin-top: 10px;
-margin-bottom: 10px;
+
 background: #D7FBE8;
 }
 
 .titulo{
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 30px;
+    font-size: 40px;
+    font-weight: bolder;
+    font-style: oblique;
+    
 }
 
-.boton{
-    margin-left: 85%;
-    padding: 5px 15px;
-    background: #62D2A2;
-    margin-bottom: 20px;
-    border-radius: 10px;
+.boton {
+    margin-left: 81%;
+    background-color: #241288;
+    box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.4) ;
+    border-color:none;
 }
 
 .derivada{
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    margin-top: -20px;
+    margin-top: -30px;
+    
+}
+
+.nombre-app{
+    font-family: 'Pacifico', cursive;  
+    text-shadow: 2px 2px rgba(0,0,0,0.3); 
+    margin-top: -24px;
+    margin-left:120px;
+    color:white
+    
+}
+
+img{
+    width: 80px;
+}
+p{
+    
+    font-weight: bolder;
+}
+header{
+    background-color: #1FAB89;
+}
+
+body{
+    background-color: #D7FBE8;
+  
+}
+
+.contenedor{
+    background-color: #62D2A2;
+    border-color: #1FAB89;
+    border-radius: 5px;
+    
+}
+
+.but2{
+    background-color: #9DF3C4;
 }
