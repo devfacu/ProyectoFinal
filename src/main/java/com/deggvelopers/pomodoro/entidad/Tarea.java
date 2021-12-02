@@ -1,0 +1,128 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.deggvelopers.pomodoro.entidad;
+
+import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import org.hibernate.annotations.GenericGenerator;
+
+/**
+ *
+ * @author Administrador
+ */
+@Entity
+public class Tarea implements Serializable{
+    
+    @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    private String Id;
+    private String nombre;
+    private Date fecha;
+    @ManyToOne
+    private Proyecto proyecto;
+  //  private Prioridad prioridad;
+    private Integer TiempoInvertido;
+    private Boolean Completado;
+    private Integer cantidadPom;
+    private Integer duracionPom;
+
+    
+    /// CONSTRUCTOR VACIO ///
+
+    public Tarea() {
+    }
+    
+    
+    ////GETTERS Y SETTERS //////////
+    
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String Id) {
+        this.Id = Id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+//   public Prioridad getPrioridad() {
+//       return prioridad;
+//    }
+//
+//    public void setPrioridad(Prioridad prioridad) {
+//        this.prioridad = prioridad;
+//    }
+
+    public Integer getTiempoInvertido() {
+        return TiempoInvertido;
+    }
+
+    public void setTiempoInvertido(Integer TiempoInvertido) {
+        this.TiempoInvertido = TiempoInvertido;
+    }
+
+    public Boolean getCompletado() {
+        return Completado;
+    }
+
+    public void setCompletado(Boolean Completado) {
+        this.Completado = Completado;
+    }
+
+    public Integer getCantidadPom() {
+        return cantidadPom;
+    }
+
+    public void setCantidadPom(Integer cantidadPom) {
+        this.cantidadPom = cantidadPom;
+    }
+
+    public Integer getDuracionPom() {
+        return duracionPom;
+    }
+
+    public void setDuracionPom(Integer duracionPom) {
+        this.duracionPom = duracionPom;
+    }
+
+    /**
+     * @return the proyecto
+     */
+    public Proyecto getProyecto() {
+        return proyecto;
+    }
+
+    /**
+     * @param proyecto the proyecto to set
+     */
+    public void setProyecto(Proyecto proyecto) {
+        this.proyecto = proyecto;
+    }
+    
+    
+    
+    
+    
+}
