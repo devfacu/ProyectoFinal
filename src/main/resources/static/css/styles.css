@@ -1,29 +1,34 @@
 /* Adri */
 
-img{
-    width: 80px;
+.imgreg{
+    border-width: 1px;
+    border-color: white;
+    padding-top: 2px;
+    padding-right: 12px;
+    padding-left: 12px;
+    padding-bottom: 2px;  
+    width: 100px  ;
+    background-color: transparent;
+    margin: auto;
+    display: block;
+    border-radius: 10px;
+    box-shadow: rgba(0,0,0,0.5);
 }
-p{
+.obs{
     
     font-weight: bolder;
 }
-header{
-    background-color: #1FAB89;
+.headerRegistro{
+    background-color: #9DF3C4;
 }
-
-body{
-    background-color: #D7FBE8;
-  
-}
-
-.contenedor{
-    background-color: #62D2A2;
-    border-color: #1FAB89;
-    border-radius: 5px;
     
+.linkheader{
+    font-family: 'Pacifico', cursive;  
+    text-shadow: 2px 2px rgba(0,0,0,0.3);   
+    font-size: 25px;
 }
 
-button{
+boton {
     background-color: #9DF3C4;
 }
 
@@ -31,43 +36,44 @@ button{
 /* Geri */
 
 .bodyIndex {
-    background-color: #D7FBE8;
-    font-family: arial;
-    color:white
-    }
-    
-    .but {
-        background-color: #62D2A2;
-        box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.4) ;
-        border-color:none;
-    }
-    
-    .borderedit{
-        background-color: #9DF3C4;
-        border: 2px solid #1FAB89;
-        border-radius: 10px;
-        box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.4) ;
-    }
-    
-    .imgx {
-        border-width: 1px;
-        border-color: white;
-        padding-top: 36px;
-        padding-right: 12px;
-        padding-left: 12px;
-        padding-bottom: 3px;  
-        width: 230px  ;
-        background-color: transparent;
-        margin: auto;
-        display: block;
-        border-radius: 10px;
-        box-shadow: rgba(0,0,0,0.5);
-       }
-          
-    .marca{
-        font-family: 'Pacifico', cursive;  
-        text-shadow: 2px 2px rgba(0,0,0,0.3);   
-    }
+background-color: #D7FBE8;
+font-family: arial;
+color:white
+}
+
+.but {
+    background-color: #62D2A2;
+    box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.4) ;
+    border-color:none;
+}
+
+.borderedit{
+    background-color: #9DF3C4;
+    border: 2px solid #1FAB89;
+    border-radius: 10px;
+    box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.4) ;
+}
+
+.imgx {
+    border-width: 1px;
+    border-color: white;
+    padding-top: 36px;
+    padding-right: 12px;
+    padding-left: 12px;
+    padding-bottom: 3px;  
+    width: 230px  ;
+    background-color: transparent;
+    margin: auto;
+    display: block;
+    border-radius: 10px;
+    box-shadow: rgba(0,0,0,0.5);
+   }
+      
+.marca{
+    font-family: 'Pacifico', cursive;  
+    text-shadow: 2px 2px rgba(0,0,0,0.3);   
+}
+/* Facu */
 /* Facu */
     
 /* Fran */
