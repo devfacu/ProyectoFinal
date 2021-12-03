@@ -41,48 +41,48 @@
     <form th:action="@{/registrarUsuario}" method="post">
 
       <div class="col mb-2">
-        <h3 class="text-decoration-underline text-center">Registro</h3>
+        <h3 class="text-decoration-underline text-center titulo">Registro</h3>
       </div>
       <div class="container col-sm-12 text-danger">
         <p th:if="${error!=null}" th:text="${error}"></p>
       </div>
       <div class="container">
         <div class="col mb-2">
-          <label for="inputEmail3" class="col-sm-2 col-form-label">Nombre*</label>
-          <div class="col-sm-12">
-            <input type="text" class="form-control" id="Nombre" name="nombre">
+          <label for="inputEmail3" class="col-sm-2 col-form-label pre-control">Nombre*</label>
+          <div class="col-sm-12 borderbox">
+            <input  type="text" class="form-control" id="Nombre" name="nombre">
           </div>
         </div>
 
         <div class="col mb-2">
-          <label for="inputEmail3" class="col-sm-2 col-form-label">Apellido*</label>
-          <div class="col-sm-12">
+          <label for="inputEmail3" class="col-sm-2 col-form-label pre-control">Apellido*</label>
+          <div class="col-sm-12  borderbox">
             <input type="text" class="form-control" id="Apellido" name="apellido">
           </div>
         </div>
 
         <div class="col mb-2">
-          <label for="inputEmail3" class="col-sm-2 col-form-label">Email*</label>
-          <div class="col-sm-12">
+          <label for="inputEmail3" class="col-sm-2 col-form-label pre-control">Email*</label>
+          <div class="col-sm-12  borderbox">
             <input type="email" class="form-control" id="Mail" name="mail">
           </div>
         </div>
 
         <div class="col mb-2">
-          <label for="inputPassword3" class="col-sm-2 col-form-label">Contraseña*</label>
-          <div class="col-sm-12">
+          <label for="inputPassword3" class="col-sm-2 col-form-label pre-control">Contraseña*</label>
+          <div class="col-sm-12 borderbox">
             <input type="password" class="form-control" id="Contraseña1" name="contrasena1">
           </div>
         </div>
 
         <div class="col mb-2">
-          <label for="inputPassword3" class="col-sm-8 col-form-label">Repita Contraseña*</label>
-          <div class="col-sm-12">
+          <label for="inputPassword3" class="col-sm-8 col-form-label pre-control">Repita Contraseña*</label>
+          <div class="col-sm-12 borderbox">
             <input type="password" class="form-control" id="Contraseña2" name="contrasena2">
           </div>
         </div>
         <div class="container">
-          <p class="obs">*(Campos obligatorios)</p>
+          <p class="obs pre-control">*(Campos obligatorios)</p>
         </div>
         <div class="col my-3 d-grid gap-2 col-12">
           <button type="submit" class="but btn btn-success">Enviar</button>
