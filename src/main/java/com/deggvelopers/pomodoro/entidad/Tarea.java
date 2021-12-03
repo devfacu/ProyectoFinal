@@ -10,6 +10,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -23,14 +24,15 @@ public class Tarea implements Serializable{
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private String Id;
+    private String id;
     private String nombre;
     private Date fecha;
+    @JoinColumn(referencedColumnName="id")
     @ManyToOne
     private Proyecto proyecto;
-  //  private Prioridad prioridad;
-    private Integer TiempoInvertido;
-    private Boolean Completado;
+    private Prioridad prioridad;
+    private Integer tiempoInvertido;
+    private Boolean completado;
     private Integer cantidadPom;
     private Integer duracionPom;
 
@@ -44,11 +46,11 @@ public class Tarea implements Serializable{
     ////GETTERS Y SETTERS //////////
     
     public String getId() {
-        return Id;
+        return id;
     }
 
-    public void setId(String Id) {
-        this.Id = Id;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -67,28 +69,28 @@ public class Tarea implements Serializable{
         this.fecha = fecha;
     }
 
-//   public Prioridad getPrioridad() {
-//       return prioridad;
-//    }
-//
-//    public void setPrioridad(Prioridad prioridad) {
-//        this.prioridad = prioridad;
-//    }
-
-    public Integer getTiempoInvertido() {
-        return TiempoInvertido;
+   public Prioridad getPrioridad() {
+       return prioridad;
     }
 
-    public void setTiempoInvertido(Integer TiempoInvertido) {
-        this.TiempoInvertido = TiempoInvertido;
+    public void setPrioridad(Prioridad prioridad) {
+        this.prioridad = prioridad;
+    }
+
+    public Integer getTiempoInvertido() {
+        return tiempoInvertido;
+    }
+
+    public void setTiempoInvertido(Integer tiempoInvertido) {
+        this.tiempoInvertido = tiempoInvertido;
     }
 
     public Boolean getCompletado() {
-        return Completado;
+        return completado;
     }
 
-    public void setCompletado(Boolean Completado) {
-        this.Completado = Completado;
+    public void setCompletado(Boolean completado) {
+        this.completado = completado;
     }
 
     public Integer getCantidadPom() {
