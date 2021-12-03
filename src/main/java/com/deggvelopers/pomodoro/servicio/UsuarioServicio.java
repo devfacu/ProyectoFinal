@@ -1,5 +1,6 @@
 package com.deggvelopers.pomodoro.servicio;
 
+import com.deggvelopers.pomodoro.entidad.Proyecto;
 import com.deggvelopers.pomodoro.entidad.Usuario;
 import com.deggvelopers.pomodoro.repositorio.UsuarioRepositorio;
 import java.util.ArrayList;
@@ -39,29 +40,35 @@ public class UsuarioServicio implements UserDetailsService {
         }
 
         if (password == null || password.isEmpty() && !password.matches("^[a-zA-Z]*$")) {
-            throw new Exception("El nombre no puede estar vacio.");
+            throw new Exception("La contraseña no puede estar vacia.");
         }
 
         usuario.setNombre(nombre);
         usuario.setApellido(apellido);
         usuario.setMail(mail);
         usuario.setPassword(password);
+        usuarioRepositorio.save(usuario); 
+        return usuario;   
+    } 
+
 
 //        Proyecto proyecto = new Proyecto();
 //
 //        proyecto.setNombre(nombre);
 //        proyecto.setUsuario(usuario);
-        return usuario;
+//        return usuario;
+
+
+    public Proyecto nuevoProyecto (String nombre) {
+        Proyecto proyecto = new Proyecto();
+
+        proyecto.setNombre(nombre);
+        proyecto.getUsuario(); 
+
+
+        return proyecto;
     }
-
-//    public Proyecto nuevoProyecto (Usuario usuario) {
-//        Proyecto proyecto = new Proyecto();
-//
-//        proyecto.setNombre(nombre);
-//        proyecto.setUsuario(usuario);
-//
-//        return proyecto;
-//    }
+    
     public static boolean validacion(String datos) {
         return datos.matches("a-zA-Z*");
     }
