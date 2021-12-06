@@ -1,5 +1,7 @@
 package com.deggvelopers.pomodoro.controlador;
 
+import com.deggvelopers.pomodoro.entidad.Usuario;
+import com.deggvelopers.pomodoro.servicio.ProyectoServicio;
 import com.deggvelopers.pomodoro.servicio.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,6 +19,9 @@ public class ControladorPrincipal {
 
     @Autowired
     private UsuarioServicio usuarioServicio;
+    
+    @Autowired
+    private ProyectoServicio proyectoServicio; 
 
     @GetMapping("/")
     public String index(Model model) {
@@ -50,10 +55,11 @@ public class ControladorPrincipal {
 
     @PostMapping("/registrar")
     public String registrar(ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String email,
-            @RequestParam String contrasena1, @RequestParam String contrasena2) throws Exception {
+            @RequestParam String contrasena1, @RequestParam String contrasena2, @RequestParam Usuario usuario) throws Exception {
 
         try {
             usuarioServicio.registrar(nombre, apellido, email, contrasena1);
+            proyectoServicio.crearProyecto(nombre, usuario); 
         } catch (Exception e) {
             modelo.put("error", e.getMessage());
             modelo.put("nombre", nombre);

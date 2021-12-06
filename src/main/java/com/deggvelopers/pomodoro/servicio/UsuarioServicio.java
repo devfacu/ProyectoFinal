@@ -58,16 +58,6 @@ public class UsuarioServicio implements UserDetailsService {
 //        proyecto.setUsuario(usuario);
 //        return usuario;
 
-
-    public Proyecto nuevoProyecto (String nombre) {
-        Proyecto proyecto = new Proyecto();
-
-        proyecto.setNombre(nombre);
-        proyecto.getUsuario(); 
-
-
-        return proyecto;
-    }
     
     public static boolean validacion(String datos) {
         return datos.matches("a-zA-Z*");

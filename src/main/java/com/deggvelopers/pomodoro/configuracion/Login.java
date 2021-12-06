@@ -1,7 +1,6 @@
 package com.deggvelopers.pomodoro.configuracion;
 
 import com.deggvelopers.pomodoro.servicio.UsuarioServicio;
-import static javafx.scene.input.KeyCode.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
