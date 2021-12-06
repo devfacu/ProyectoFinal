@@ -25,8 +25,8 @@ public class Usuario implements Serializable {
 	private String mail;
 	private String password;
 	private Boolean habilitado;
-//	@OneToOne
-//	private Configuracion configuracion;
+	@OneToOne
+	private Configuracion configuracion;
 
 	///constructor vacio
 	public Usuario() {
@@ -91,3 +91,4 @@ public class Usuario implements Serializable {
 	}
 
 }
+
