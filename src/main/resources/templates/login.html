@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- Google Font Pacifico -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <title>Pomodoro</title>
+</head>
+<body class="login">
+
+    <!--la seccion va a conter 2 cajas, una con la imagen y la otra con el formulario-->
+    <section class="main-container container">
+        <!--imagen-->
+        <div class="caja-imagen container">
+            <img src="../static/img/logo2.png" alt="logo2">
+        </div>
+
+        <div class="container">
+            <h1 class="nombre-app">
+                Pomodoro App
+            </h1>   
+        </div>
+        
+        <!--formulario-->
+        <form th:action="@{/logincheck}" method="post">
+            <div class="caja-form">
+                <h5 class="titulo">¡Bienvenido!</h5>
+                <p th:if="${error != null}" th:text="${error}" class ="danger"></p>
+                <div class="container">
+                    <label class="pre-control" for="email">Email</label>
+                    <br>
+                    <input class="control" type="text" name="email" value="" placeholder="Ingrese su email">
+                </div> 
+                <br>
+                <div class="container">
+                    <label class="pre-control" for="password">Contraseña</label>
+                    <br>
+                    <input class="control" type="password" name="contrasena" value="" placeholder="Ingrese su contraseña">
+                </div>
+                <br>
+                <div class="container">
+                    <input class="btn boton btn-success" type="submit" value="Ingresar">
+                </div>
+                <div class="container">
+                    <p class="derivada"><a href="#">¿Olvidaste tu contraseña?</a></p>
+                </div>
+                
+                
+            </div>
+        </form>
+      
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+</body>
+</html>
