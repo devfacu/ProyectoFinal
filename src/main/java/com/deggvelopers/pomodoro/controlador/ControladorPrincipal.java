@@ -19,9 +19,9 @@ public class ControladorPrincipal {
 
     @Autowired
     private UsuarioServicio usuarioServicio;
-    
+
     @Autowired
-    private ProyectoServicio proyectoServicio; 
+    private ProyectoServicio proyectoServicio;
 
     @GetMapping("/")
     public String index(Model model) {
@@ -59,7 +59,7 @@ public class ControladorPrincipal {
 
         try {
             usuarioServicio.registrar(nombre, apellido, email, contrasena1);
-            proyectoServicio.crearProyecto(nombre, usuario); 
+            proyectoServicio.crearProyecto(nombre, usuario);
         } catch (Exception e) {
             modelo.put("error", e.getMessage());
             modelo.put("nombre", nombre);

@@ -27,6 +27,18 @@ public class UsuarioServicio implements UserDetailsService {
     public Usuario registrar(@Validated String nombre, String apellido, String mail, String password) throws Exception {
         Usuario usuario = new Usuario();
 
+        validacion(nombre, apellido, mail, password); 
+
+        usuario.setNombre(nombre);
+        usuario.setApellido(apellido);
+        usuario.setMail(mail);
+        usuario.setPassword(password);
+        usuarioRepositorio.save(usuario);
+        return usuario;
+    }
+
+    public void validacion(String nombre, String apellido, String mail, String password) throws Exception {
+
         if (nombre == null || nombre.isEmpty() && !nombre.matches("^[a-zA-Z]*$")) {
             throw new Exception("El nombre no puede estar vacio.");
         }
@@ -42,23 +54,8 @@ public class UsuarioServicio implements UserDetailsService {
         if (password == null || password.isEmpty() && !password.matches("^[a-zA-Z]*$")) {
             throw new Exception("La contraseña no puede estar vacia.");
         }
+    }
 
-        usuario.setNombre(nombre);
-        usuario.setApellido(apellido);
-        usuario.setMail(mail);
-        usuario.setPassword(password);
-        usuarioRepositorio.save(usuario); 
-        return usuario;   
-    } 
-
-
-//        Proyecto proyecto = new Proyecto();
-//
-//        proyecto.setNombre(nombre);
-//        proyecto.setUsuario(usuario);
-//        return usuario;
-
-    
     public static boolean validacion(String datos) {
         return datos.matches("a-zA-Z*");
     }
