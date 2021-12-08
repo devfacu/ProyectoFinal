@@ -42,7 +42,7 @@ public class ControladorPrincipal {
     @GetMapping("/login")
     public String login(@RequestParam(required = false) String error, ModelMap model) {
         if (error != null) {
-            model.put("error", "El email o el password son incorrectos");
+            model.put("error", "El mail o la contraseña son incorrectos");
         }
 
         return "login.html";
@@ -55,11 +55,10 @@ public class ControladorPrincipal {
 
     @PostMapping("/registrar")
     public String registrar(ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String email,
-            @RequestParam String contrasena1, @RequestParam String contrasena2, @RequestParam Usuario usuario) throws Exception {
+            @RequestParam String contrasena1, @RequestParam String contrasena2) throws Exception {
 
         try {
             usuarioServicio.registrar(nombre, apellido, email, contrasena1);
-            proyectoServicio.crearProyecto(nombre, usuario);
         } catch (Exception e) {
             modelo.put("error", e.getMessage());
             modelo.put("nombre", nombre);
@@ -72,6 +71,13 @@ public class ControladorPrincipal {
 
         modelo.put("titulo", "Bienvenido a Pomodoro App");
         modelo.put("descripcion", "Tu usuario fue registrado de manera satisfactoria");
-        return "exito.html";
+        return "gracias.html";
     }
+    
+    @GetMapping("/tareas")
+    public String tareas (){
+        return "tareas.html"; 
+    }
+    
+    
 }

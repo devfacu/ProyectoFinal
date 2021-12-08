@@ -1,6 +1,5 @@
 package com.deggvelopers.pomodoro.servicio;
 
-import com.deggvelopers.pomodoro.entidad.Proyecto;
 import com.deggvelopers.pomodoro.entidad.Usuario;
 import com.deggvelopers.pomodoro.repositorio.UsuarioRepositorio;
 import java.util.ArrayList;
@@ -22,6 +21,9 @@ public class UsuarioServicio implements UserDetailsService {
 
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
+    
+    @Autowired
+    private ProyectoServicio proyectoServicio; 
 
     @Transactional
     public Usuario registrar(@Validated String nombre, String apellido, String mail, String password) throws Exception {
@@ -34,6 +36,9 @@ public class UsuarioServicio implements UserDetailsService {
         usuario.setMail(mail);
         usuario.setPassword(password);
         usuarioRepositorio.save(usuario);
+        
+        proyectoServicio.crearProyecto("Tareas", usuario); 
+        
         return usuario;
     }
 
