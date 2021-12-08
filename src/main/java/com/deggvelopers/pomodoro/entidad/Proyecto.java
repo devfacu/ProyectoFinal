@@ -8,7 +8,7 @@ import javax.persistence.ManyToOne;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-public class Proyecto implements Serializable{
+public class Proyecto implements Serializable {
 
     @Id
     @GeneratedValue(generator = "uuid")
