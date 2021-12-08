@@ -1,6 +1,5 @@
 package com.deggvelopers.pomodoro.controlador;
 
-import com.deggvelopers.pomodoro.entidad.Usuario;
 import com.deggvelopers.pomodoro.servicio.ProyectoServicio;
 import com.deggvelopers.pomodoro.servicio.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
