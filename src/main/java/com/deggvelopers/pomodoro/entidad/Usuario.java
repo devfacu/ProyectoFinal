@@ -90,4 +90,11 @@ public class Usuario implements Serializable {
         this.habilitado = habilitado;
     }
 
+    public Configuracion getConfiguracion() {
+        return configuracion;
+    }
+
+    public void setConfiguracion(Configuracion configuracion) {
+        this.configuracion = configuracion;
+    }
 }
