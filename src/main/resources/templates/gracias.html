@@ -17,7 +17,7 @@
 <body class="bodyIndex">
     <div class=" borderedit container-lg col-8 my-3">
         <div class="col-4 container mt-4">
-            <img src="../static/img/logo2.png" alt="logo2" class="imgx">
+            <img th:src="@{/img/logo2.png}" alt="logo2" class="imgx">
         </div>
         <div class="col-4 container d-flex justify-content-center mb-4">
             <h1 class="marca">Pomodoro app</h1>
@@ -39,7 +39,7 @@
             </div>
             <div class="container col-4 mt-5">
                 <div class="col my-3 d-grid gap-2 col-12">
-                    <a th:href="@{login.html}"><button type="button"
+                    <a th:href="@{/login.html}"><button type="button"
                             class=" btn but btn-success">¡Empecemos!</button></a>
                 </div>
 

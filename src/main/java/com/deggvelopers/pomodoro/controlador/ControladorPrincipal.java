@@ -1,5 +1,6 @@
 package com.deggvelopers.pomodoro.controlador;
 
+import com.deggvelopers.pomodoro.servicio.ProyectoServicio;
 import com.deggvelopers.pomodoro.servicio.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,6 +18,9 @@ public class ControladorPrincipal {
 
     @Autowired
     private UsuarioServicio usuarioServicio;
+
+    @Autowired
+    private ProyectoServicio proyectoServicio;
 
     @GetMapping("/")
     public String index(Model model) {
@@ -37,7 +41,7 @@ public class ControladorPrincipal {
     @GetMapping("/login")
     public String login(@RequestParam(required = false) String error, ModelMap model) {
         if (error != null) {
-            model.put("error", "El email o el password son incorrectos");
+            model.put("error", "El mail o la contraseña son incorrectos");
         }
 
         return "login.html";
@@ -66,6 +70,13 @@ public class ControladorPrincipal {
 
         modelo.put("titulo", "Bienvenido a Pomodoro App");
         modelo.put("descripcion", "Tu usuario fue registrado de manera satisfactoria");
-        return "exito.html";
+        return "gracias.html";
     }
+    
+    @GetMapping("/tareas")
+    public String tareas (){
+        return "tareas.html"; 
+    }
+    
+    
 }
