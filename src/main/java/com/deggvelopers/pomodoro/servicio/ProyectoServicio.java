@@ -2,6 +2,7 @@ package com.deggvelopers.pomodoro.servicio;
 
 import com.deggvelopers.pomodoro.entidad.Proyecto;
 import com.deggvelopers.pomodoro.entidad.Usuario;
+import com.deggvelopers.pomodoro.errores.ErrorServicio;
 import com.deggvelopers.pomodoro.repositorio.ProyectoRepositorio;
 import java.util.Optional;
 
@@ -17,7 +18,7 @@ public class ProyectoServicio {
     @Autowired
     private ProyectoRepositorio proyectoRepositorio;
 
-    public Proyecto crearProyecto(@Validated String nombre, @Validated Usuario usuario) throws Exception {
+    public Proyecto crearProyecto(@Validated String nombre, @Validated Usuario usuario) throws ErrorServicio {
         Proyecto proyecto = new Proyecto();
 
         validar(nombre);
@@ -29,7 +30,7 @@ public class ProyectoServicio {
         return proyecto;
     }
 
-    public void modificar(String id, String nombre) throws Exception {
+    public void modificar(String id, String nombre) throws ErrorServicio {
 
         validar(nombre);
 
@@ -41,11 +42,11 @@ public class ProyectoServicio {
 
             proyectoRepositorio.save(proyecto);
         } else {
-
+            throw new ErrorServicio("No se encontro el usuario solicitado"); 
         }
     }
 
-    public void eliminarAutor(String id, String nombre) {
+    public void eliminarAutor(String id, String nombre) throws ErrorServicio {
 
         Optional<Proyecto> respuesta = proyectoRepositorio.findById(id);
 
@@ -54,25 +55,20 @@ public class ProyectoServicio {
             if (proyecto != null) {
                 proyectoRepositorio.deleteById(id);
             } else {
-                System.out.println("No es posible eliminar todos los proyectos. ");
+                throw new ErrorServicio ("No es posible eliminar todos los proyectos. ");
             }
-            proyectoRepositorio.save(proyecto);
-        } else {
-
-        }
-//        if (proyecto != null) {
-//            proyectoRepositorio.deleteById(id);
-//        } else {
-//            System.out.println("No es posible eliminar todos los proyectos. ");
-//        }
-
+        }   
     }
 
-    public void validar(String nombre) throws Exception {
+    public void validar(String nombre) throws ErrorServicio {
 
         if (nombre == null || nombre.isEmpty()) {
-            throw new Exception("El nombre del Proyecto no puede ser nulo");
+            throw new ErrorServicio ("El nombre del Proyecto no puede ser nulo");
         }
     }
+
+
+
+
 
 }
