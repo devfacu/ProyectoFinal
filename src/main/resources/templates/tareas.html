@@ -65,14 +65,6 @@
                                             </div>
                                             <div class="col mb-1">
                                                 <label for="inputtime"
-                                                    class="col-sm-6 col-form-label pre-control">Tiempo invertido</label>
-                                                <div class="col-sm-12 borderbox">
-                                                    <input type="number" class="form-control" id="tiempoInvertido"
-                                                        name="tiempoinv">
-                                                </div>
-                                            </div>
-                                            <div class="col mb-1">
-                                                <label for="inputtime"
                                                     class="col-sm-6 col-form-label pre-control">Cantidad de pom</label>
                                                 <div class="col-sm-12 borderbox">
                                                     <input type="number" class="form-control" id="cantidadPom"
@@ -103,20 +95,30 @@
                     <tr th:each="tarea : ${tareas}">
                         <div class="container borderbox my-2">
                             <div class="row">
-                                <div class="col-2 my-5">
-                                    <abbr title="Tarea Terminada"><button type="button"
-                                            class="btn but btn-success rounded-pill btn-lg" th:href="@{}"><span
-                                                class="material-icons md-48">
-                                                done_all
-                                            </span></button></abbr>
+                                <div class="col-2 my-4 ps-4">
+                                    <div class="row mb-5">
+                                        <abbr title="Tarea Terminada"><button type="button"
+                                                class="btn but btn-success rounded-pill btn-lg" th:href="@{}"><span
+                                                    class="material-icons md-48">
+                                                    done_all
+                                                </span></button></abbr>
+                                    </div>
+                                    <div class="row mt-5">
+                                        <abbr title="Eliminar Tarea"><button type="button"
+                                                class="btn but btn-success rounded-pill btn-lg" th:href="@{}"><span
+                                                    class="material-icons md-48">
+                                                    delete
+                                                </span></button></abbr>
+                                    </div>
                                 </div>
                                 <div class="col-8 my-1">
                                     <div class="row">
-                                        <p th:text="${tarea.nombre}"  class="boxtarea text-center">Tarea:</p>
+                                        <p th:text="${tarea.nombre}" class="boxtarea text-center">Tarea:</p>
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <p th:text="${tarea.cantidadPom}" class="boxtarea text-center">N° ciclos:</p>
+                                            <p th:text="${tarea.cantidadPom}" class="boxtarea text-center">N° ciclos:
+                                            </p>
                                         </div>
                                         <div class="col">
                                             <p th:text="${tarea.fecha}" class="boxtarea text-center">Fecha</p>
@@ -124,11 +126,24 @@
                                     </div>
                                 </div>
 
-                                <div class="col-2 my-5"><abbr title="Empezar ciclo"><button type="button"
-                                            class="btn but btn-success rounded-pill btn-lg" th:href="@{}"><span
-                                                class="material-icons md-48">
-                                                play_circle_filled
-                                            </span></button></abbr>
+                                <div class="col-2 my-4">
+                                    <div class="row mb-5">
+                                        <abbr title="Empezar ciclo"><button type="button"
+                                                class="btn but btn-success rounded-pill btn-lg" th:href="@{}"><span
+                                                    class="material-icons md-48">
+                                                    play_circle_filled
+                                                </span></button>
+                                        </abbr>
+                                    </div>
+                                    <div class="row
+                                    mt-5">
+                                        <abbr title="Editar Tarea"><button type="button"
+                                                class="btn but btn-success rounded-pill btn-lg" th:href="@{}"><span
+                                                    class="material-icons md-48">
+                                                    reorder
+                                                </span></button>
+                                        </abbr>
+                                    </div>
                                 </div>
                             </div>
                         </div>
