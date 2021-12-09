@@ -1,6 +1,8 @@
 package com.deggvelopers.pomodoro.servicio;
 
+import com.deggvelopers.pomodoro.entidad.Configuracion;
 import com.deggvelopers.pomodoro.entidad.Usuario;
+import com.deggvelopers.pomodoro.errores.ErrorServicio;
 import com.deggvelopers.pomodoro.repositorio.UsuarioRepositorio;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +14,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -21,43 +24,53 @@ public class UsuarioServicio implements UserDetailsService {
 
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
+
+    @Autowired
+    private ProyectoServicio proyectoServicio;
     
     @Autowired
-    private ProyectoServicio proyectoServicio; 
+    private ConfiguracionServicio configServicio; 
 
     @Transactional
-    public Usuario registrar(@Validated String nombre, String apellido, String mail, String password) throws Exception {
+    public Usuario registrar(@Validated String nombre, String apellido, String mail, String password) throws ErrorServicio {
         Usuario usuario = new Usuario();
+        Configuracion configuracion = new Configuracion();
+        configServicio.crear(); 
 
-        validacion(nombre, apellido, mail, password); 
+        validacion(nombre, apellido, mail, password);
 
         usuario.setNombre(nombre);
         usuario.setApellido(apellido);
         usuario.setMail(mail);
         usuario.setPassword(password);
+
+        String encriptada = new BCryptPasswordEncoder().encode(password);
+        usuario.setPassword(encriptada);
+        usuario.setHabilitado(Boolean.TRUE);
+        usuario.setConfiguracion(configuracion);
         usuarioRepositorio.save(usuario);
         
-        proyectoServicio.crearProyecto("Tareas", usuario); 
-        
+        proyectoServicio.crearProyecto("Tareas", usuario);          
+
         return usuario;
     }
 
-    public void validacion(String nombre, String apellido, String mail, String password) throws Exception {
+    public void validacion(String nombre, String apellido, String mail, String password) throws ErrorServicio {
 
         if (nombre == null || nombre.isEmpty() && !nombre.matches("^[a-zA-Z]*$")) {
-            throw new Exception("El nombre no puede estar vacio.");
+            throw new ErrorServicio("El nombre no puede estar vacio.");
         }
 
         if (apellido == null || apellido.isEmpty() && !apellido.matches("^[a-zA-Z]*$")) {
-            throw new Exception("El apellido no puede estar vacio.");
+            throw new ErrorServicio("El apellido no puede estar vacio.");
         }
 
         if (mail == null || mail.isEmpty() && !mail.matches("^[a-zA-Z]*$")) {
-            throw new Exception("Debe ingresar un mail valido.");
+            throw new ErrorServicio("Debe ingresar un mail valido.");
         }
 
         if (password == null || password.isEmpty() && !password.matches("^[a-zA-Z]*$")) {
-            throw new Exception("La contraseña no puede estar vacia.");
+            throw new ErrorServicio("La contraseña no puede estar vacia.");
         }
     }
 
@@ -83,6 +96,5 @@ public class UsuarioServicio implements UserDetailsService {
         } else {
             return null;
         }
-
     }
 }

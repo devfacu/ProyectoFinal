@@ -1,5 +1,6 @@
 package com.deggvelopers.pomodoro.controlador;
 
+import com.deggvelopers.pomodoro.errores.ErrorServicio;
 import com.deggvelopers.pomodoro.servicio.ProyectoServicio;
 import com.deggvelopers.pomodoro.servicio.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,7 @@ public class ControladorPrincipal {
 
     @GetMapping("/login")
     public String login(@RequestParam(required = false) String error, ModelMap model) {
+       
         if (error != null) {
             model.put("error", "El mail o la contraseña son incorrectos");
         }
@@ -53,12 +55,11 @@ public class ControladorPrincipal {
     }
 
     @PostMapping("/registrar")
-    public String registrar(ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String email,
-            @RequestParam String contrasena1, @RequestParam String contrasena2) throws Exception {
+    public String registrar(ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String email, @RequestParam String contrasena1, @RequestParam String contrasena2) throws ErrorServicio {
 
         try {
             usuarioServicio.registrar(nombre, apellido, email, contrasena1);
-        } catch (Exception e) {
+        } catch (ErrorServicio e) {
             modelo.put("error", e.getMessage());
             modelo.put("nombre", nombre);
             modelo.put("apellido", apellido);
