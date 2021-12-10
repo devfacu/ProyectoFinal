@@ -34,9 +34,8 @@ public class UsuarioServicio implements UserDetailsService {
     @Transactional
     public Usuario registrar(@Validated String nombre, @Validated String apellido, @Validated String mail,  @Validated String password) throws ErrorServicio {
         Usuario usuario = new Usuario();
-        Configuracion configuracion = new Configuracion();
-        configServicio.crear(); 
-
+        Configuracion configuracion = configServicio.crear();
+         
         validacion(nombre, apellido, mail, password);
 
         usuario.setNombre(nombre);
