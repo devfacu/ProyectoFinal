@@ -26,19 +26,20 @@
         </div>
 
         <div class="col-2 container d-flex flex-column justify-content-center">
-            <a th:href="@{/registro}"></a><button type="button" class="btn but btn-success">Registrarse</button>
+            <a th:href="@{/registro}" type="button" class="btn but btn-success">Registrarse</a>
+
+            <br>
+
+            <a th:href="@{/login}" type="button" class="btn but btn-success">Iniciar Sesión</a>
+
+            <br>
+
+            <a th:href="@{/prueba}" type="button" class="btn but btn-success">Probar app</a>
+            <br>
+
+            <br>
+
         </div>
-        <br>
-        <div class="col-2 container d-flex flex-column justify-content-center">
-           <a th:href="@{/login}"></a><button type="button" class="btn but btn-success">Iniciar Sesión</button>
-        </div>
-        <br>
-        <div class="col-2 container d-flex flex-column justify-content-center">
-           <a th:href="@{/prueba}"></a> <button type="button" class="btn but btn-success">Probar app</button><br>
-        </div>
-        <br>
-      
-    </div>
         <!-- Bootstrap JS Bundle -->
         <script src="../static/js/bootstrap.bundle.min.js" th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </body>
