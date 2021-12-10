@@ -43,7 +43,7 @@ public class Login extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/")
-                .permitAll();
+                .permitAll().and().csrf().disable();
     }
 
 }
