@@ -10,7 +10,7 @@
 
     <!-- Google Font Pacifico -->
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    <title>Pomodoro</title>
+    <title>login</title>
 </head>
 <body class="login">
 
@@ -28,7 +28,7 @@
         </div>
         
         <!--formulario-->
-        <form th:action="@{/logincheck}" method="post">
+        <form action="/logincheck" method="post">
             <div class="caja-form">
                 <h5 class="titulo">¡Bienvenido!</h5>
                 <p th:if="${error != null}" th:text="${error}" class ="danger"></p>

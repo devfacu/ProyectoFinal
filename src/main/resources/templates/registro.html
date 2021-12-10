@@ -22,11 +22,11 @@
       </a>
 
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a th:href="@{/index.html}" class="linkheader nav-link px-2 text-white ">Pomodoro app</a></li>
+        <li><a th:href="@{/index}" class="linkheader nav-link px-2 text-white ">Pomodoro app</a></li>
       </ul>
 
       <div class="text-end">
-        <a th:href="@{/login.html}"><button type="button" class="but btn-success btn-toolbar rounded">Iniciar Sesión</button></a>
+        <a th:href="@{/login}"><button type="button" class="but btn-success btn-toolbar rounded">Iniciar Sesión</button></a>
       </div>
     </div>
   </div>
@@ -38,7 +38,7 @@
 
   <div class="borderedit container col-4 px-5 py-4 ">
 
-    <form th:action="@{/registrarUsuario}" method="post">
+    <form th:action="@{/registrar}" method="post">
 
       <div class="col mb-2">
         <h3 class="text-decoration-underline text-center titulo">Registro</h3>
@@ -64,7 +64,7 @@
         <div class="col mb-2">
           <label for="inputEmail3" class="col-sm-2 col-form-label pre-control">Email*</label>
           <div class="col-sm-12  borderbox">
-            <input type="email" class="form-control" id="Mail" name="mail">
+            <input type="email" class="form-control" id="Mail" name="email">
           </div>
         </div>
 
@@ -89,7 +89,7 @@
         </div>
 
         <div class="container col-sm-12">
-          <a th:href="@{/index.html}" class="link-danger">¿Ya estas registrado? Iniciar Sesión</a>
+          <a th:href="@{/login}" class="link-danger">¿Ya estas registrado? Iniciar Sesión</a>
         </div>
       </div>
 
