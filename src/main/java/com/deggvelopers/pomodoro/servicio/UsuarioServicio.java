@@ -32,7 +32,7 @@ public class UsuarioServicio implements UserDetailsService {
     private ConfiguracionServicio configServicio; 
 
     @Transactional
-    public Usuario registrar(@Validated String nombre, String apellido, String mail, String password) throws ErrorServicio {
+    public Usuario registrar(@Validated String nombre, @Validated String apellido, @Validated String mail,  @Validated String password) throws ErrorServicio {
         Usuario usuario = new Usuario();
         Configuracion configuracion = new Configuracion();
         configServicio.crear(); 
@@ -55,7 +55,7 @@ public class UsuarioServicio implements UserDetailsService {
         return usuario;
     }
 
-    public void validacion(String nombre, String apellido, String mail, String password) throws ErrorServicio {
+    public void validacion(@Validated String nombre, @Validated String apellido,@Validated String mail,@Validated String password) throws ErrorServicio {
 
         if (nombre == null || nombre.isEmpty() && !nombre.matches("^[a-zA-Z]*$")) {
             throw new ErrorServicio("El nombre no puede estar vacio.");
@@ -74,12 +74,12 @@ public class UsuarioServicio implements UserDetailsService {
         }
     }
 
-    public static boolean validacion(String datos) {
+    public static boolean validacion(@Validated String datos) {
         return datos.matches("a-zA-Z*");
     }
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(@Validated String email) throws UsernameNotFoundException {
         Usuario usuario = usuarioRepositorio.buscarPorMail(email);
         if (usuario != null) {
 

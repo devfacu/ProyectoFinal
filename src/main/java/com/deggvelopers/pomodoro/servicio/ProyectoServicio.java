@@ -30,7 +30,7 @@ public class ProyectoServicio {
         return proyecto;
     }
 
-    public void modificar(String id, String nombre) throws ErrorServicio {
+    public void modificar(@Validated String id, @Validated String nombre) throws ErrorServicio {
 
         validar(nombre);
 
@@ -46,7 +46,7 @@ public class ProyectoServicio {
         }
     }
 
-    public void eliminarAutor(String id, String nombre) throws ErrorServicio {
+    public void eliminarAutor(@Validated String id, @Validated String nombre) throws ErrorServicio {
 
         Optional<Proyecto> respuesta = proyectoRepositorio.findById(id);
 
@@ -60,7 +60,7 @@ public class ProyectoServicio {
         }   
     }
 
-    public void validar(String nombre) throws ErrorServicio {
+    public void validar(@Validated String nombre) throws ErrorServicio {
 
         if (nombre == null || nombre.isEmpty()) {
             throw new ErrorServicio ("El nombre del Proyecto no puede ser nulo");
