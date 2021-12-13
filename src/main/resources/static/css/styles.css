@@ -83,7 +83,74 @@ color:white
     text-shadow: 2px 2px rgba(0,0,0,0.3);   
 }
 /* Facu */
-/* Facu */
+.vista-reloj {
+    background-color: #9df3c4;
+  }
+  
+  .heading {
+    font-family: "Pacifico", cursive;
+    color: white;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.3);
+  }
+  
+  .timer {
+    color: white;
+    text-align: center;
+    width: 25rem;
+    height: 25rem;
+    border: 5px solid #fff;
+    border-radius: 15rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .timer_part {
+    font-size: 6rem;
+  }
+  
+  .timer_btn {
+    width: 5rem;
+    height: 5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    background-color: #62d2a2;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+  
+  .check_btn {
+    border: none;
+    color: #1FAB89;
+    background: none;
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+  }
+  
+  .material-icons.md-48 {
+    font-size: 48px;
+  }
+  
+  .timer_btn-start {
+    background-color: #62d2a2;
+  }
+  
+  .timer_btn-pause {
+    background-color: #d26262;
+  }
+  
+  .timer_btn-reset {
+    background-color: #1fab89;
+  }
+  
     
 /* Fran */
 
