@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     var interval = null;
 
-    $("#minutes").text(startMinutes);
+    $("#minutes").text(startMinutes.toString().padStart(2, "0"));
     $("#seconds").text("00");
 
 
