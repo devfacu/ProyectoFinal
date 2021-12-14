@@ -30,9 +30,9 @@
                     <div class="col-3 mt-3">
                         <div class="row align-content-end">
                             <abbr title="Agregar tarea"><button type="button"
-                                    class="btn but btn-success rounded-pill btn-lg" data-bs-toggle="modal"
+                                    class="btn check_btn btn-success rounded-pill btn-lg" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal"">
-                                <span class=" material-icons md-48">
+                                <span class=" material-icons">
                                     add_task
                                     </span></button></abbr>
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -75,15 +75,21 @@
                                                             name="tiempoinv">
                                                     </div>
                                                 </div>
-                                                <div class="input-group mb-3">
-                                                    <label class="input-group-text" for="inputGroupSelect01">Options</label>
-                                                    <select class="form-select" id="inputGroupSelect01">
-                                                      <option selected>Choose...</option>
-                                                      <option value="1">One</option>
-                                                      <option value="2">Two</option>
-                                                      <option value="3">Three</option>
-                                                    </select>
-                                                  </div>
+                                                <div class="col mb-1">
+                                                    <label for="inputtime"
+                                                        class="col-sm-6 col-form-label pre-control">Prioridad
+                                                        </label>
+                                                    <div class="input-group mb-3">
+                                                        <label class="input-group-text"
+                                                            for="inputGroupSelect01">Options</label>
+                                                        <select class="form-select" id="inputGroupSelect01">
+                                                            <option selected>Choose...</option>
+                                                            <option value="1">One</option>
+                                                            <option value="2">Two</option>
+                                                            <option value="3">Three</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                                 <div class="col mt-4">
                                                     <button type="button" class="btn but btn-success"
                                                         data-bs-dismiss="modal">Cerrar</button>
@@ -112,8 +118,8 @@
                                 <div class="col-2 my-auto">
                                     <div class="row ms-auto">
                                         <abbr title="Tarea Terminada"><button type="button"
-                                                class="btn but btn-success rounded-pill btn-lg check_btn" th:href="@{}"><span
-                                                    class="material-icons md-48">
+                                                class="btn but btn-success rounded-pill btn-lg check_btn"
+                                                id="tarea_chk"><span class="material-icons">
                                                     radio_button_unchecked
                                                 </span></button></abbr>
                                     </div>
@@ -144,8 +150,8 @@
                                 <div class="col-2 my-auto">
                                     <div class="row mx-auto">
                                         <abbr title="Empezar ciclo"><button type="button"
-                                                class="btn but btn-success rounded-pill btn-lg" th:href="@{}"><span
-                                                    class="material-icons md-48">
+                                                class="btn but btn-success rounded-pill btn-lg" th:href="@{/reloj}"><span
+                                                    class="material-icons">
                                                     play_circle_filled
                                                 </span></button>
                                         </abbr>
