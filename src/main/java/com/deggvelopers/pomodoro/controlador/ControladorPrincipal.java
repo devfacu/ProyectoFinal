@@ -36,7 +36,7 @@ public class ControladorPrincipal {
     @PreAuthorize("hasAnyRole('ROLE_USUARIO_REGISTRADO')")
     @GetMapping("/principal")
     public String principal() {
-        return "principal.html";
+        return "vistaPrincipal.html";
     }
 
     @GetMapping("/login")
