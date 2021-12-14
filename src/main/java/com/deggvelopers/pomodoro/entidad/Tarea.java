@@ -10,15 +10,15 @@ import javax.persistence.ManyToOne;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-public class Tarea implements Serializable{
-    
+public class Tarea implements Serializable {
+
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
     private String nombre;
     private Date fecha;
-    @JoinColumn(referencedColumnName="id")
+    @JoinColumn(referencedColumnName = "id")
     @ManyToOne
     private Proyecto proyecto;
     private Prioridad prioridad;
@@ -27,15 +27,11 @@ public class Tarea implements Serializable{
     private Integer cantidadPom;
     private Integer duracionPom;
 
-    
     /// CONSTRUCTOR VACIO ///
-
     public Tarea() {
     }
-    
-    
+
     ////GETTERS Y SETTERS //////////
-    
     public String getId() {
         return id;
     }
@@ -60,8 +56,8 @@ public class Tarea implements Serializable{
         this.fecha = fecha;
     }
 
-   public Prioridad getPrioridad() {
-       return prioridad;
+    public Prioridad getPrioridad() {
+        return prioridad;
     }
 
     public void setPrioridad(Prioridad prioridad) {
@@ -113,9 +109,5 @@ public class Tarea implements Serializable{
     public void setProyecto(Proyecto proyecto) {
         this.proyecto = proyecto;
     }
-    
-    
-    
-    
-    
+
 }
