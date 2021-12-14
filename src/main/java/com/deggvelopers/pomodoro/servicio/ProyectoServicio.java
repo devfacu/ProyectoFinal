@@ -42,33 +42,31 @@ public class ProyectoServicio {
 
             proyectoRepositorio.save(proyecto);
         } else {
-            throw new ErrorServicio("No se encontro el usuario solicitado"); 
+            throw new ErrorServicio("No se encontro el usuario solicitado");
         }
     }
 
     public void eliminarAutor(@Validated String id, @Validated String nombre) throws ErrorServicio {
 
-        Optional<Proyecto> respuesta = proyectoRepositorio.findById(id);
+        long cantidadProyecto = proyectoRepositorio.count();
 
-        if (respuesta.isPresent()) {
-            Proyecto proyecto = proyectoRepositorio.findById(id).get();
-            if (proyecto != null) {
+        if (cantidadProyecto > 1) {
+            Optional<Proyecto> respuesta = proyectoRepositorio.findById(id);
+            if (respuesta.isPresent()) {
+                Proyecto proyecto = respuesta.get();
                 proyectoRepositorio.deleteById(id);
             } else {
-                throw new ErrorServicio ("No es posible eliminar todos los proyectos. ");
+                throw new ErrorServicio("El proyecto no existe");
             }
-        }   
+        } else {
+            throw new ErrorServicio("No es posible eliminar todos los proyectos. ");
+        }
     }
 
     public void validar(@Validated String nombre) throws ErrorServicio {
 
         if (nombre == null || nombre.isEmpty()) {
-            throw new ErrorServicio ("El nombre del Proyecto no puede ser nulo");
+            throw new ErrorServicio("El nombre del Proyecto no puede ser nulo");
         }
     }
-
-
-
-
-
 }
