@@ -18,15 +18,15 @@ public class TareaServicio {
 
     @Autowired
     private TareaRepositorio tareaRepositorio;
-    
+
     @Autowired
-    private ProyectoRepositorio proyectoRepo; 
+    private ProyectoRepositorio proyectoRepo;
 
     public Tarea crearTarea(@Validated String nombre, @Validated Date fecha, @Validated String id_proyecto, @Validated Prioridad prioridad, @Validated Integer tiempoInvertido, @Validated Boolean Completado, @Validated Integer cantidadPom, @Validated Integer duracionPom) throws ErrorServicio {
 
         validar(nombre);
-        
-        Proyecto proyecto = proyectoRepo.findById(id_proyecto).get(); 
+
+        Proyecto proyecto = proyectoRepo.findById(id_proyecto).get();
         Tarea tarea = new Tarea();
 
         tarea.setNombre(nombre);
@@ -42,14 +42,14 @@ public class TareaServicio {
         return tarea;
     }
 
-    public void modificarT(@Validated String id, @Validated String nombre, @Validated Date fecha, @Validated String id_proyecto, @Validated Prioridad prioridad, @Validated Integer cantidadPom ) throws ErrorServicio {
+    public void modificarT(@Validated String id, @Validated String nombre, @Validated Date fecha, @Validated String id_proyecto, @Validated Prioridad prioridad, @Validated Integer cantidadPom) throws ErrorServicio {
 
         validar(nombre);
-        
+
         Optional<Tarea> respuesta = tareaRepositorio.findById(id);
-        
+
         Proyecto proyecto = proyectoRepo.findById(id_proyecto).get();
-        
+
         if (respuesta.isPresent()) {
             Tarea tarea = tareaRepositorio.findById(id).get();
             tarea.setNombre(nombre);
@@ -60,13 +60,12 @@ public class TareaServicio {
 
             tareaRepositorio.save(tarea);
         } else {
-            throw new ErrorServicio("No se encontro la tarea solicitada"); 
+            throw new ErrorServicio("No se encontro la tarea solicitada");
         }
     }
 
     public void eliminarT(@Validated String id) throws ErrorServicio {
-
-       tareaRepositorio.deleteById(id);
+        tareaRepositorio.deleteById(id);
     }
 
     public void validar(@Validated String nombre) throws ErrorServicio {

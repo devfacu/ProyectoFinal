@@ -73,11 +73,4 @@ public class ControladorPrincipal {
         modelo.put("descripcion", "Tu usuario fue registrado de manera satisfactoria");
         return "gracias.html";
     }
-    
-    @GetMapping("/tareas")
-    public String tareas (){
-        return "tareas.html"; 
-    }
-    
-    
 }

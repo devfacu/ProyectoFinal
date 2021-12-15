@@ -6,6 +6,7 @@ import com.deggvelopers.pomodoro.errores.ErrorServicio;
 import com.deggvelopers.pomodoro.repositorio.UsuarioRepositorio;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -17,6 +18,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 @Service
 @Validated
@@ -87,9 +90,9 @@ public class UsuarioServicio implements UserDetailsService {
             GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_USUARIO_REGISTRADO");
             permisos.add(p1);
 
-//			ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-//			HttpSession session = attr.getRequest().getSession(true);
-//			session.setAttribute("usuarioSession", usuario);
+			ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+			HttpSession session = attr.getRequest().getSession(true);
+			session.setAttribute("usuarioSession", usuario);
             User user = new User(usuario.getMail(), usuario.getPassword(), permisos);
             return user;
         } else {
