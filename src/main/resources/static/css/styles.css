@@ -1,46 +1,60 @@
 /* Adri */
 
 .imgreg{
-    border-width: 1px;
-    border-color: white;
-    padding-top: 2px;
-    padding-right: 12px;
-    padding-left: 12px;
-    padding-bottom: 2px;  
-    width: 100px  ;
-    background-color: transparent;
-    margin: auto;
-    display: block;
-    border-radius: 10px;
-    box-shadow: rgba(0,0,0,0.5);
+  border-width: 1px;
+  border-color: white;
+  padding-top: 2px;
+  padding-right: 12px;
+  padding-left: 12px;
+  padding-bottom: 2px;  
+  width: 100px  ;
+  background-color: transparent;
+  margin: auto;
+  display: block;
+  border-radius: 10px;
+  box-shadow: rgba(0,0,0,0.5);
 }
 .obs{
-    
-    font-weight: bolder;
+  
+  font-weight: bolder;
+  
 }
 .headerRegistro{
-    background-color: #9DF3C4;
+  background-color: #9DF3C4;
 }
-    
+  
 .linkheader{
-    font-family: 'Pacifico', cursive;  
-    text-shadow: 2px 2px rgba(0,0,0,0.3);   
-    font-size: 25px;
+  font-family: 'Pacifico', cursive;  
+  text-shadow: 2px 2px rgba(0,0,0,0.3);   
+  font-size: 25px;
 }
 .borderbox{
-    background-color: #D7FBE8;
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.4) ;
+  background-color: #D7FBE8;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.4) ;
 }
 .boxtarea{
-    font-size: 30px;
-    font-weight: bolder;
-    font-style: oblique;
-    color: black;
-    text-shadow: 2px 2px rgba(0,0,0,0.3);
+  font-size: 30px;
+  font-weight: bolder;
+  font-style: oblique;
+  color: black;
+  text-shadow: 2px 2px rgba(0,0,0,0.3);
 }
 
+.but_tarea{
+border: #1FAB89;
+color: white;
+box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.4);
+background-color: #62D2A2;
+display: inline-block;
+line-height: 1;
+text-transform: none;
+letter-spacing: normal;
+word-wrap: normal;
+white-space: nowrap;
+direction: ltr;
+}
 
 /* Geri */
 
@@ -51,211 +65,211 @@ color:white
 }
 
 .but {
-    background-color: #62D2A2;
-    box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.4) ;
-    border-color:none;
+  background-color: #62D2A2;
+  box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.4) ;
+  border-color:none;
 }
 
 .borderedit{
-    background-color: #9DF3C4;
-    border: 2px solid #1FAB89;
-    border-radius: 10px;
-    box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.4) ;
+  background-color: #9DF3C4;
+  border: 2px solid #1FAB89;
+  border-radius: 10px;
+  box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.4) ;
 }
 
 .imgx {
-    border-width: 1px;
-    border-color: white;
-    padding-top: 36px;
-    padding-right: 12px;
-    padding-left: 12px;
-    padding-bottom: 3px;  
-    width: 230px  ;
-    background-color: transparent;
-    margin: auto;
-    display: block;
-    border-radius: 10px;
-    box-shadow: rgba(0,0,0,0.5);
-   }
-      
+  border-width: 1px;
+  border-color: white;
+  padding-top: 36px;
+  padding-right: 12px;
+  padding-left: 12px;
+  padding-bottom: 3px;  
+  width: 230px  ;
+  background-color: transparent;
+  margin: auto;
+  display: block;
+  border-radius: 10px;
+  box-shadow: rgba(0,0,0,0.5);
+ }
+    
 .marca{
-    font-family: 'Pacifico', cursive;  
-    text-shadow: 2px 2px rgba(0,0,0,0.3);   
+  font-family: 'Pacifico', cursive;  
+  text-shadow: 2px 2px rgba(0,0,0,0.3);   
 }
 /* Facu */
 .vista-reloj {
-    background-color: #9df3c4;
-  }
+  background-color: #9df3c4;
+}
+
+.heading {
+  font-family: "Pacifico", cursive;
+  color: white;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.timer {
+  color: white;
+  text-align: center;
+  width: 25rem;
+  height: 25rem;
+  border: 5px solid #fff;
+  border-radius: 15rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.timer_part {
+  font-size: 6rem;
+}
+
+.timer_btn {
+  width: 5rem;
+  height: 5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  border-radius: 50%;
+  border: none;
+  color: white;
+  background-color: #62d2a2;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.check_btn {
+  border: none;
+  color: #1FAB89;
+  background: none;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+}
+
+.material-icons.md-48 {
+  font-size: 48px;
+}
+
+.timer_btn-start {
+  background-color: #62d2a2;
+}
+
+.timer_btn-pause {
+  background-color: #d26262;
+}
+
+.timer_btn-reset {
+  background-color: #1fab89;
+}
+
   
-  .heading {
-    font-family: "Pacifico", cursive;
-    color: white;
-    text-shadow: 2px 2px rgba(0, 0, 0, 0.3);
-  }
-  
-  .timer {
-    color: white;
-    text-align: center;
-    width: 25rem;
-    height: 25rem;
-    border: 5px solid #fff;
-    border-radius: 15rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .timer_part {
-    font-size: 6rem;
-  }
-  
-  .timer_btn {
-    width: 5rem;
-    height: 5rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
-    border-radius: 50%;
-    border: none;
-    color: white;
-    background-color: #62d2a2;
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-  }
-  
-  .check_btn {
-    border: none;
-    color: #1FAB89;
-    background: none;
-    display: inline-block;
-    line-height: 1;
-    text-transform: none;
-    letter-spacing: normal;
-    word-wrap: normal;
-    white-space: nowrap;
-    direction: ltr;
-  }
-  
-  .material-icons.md-48 {
-    font-size: 48px;
-  }
-  
-  .timer_btn-start {
-    background-color: #62d2a2;
-  }
-  
-  .timer_btn-pause {
-    background-color: #d26262;
-  }
-  
-  .timer_btn-reset {
-    background-color: #1fab89;
-  }
-  
-    
 /* Fran */
 
 
 .login{
-    background: #D7FBE8;
-   }
-   
-   .main-container{
-       width: 1100px;
-       height: 400px;
-       background: #9DF3C4;
-       margin-top: 150px;
-       margin-left: 65px;
-       padding: 40px 40px 40px 40px;
-       border-radius: 10px;
-       box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.4) ;
-   
-   }
-   
-   .caja-imagen{
-       width: 300px;
-       height: 300px;
-       background: transparent;
-   }
-   
-   .caja-imagen img{
-   width: 250px;
-   margin-top: 10px;
-   margin-left: 120px;
-   display: inline;
-   margin-right: 0px;
-   box-sizing: border-box;
-   }
-   
-   .caja-form{
-   width: 500px;
-   height: 300px;
-   background: transparent;
-   margin-left: 600px;
-   margin-top: -350px;
-   }
-   
-   .pre-control{
-   padding-top: 10px;
-   padding-bottom: 10px;
-   font-size: 20px;
-   color: white;
-   text-shadow: 2px 2px rgba(0,0,0,0.3);
-   }
-   
-   .control{
-   width: 100%;
-   height: 35px;
-   border-radius: 5px;
-   padding-top: 10px;
-   padding-bottom: 10px;
-   background: #D7FBE8;
-   
-   }
-   
-   .titulo{
-       font-size: 40px;
-       font-weight: bolder;
-       font-style: oblique;
-       color: white;
-       text-shadow: 2px 2px rgba(0,0,0,0.3);
-       
-   }
-   
-   .boton {
-       margin-left: 81%;
-       background-color: #62D2A2;
-       box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.4) ;
-       border-color:none;
-   }
-   
-   .derivada{
-       margin-top: -30px;
-       
-   }
-   
-   .nombre-app{
-       font-family: 'Pacifico', cursive;  
-       text-shadow: 2px 2px rgba(0,0,0,0.3); 
-       margin-top: -24px;
-       margin-left:120px;
-       color:white
-   }  
-       
-    .borderbox-box{
-        background-color: #D7FBE8;
-        border: none;
-        border-radius: 10px;
-        box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.4) ;
-        
-   }
+  background: #D7FBE8;
+ }
+ 
+ .main-container{
+     width: 1100px;
+     height: 400px;
+     background: #9DF3C4;
+     margin-top: 150px;
+     margin-left: 65px;
+     padding: 40px 40px 40px 40px;
+     border-radius: 10px;
+     box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.4) ;
+ 
+ }
+ 
+ .caja-imagen{
+     width: 300px;
+     height: 300px;
+     background: transparent;
+ }
+ 
+ .caja-imagen img{
+ width: 250px;
+ margin-top: 10px;
+ margin-left: 120px;
+ display: inline;
+ margin-right: 0px;
+ box-sizing: border-box;
+ }
+ 
+ .caja-form{
+ width: 500px;
+ height: 300px;
+ background: transparent;
+ margin-left: 600px;
+ margin-top: -350px;
+ }
+ 
+ .pre-control{
+ padding-top: 10px;
+ padding-bottom: 10px;
+ font-size: 20px;
+ color: white;
+ text-shadow: 2px 2px rgba(0,0,0,0.3);
+ }
+ 
+ .control{
+ width: 100%;
+ height: 35px;
+ border-radius: 5px;
+ padding-top: 10px;
+ padding-bottom: 10px;
+ background: #D7FBE8;
+ 
+ }
+ 
+ .titulo{
+     font-size: 40px;
+     font-weight: bolder;
+     font-style: oblique;
+     color: white;
+     text-shadow: 2px 2px rgba(0,0,0,0.3);
+     
+ }
+ 
+ .boton {
+     margin-left: 81%;
+     background-color: #62D2A2;
+     box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.4) ;
+     border-color:none;
+ }
+ 
+ .derivada{
+     margin-top: -30px;
+     
+ }
+ 
+ .nombre-app{
+     font-family: 'Pacifico', cursive;  
+     text-shadow: 2px 2px rgba(0,0,0,0.3); 
+     margin-top: -24px;
+     margin-left:120px;
+     color:white
+ }  
+     
+  .borderbox-box{
+      background-color: #D7FBE8;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.4) ;
+      
+ }
 
-   .linkeable{
-    background-color: none;
-    border-color:none;
-    text-align: justify;
-    margin-left: 25%;
-   }
+ .linkeable{
+  background-color: none;
+  border-color:none;
+  text-align: justify;
+  margin-left: 25%;
+ }
 
-   .imagen-box{
-       height: 50px;
-   }
+ .imagen-box{
+     height: 50px;
+ }
