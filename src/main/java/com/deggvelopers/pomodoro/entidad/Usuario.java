@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -25,6 +26,7 @@ public class Usuario implements Serializable {
     private String mail;
     private String password;
     private Boolean habilitado;
+    @JoinColumn(referencedColumnName = "id")
     @OneToOne
     private Configuracion configuracion;
 

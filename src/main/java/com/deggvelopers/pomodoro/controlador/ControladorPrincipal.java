@@ -36,7 +36,7 @@ public class ControladorPrincipal {
     @PreAuthorize("hasAnyRole('ROLE_USUARIO_REGISTRADO')")
     @GetMapping("/principal")
     public String principal() {
-        return "principal.html";
+        return "vistaPrincipal.html";
     }
 
     @GetMapping("/login")
@@ -73,11 +73,4 @@ public class ControladorPrincipal {
         modelo.put("descripcion", "Tu usuario fue registrado de manera satisfactoria");
         return "gracias.html";
     }
-    
-    @GetMapping("/tareas")
-    public String tareas (){
-        return "tareas.html"; 
-    }
-    
-    
 }

@@ -79,18 +79,25 @@
 
     <br>
 
-    <div class="col-9 container ">
-      <div class="row">
-        <div class="col-1 borderbox-box">
-          <div class="col-1">
-            <img src="../static/img/tarea.png" th:src="@{/img/tarea.png}" alt="tarea" class="imagen-box">
+<table>
+  <tbody>
+    <tr th:each="tarea : ${tareas}">
+      <div class="col-9 container ">
+        <div class="row">
+          <div class="col-1 borderbox-box">
+            <div class="col-1">
+              <img src="../static/img/tarea.png" th:src="@{/img/tarea.png}" alt="tarea" class="imagen-box">
+            </div>
+          </div>
+          <div class="col-11">
+            <a th:href="@{/tarea/tarea}" method="get" class=" fs-2 btn butG btn-lg btn-success" th:text="${tarea.nombre}">
+              Tareas</a>
           </div>
         </div>
-        <div class="col-11">
-          <a th:href="@{/tarea/tarea}" method="get" class=" fs-2 btn butG btn-lg btn-success">Tareas</a>
-        </div>
       </div>
-    </div>
+    </tr>
+  </tbody>
+</table>
 
     <br>
 

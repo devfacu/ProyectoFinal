@@ -1,9 +1,11 @@
 package com.deggvelopers.pomodoro.entidad;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -14,7 +16,9 @@ public class Proyecto implements Serializable {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
+    @Column(unique = true)
     private String nombre;
+    @JoinColumn(referencedColumnName = "id")
     @ManyToOne
     private Usuario usuario;
 
