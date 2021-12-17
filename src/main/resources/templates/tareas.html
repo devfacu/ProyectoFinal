@@ -27,8 +27,8 @@
                     <div class="col-9 text-start">
                         <p class="marca fs-1 text text-decoration-underline" th:text="${vista}"> Tareas</p>
                     </div>
-                    <div class="col-3 mt-3">
-                        <div class="row align-content-end">
+                    <div class="col-3 mt-3 align-content-end">
+                        <div class="row">
                             <abbr title="Agregar tarea"><button type="button"
                                     class="but_tarea btn-success rounded-pill btn-lg" data-bs-toggle="modal"
                                     data-bs-target="#addModal">
@@ -96,19 +96,19 @@
                                                             <div class=" col-3 form-check form-check-inline">
                                                                 <input class="form-check-input" type="radio"
                                                                     name="prioridad" id="alta" value="ALTA">
-                                                                <label class="form-check-label obs"
+                                                                <label class="form-check-label obs text-secondary"
                                                                     for="inlineRadio1">Alta</label>
                                                             </div>
                                                             <div class=" col-3 form-check form-check-inline">
                                                                 <input class="form-check-input" type="radio"
                                                                     name="prioridad" id="media" value="MEDIA">
-                                                                <label class="form-check-label obs"
+                                                                <label class="form-check-label obs text-secondary"
                                                                     for="inlineRadio2">Media</label>
                                                             </div>
                                                             <div class=" col-3 form-check form-check-inline">
                                                                 <input class="form-check-input obs" type="radio"
                                                                     name="prioridad" id="baja" value="BAJA">
-                                                                <label class="form-check-label"
+                                                                <label class="form-check-label obs text-secondary"
                                                                     for="inlineRadio3">Baja</label>
                                                             </div>
                                                         </div>
@@ -152,16 +152,16 @@
                                     </div>
                                     <div class="col-8 my-1">
                                         <div class="row">
-                                            <p th:text="${tarea.nombre}" class="boxtarea text-center">Tarea:</p>
+                                            <p th:text="${tarea.nombre}" class="boxtarea text-center text-secondary">Tarea:</p>
                                         </div>
                                         <div class="row">
                                             <div class="col">
-                                                <p th:text="${tarea.cantidadPom}" class="boxtarea text-center">N°
+                                                <p th:text="${tarea.cantidadPom}" class="boxtarea text-center text-secondary">N°
                                                     ciclos:
                                                 </p>
                                             </div>
                                             <div class="col">
-                                                <p th:text="${tarea.fecha}" class="boxtarea text-center">Fecha</p>
+                                                <p th:text="${tarea.fecha}" class="boxtarea text-center text-secondary">Fecha</p>
                                             </div>
                                             <div class="row">
                                                 <div class="col text-start">
@@ -245,26 +245,25 @@
                                                                                             name="prioridad" id="alta"
                                                                                             value="option1">
                                                                                         <label
-                                                                                            class="form-check-label obs"
+                                                                                            class="form-check-label obs text-secondary"
                                                                                             for="inlineRadio1">Alta</label>
                                                                                     </div>
-                                                                                    <div>                                                                                        class=" col-3 form-check form-check-inline">
+                                                                                    <div class=" col-3 form-check form-check-inline">                                                                                        
                                                                                         <input class="form-check-input"
                                                                                             type="radio"
                                                                                             name="prioridad" id="media"
                                                                                             value="option2">
                                                                                         <label
-                                                                                            class="form-check-label obs"
+                                                                                            class="form-check-label obs text-secondary"
                                                                                             for="inlineRadio2">Media</label>
                                                                                     </div>
-                                                                                    <div
-                                                                                        class=" col-3 form-check form-check-inline">
+                                                                                    <div class="col-3 form-check form-check-inline">
                                                                                         <input class="form-check-input"
                                                                                             type="radio"
                                                                                             name="prioridad" id="baja"
                                                                                             value="option3">
                                                                                         <label
-                                                                                            class="form-check-label obs"
+                                                                                            class="form-check-label obs text-secondary"
                                                                                             for="inlineRadio3">Baja</label>
                                                                                     </div>
                                                                                 </div>
@@ -303,10 +302,10 @@
                                                                 <div class="modal-body my-3">
                                                                     <form th:action="@{....}" method="post">
                                                                         <div class="col-12 text-start">
-                                                                            <p class="obs fs-4"> ¿Estas seguro que
+                                                                            <p class="text-secondary fs-4"> ¿Estas seguro que
                                                                                 quieres eliminar la tarea?
                                                                             </p>
-                                                                            <p class="obs fs-4"> Perderas toda la
+                                                                            <p class="text-secondary fs-4"> Perderas toda la
                                                                                 información de la misma</p>
                                                                         </div>
                                                                         <div class="col mt-4">
@@ -316,9 +315,7 @@
                                                                             <button type="submit"
                                                                                 class="btn but btn-success">Eliminar</button>
                                                                         </div>
-
                                                                     </form>
-
                                                                 </div>
                                                             </div>
                                                         </div>
