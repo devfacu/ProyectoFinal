@@ -35,7 +35,7 @@ public class ControladorPrincipal {
 
     @PreAuthorize("hasAnyRole('ROLE_USUARIO_REGISTRADO')")
     @GetMapping("/principal")
-    public String principal() {
+    public String principal(ModelMap model) {
         return "vistaPrincipal.html";
     }
 
