@@ -42,6 +42,7 @@ public class ProyectoControlador {
 	
 	
     @PostMapping("/nuevo")
+<<<<<<< HEAD
     public String crear(@RequestParam String nombre, @RequestParam String id, ModelMap model) {
 		try {
 			Usuario usuario = usuarioRepo.getById(id);
@@ -54,12 +55,19 @@ public class ProyectoControlador {
 		}
         
         
+=======
+    public String crear(@RequestParam String nombre, @RequestParam Usuario usuario) throws ErrorServicio {
+
+        proyectoServicio.crearProyecto(nombre, usuario);
+        return "vistaPrincipal.html";
+>>>>>>> b8c72ebd41d5b8a1fecd96f28828b183a78190e1
     }
 
     @PostMapping("/modificar")
-    public String modificar(@RequestParam String nombre, @RequestParam Usuario usuario) throws ErrorServicio {
+    public String modificar(@RequestParam String nombre) throws ErrorServicio {
 
-        proyectoServicio.crearProyecto(nombre, usuario);
+        
+        proyectoServicio.modificar(nombre, nombre);
         return "gestionProyecto.html";
     }
 
