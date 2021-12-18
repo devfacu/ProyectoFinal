@@ -272,8 +272,6 @@ color:white
 
    .imagen-box{
        height: 45px;
-       margin-left: -4px;
-       margin-top: 9px;
    }
 
    .butG {
@@ -288,3 +286,6 @@ color:white
         font-style: oblique;
     }
  
+    .but-principal{
+      margin-left: -105px;
+    }
