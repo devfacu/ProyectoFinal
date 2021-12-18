@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProyectoRepositorio extends JpaRepository<Proyecto, String> {
 
-    @Query("SELECT c FROM Proyecto c WHERE c.usuario = :usuario_id")
+    @Query("SELECT c FROM Proyecto c WHERE c.usuario.id = :usuario_id")
     public List<Proyecto> findByUserId(@Param("usuario_id") String usuario_id);
 
 }
