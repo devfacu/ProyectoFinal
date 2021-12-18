@@ -18,138 +18,134 @@
 
   <div class="borderedit container col-9 px-8 py-5 my-4 ">
 
-    <div class="col-9 container ">
-      <div class="row">
-        <div class="col-1 borderbox-box">
+    <div class="col-9 container">
+      <a class="fs-2 btn butG btn-success">
+        <div class="row">
           <div class="col-1">
             <img src="../static/img/sol.png" th:src="@{/img/sol.png}" alt="sol" class="imagen-box">
           </div>
+          <div class="col-11">
+            <imput class="but-principal" th:href="@{/tarea/hoy(usuario_id=__${session.usuarioSession.id}__)}">Hoy
+            </imput>
+          </div>
         </div>
-        <div class="col-11">
-          <a th:href="@{/tarea/hoy(usuario_id=__${session.usuarioSession.id}__)}" class="fs-2 btn butG btn-lg btn-success ">Hoy</a>
-        </div>
-      </div>
+      </a>
     </div>
-
 
     <br>
 
-    <div class="col-9 container ">
-      <div class="row">
-        <div class="col-1 borderbox-box">
+    <div class="col-9 container">
+      <a class="fs-2 btn butG btn-success">
+        <div class="row">
           <div class="col-1">
             <img src="../static/img/flecha.png" th:src="@{/img/flecha.png}" alt="flecha" class="imagen-box">
           </div>
+          <div class="col-11">
+            <imput class="but-principal" th:href="@{/tarea/mañana}" method="get">Mañana</imput>
+          </div>
         </div>
-        <div class="col-11">
-          <a th:href="@{/tarea/Mañana}" method="get" class="fs-2 btn butG btn-lg btn-success">Mañana</a>
-        </div>
-      </div>
+      </a>
     </div>
 
     <br>
 
-    <div class="col-9 container ">
-      <div class="row">
-        <div class="col-1 borderbox-box">
+    <div class="col-9 container">
+      <a class="fs-2 btn butG btn-success">
+        <div class="row">
           <div class="col-1">
             <img src="../static/img/calendario.png" th:src="@{/img/calendario.png}" alt="calendario" class="imagen-box">
           </div>
+          <div class="col-11">
+            <imput class="but-principal" th:href="@{/tarea/proximo}" method="get">Próximo</imput>
+          </div>
         </div>
-        <div class="col-11">
-          <a th:href="@{/tarea/proximo}" method="get" class="fs-2 btn butG btn-lg btn-success">Proximo</a>
-        </div>
-      </div>
+      </a>
     </div>
 
     <br>
 
-    <div class="col-9 container ">
-      <div class="row">
-        <div class="col-1 borderbox-box">
+    <div class="col-9 container">
+      <a class="fs-2 btn butG btn-success">
+        <div class="row">
           <div class="col-1">
             <img src="../static/img/chek.png" th:src="@{/img/chek.png}" alt="chek" class="imagen-box">
           </div>
+          <div class="col-11">
+            <imput class="but-principal" th:href="@{/tarea/completado}" method="get">Completado</imput>
+          </div>
         </div>
-        <div class="col-11">
-          <a th:href="@{/tarea/completado}" method="get" class="fs-2 btn butG btn-lg btn-success">Completado</a>
-        </div>
-      </div>
+      </a>
     </div>
 
     <br>
 
-<table>
-  <tbody>
-    <tr th:each="proyecto : ${proyectos}">
-      <div class="col-9 container ">
-        <div class="row">
-          <div class="col-1 borderbox-box">
-            <div class="col-1">
-              <img src="../static/img/tarea.png" th:src="@{/img/tarea.png}" alt="tarea" class="imagen-box">
-            </div>
+    <table>
+      <tbody>
+        <tr th:each="proyecto : ${proyectos}">
+          <div class="col-9 container">
+            <a class="fs-2 btn butG btn-success">
+              <div class="row">
+                <div class="col-1">
+                  <img src="../static/img/tarea.png" th:src="@{/img/tarea.png}" alt="tarea" class="imagen-box">
+                </div>
+                <div class="col-11">
+                  <imput th:href="@{/tarea/(proyecto_id=__${proyecto.id}__)}" method="get" th:text="${proyecto.nombre}"
+                    class="but-principal" th:href="@{/tarea/completado}" method="get">Tareas
+                  </imput>
+                </div>
+              </div>
+            </a>
           </div>
-          <div class="col-11">
-            <a th:href="@{/tarea/(proyecto_id=__${proyecto.id}__)}" method="get" class=" fs-2 btn butG btn-lg btn-success" th:text="${proyecto.nombre}">
-              Tareas</a>
-          </div>
-        </div>
-      </div>
-      <br>
-    </tr>
-  </tbody>
-</table>
+        </tr>
+      </tbody>
+    </table>
 
     <br>
 
     <div class="col-9 container ">
-      <div class="row">
-        <div class="col-1 borderbox-box">
+      <a class="fs-2 btn butG btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <div class="row">
           <div class="col-1">
             <img src="../static/img/mas.png" th:src="@{/img/mas.png}" alt="mas" class="imagen-box">
           </div>
-        </div>
-        <div class="col-11">
-          <a type="button" class="fs-2 btn butG btn-lg btn-success" data-bs-toggle="modal"
-            data-bs-target="#exampleModal">
-            Nuevo Proyecto
-          </a>
-          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content borderedit">
-                <div class="modal-header">
-                  <h5 class="modal-title fs-2 text marca text-decoration-underline" id="exampleModalLabel">Nuevo
-                    Proyecto</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body my-3">
-                  <form th:action="@{/proyecto/nuevo(usuario_id=__${session.usuarioSession.id}__)}" method="post">
-                    <div>
-                      <p th:if="${error!=null}" th:text="${error}"></p>
-                    </div>
-                    <div class="col mb-1">
-                      <label for="inputname" class="col-sm-6 col-form-label pre-control">Nombre
-                        del proyecto:</label>
-                      <div class="col-sm-12 borderbox">
-                        <input type="text" class="form-control" id="Nombre" name="nombre">
+          <div class="col-11">
+            <imput class="but-principal">Nuevo Proyecto</imput>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content borderedit">
+                  <div class="modal-header">
+                    <h5 class="modal-title fs-2 text marca text-decoration-underline" id="exampleModalLabel">Nuevo
+                      Proyecto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body my-3">
+                    <form th:action="@{/proyecto/nuevo(usuario_id=__${session.usuarioSession.id}__)}" method="post">
+                      <div>
+                        <p th:if="${error!=null}" th:text="${error}"></p>
                       </div>
+                      <div class="col mb-1">
+                        <label for="inputname" class="col-sm-6 col-form-label pre-control">Nombre
+                          del proyecto:</label>
+                        <div class="col-sm-12 borderbox">
+                          <input type="text" class="form-control" id="Nombre" name="nombre">
+                        </div>
 
-                      <div class="col mt-4">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-success">Aceptar</button>
+                        <div class="col mt-4">
+                          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                          <button type="submit" class="btn btn-success">Aceptar</button>
+                        </div>
                       </div>
-                  </form>
-
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-      </div>
-
+      </a>
     </div>
+  </div>
 
 </body>
 
