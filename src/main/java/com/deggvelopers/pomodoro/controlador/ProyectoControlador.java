@@ -23,43 +23,47 @@ public class ProyectoControlador {
 
     @Autowired
     private ProyectoServicio proyectoServicio;
-	
-	@Autowired
-	private ProyectoRepositorio proyectoRepo;
-	
-	@GetMapping("/")
-	public String gestion(ModelMap model, @RequestParam String id) {
-		try {
-			Proyecto proyectos = new Proyecto();
-			model.put("proyectos", proyectos);
-			return "gestionProyecto.html";
-		} catch (Exception e) {
-			model.put("error", e.getMessage());
-			return "gestionProyecto.html";
-		}
-		
-	}
-	
-	
+
+    @Autowired
+    private ProyectoRepositorio proyectoRepo;
+
+    @GetMapping("/")
+    public String gestion(ModelMap model, @RequestParam String id) {
+        try {
+            Proyecto proyectos = new Proyecto();
+            model.put("proyectos", proyectos);
+            return "gestionProyecto.html";
+        } catch (Exception e) {
+            model.put("error", e.getMessage());
+            return "gestionProyecto.html";
+        }
+
+    }
+
     @PostMapping("/nuevo")
+
     public String crear(@RequestParam String nombre, @RequestParam String id, ModelMap model) {
-		try {
-			Usuario usuario = usuarioRepo.getById(id);
-			proyectoServicio.crearProyecto(nombre, usuario);
-			return "redirect:/principal";
-		
-		} catch (ErrorServicio ex) {
-			model.put("error", ex.getMessage());
-			return "redirect:/principal";
-		}
-        
-        
+        try {
+            Usuario usuario = usuarioRepo.getById(id);
+            proyectoServicio.crearProyecto(nombre, usuario);
+            return "redirect:/principal";
+
+        } catch (ErrorServicio ex) {
+            model.put("error", ex.getMessage());
+            return "redirect:/principal";
+        }
+    }
+
+    public String crear(@RequestParam String nombre, @RequestParam Usuario usuario) throws ErrorServicio {
+
+        proyectoServicio.crearProyecto(nombre, usuario);
+        return "vistaPrincipal.html";
     }
 
     @PostMapping("/modificar")
-    public String modificar(@RequestParam String nombre, @RequestParam Usuario usuario) throws ErrorServicio {
+    public String modificar(@RequestParam String nombre) throws ErrorServicio {
 
-        proyectoServicio.crearProyecto(nombre, usuario);
+        proyectoServicio.modificar(nombre, nombre);
         return "gestionProyecto.html";
     }
 
