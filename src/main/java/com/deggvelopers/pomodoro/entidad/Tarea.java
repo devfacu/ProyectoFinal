@@ -11,7 +11,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 
-
 @Entity
 public class Tarea implements Serializable {
 
@@ -20,7 +19,7 @@ public class Tarea implements Serializable {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
     private String nombre;
-   @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.DATE)
     
     private Date fecha;
     @JoinColumn(referencedColumnName = "id")
@@ -114,5 +113,4 @@ public class Tarea implements Serializable {
     public void setProyecto(Proyecto proyecto) {
         this.proyecto = proyecto;
     }
-
 }

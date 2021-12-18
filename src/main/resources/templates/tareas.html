@@ -54,7 +54,7 @@
                                                     <label for="inputname"
                                                         class="col-sm-2 col-form-label pre-control">Nombre</label>
                                                     <div class="col-sm-12 borderbox">
-                                                        <input type="text" class="form-control" id="Nombre"
+                                                        <input type="text" class="form-control" id="nombre"
                                                             name="nombre">
                                                     </div>
                                                 </div>
@@ -62,7 +62,7 @@
                                                     <label for="inputdate"
                                                         class="col-sm-2 col-form-label pre-control">Fecha</label>
                                                     <div class="col-sm-12 borderbox">
-                                                        <input type="date" class="form-control" id="Nombre"
+                                                        <input type="date" class="form-control" id="fecha"
                                                             name="fecha">
                                                     </div>
                                                 </div>
@@ -80,10 +80,12 @@
                                                         class="col-sm-6 col-form-label pre-control">Proyecto
                                                     </label>
                                                     <div class="input-group mb-3">
-                                                        <select class="form-select" th:each="proyecto : ${proyectos}"
+                                                        <select class="form-select"
                                                             id="inputGroupSelect01">
                                                             <option selected>Elije un proyecto</option>
-                                                            <option th:text="${proyecto.nombre}">One</option>
+                                                            <div th:each="proyecto : ${proyectos}">
+                                                                <option th:text="${proyecto.nombre}">One</option>
+                                                            </div>
                                                         </select>
                                                     </div>
                                                 </div>

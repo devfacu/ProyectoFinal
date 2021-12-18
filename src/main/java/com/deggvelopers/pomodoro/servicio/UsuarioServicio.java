@@ -6,6 +6,8 @@ import com.deggvelopers.pomodoro.errores.ErrorServicio;
 import com.deggvelopers.pomodoro.repositorio.UsuarioRepositorio;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -17,6 +19,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 @Service
 @Validated
@@ -53,6 +57,27 @@ public class UsuarioServicio implements UserDetailsService {
 
         return usuario;
     }
+	
+	@Transactional
+	public void modificar (String id, String nombre, String apellido, String email, String password) throws ErrorServicio{
+		validacion(nombre, apellido, email, password);
+		
+		Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
+		if (respuesta.isPresent()) {
+			Usuario usuario = respuesta.get();
+			usuario.setApellido(apellido);
+			usuario.setNombre(nombre);
+			usuario.setMail(email);
+
+			String encriptada = new BCryptPasswordEncoder().encode(password);
+			usuario.setPassword(encriptada);
+			
+			usuarioRepositorio.save(usuario);
+		} else {
+			throw new ErrorServicio("No se encontro el usuario solicitado");
+		}
+	}
+	
 
     public void validacion(@Validated String nombre, @Validated String apellido,@Validated String mail,@Validated String password) throws ErrorServicio {
 
@@ -87,9 +112,9 @@ public class UsuarioServicio implements UserDetailsService {
             GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_USUARIO_REGISTRADO");
             permisos.add(p1);
 
-//			ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-//			HttpSession session = attr.getRequest().getSession(true);
-//			session.setAttribute("usuarioSession", usuario);
+			ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+			HttpSession session = attr.getRequest().getSession(true);
+			session.setAttribute("usuarioSession", usuario);
             User user = new User(usuario.getMail(), usuario.getPassword(), permisos);
             return user;
         } else {
