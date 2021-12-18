@@ -14,6 +14,15 @@
   border-radius: 10px;
   box-shadow: rgba(0,0,0,0.5);
 }
+.imgregister{
+width: 350px;
+margin-bottom: auto;
+margin-top: auto;
+margin-right: auto;
+display: inline;
+margin-left: auto;
+box-sizing: border-box;
+}
 .obs{
   
   font-weight: bolder;
@@ -21,6 +30,7 @@
 }
 .headerRegistro{
   background-color: #9DF3C4;
+  box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.3) ;
 }
   
 .linkheader{
@@ -62,6 +72,14 @@ direction: ltr;
   color: white;
   
   }
+
+.boxregister{
+margin-bottom: auto;
+margin-top: auto;
+margin-right: auto;
+display: inline;
+margin-left: auto;
+}
 
 /* Geri */
 
