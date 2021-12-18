@@ -26,7 +26,7 @@
           </div>
         </div>
         <div class="col-11">
-          <a th:href="@{/tarea/hoy}" method="get" class="fs-2 btn butG btn-lg btn-success ">Hoy</a>
+          <a th:href="@{/tarea/hoy(usuario_id=__${session.usuarioSession.id}__)}" class="fs-2 btn butG btn-lg btn-success ">Hoy</a>
         </div>
       </div>
     </div>
@@ -81,7 +81,7 @@
 
 <table>
   <tbody>
-    <tr th:each="tarea : ${tareas}">
+    <tr th:each="proyecto : ${proyectos}">
       <div class="col-9 container ">
         <div class="row">
           <div class="col-1 borderbox-box">
@@ -90,11 +90,12 @@
             </div>
           </div>
           <div class="col-11">
-            <a th:href="@{/tarea/tarea}" method="get" class=" fs-2 btn butG btn-lg btn-success" th:text="${tarea.nombre}">
+            <a th:href="@{/tarea/(proyecto_id=__${proyecto.id}__)}" method="get" class=" fs-2 btn butG btn-lg btn-success" th:text="${proyecto.nombre}">
               Tareas</a>
           </div>
         </div>
       </div>
+      <br>
     </tr>
   </tbody>
 </table>
@@ -123,7 +124,7 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body my-3">
-                  <form th:action="@{/}" method="post">
+                  <form th:action="@{/proyecto/nuevo(usuario_id=__${session.usuarioSession.id}__)}" method="post">
                     <div>
                       <p th:if="${error!=null}" th:text="${error}"></p>
                     </div>

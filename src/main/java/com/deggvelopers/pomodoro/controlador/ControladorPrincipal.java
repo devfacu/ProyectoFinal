@@ -1,8 +1,12 @@
 package com.deggvelopers.pomodoro.controlador;
 
+import com.deggvelopers.pomodoro.entidad.Proyecto;
+import com.deggvelopers.pomodoro.entidad.Usuario;
 import com.deggvelopers.pomodoro.errores.ErrorServicio;
-import com.deggvelopers.pomodoro.servicio.ProyectoServicio;
+import com.deggvelopers.pomodoro.repositorio.ProyectoRepositorio;
 import com.deggvelopers.pomodoro.servicio.UsuarioServicio;
+import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -21,7 +25,7 @@ public class ControladorPrincipal {
     private UsuarioServicio usuarioServicio;
 
     @Autowired
-    private ProyectoServicio proyectoServicio;
+    private ProyectoRepositorio proyectoRepo;
 
     @GetMapping("/")
     public String index(Model model) {
@@ -35,7 +39,12 @@ public class ControladorPrincipal {
 
     @PreAuthorize("hasAnyRole('ROLE_USUARIO_REGISTRADO')")
     @GetMapping("/principal")
-    public String principal(ModelMap model) {
+    public String principal(ModelMap model, HttpSession session) {
+		
+        Usuario usuario = (Usuario) session.getAttribute("usuarioSession");
+        List<Proyecto> proyectos = proyectoRepo.findByUserId(usuario.getId());
+		
+        model.put("proyectos", proyectos);
         return "vistaPrincipal.html";
     }
 

@@ -41,10 +41,9 @@ public class ProyectoControlador {
     }
 
     @PostMapping("/nuevo")
-
-    public String crear(@RequestParam String nombre, @RequestParam String id, ModelMap model) {
+    public String crear(@RequestParam String nombre, @RequestParam String usuario_id, ModelMap model) {
         try {
-            Usuario usuario = usuarioRepo.getById(id);
+            Usuario usuario = usuarioRepo.getById(usuario_id);
             proyectoServicio.crearProyecto(nombre, usuario);
             return "redirect:/principal";
 
