@@ -25,7 +25,7 @@
             <img src="../static/img/sol.png" th:src="@{/img/sol.png}" alt="sol" class="imagen-box">
           </div>
           <div class="col-11">
-            <imput class="but-principal" th:href="@{/tarea/hoy(usuario_id=__${session.usuarioSession.id}__)}">Hoy
+            <imput class="but-principal" th:href="@{/tarea/hoy(usuario_id=_${session.usuarioSession.id}_)}">Hoy
             </imput>
           </div>
         </div>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Font Pacifico -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <!-- https://material.io/resources/icons/?style=baseline -->
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}">
+  <title>Configuración</title>
+</head>
+
+<body class="bodyIndex">
+
+  <div class="borderedit container col-9 px-8 py-5 my-4 ">
+    <div class="col-10 container mb-4">
+      <h1 class="marca">Configuración</h1>
+    </div><br>
+
+    <div class="col-9 container borderbox-box">
+      <div class="row ">
+        <div class="col-10">
+          <label method="post" class="titulo">Gestión de proyectos</label>
+        </div>
+        <div class="col justify-content-center mt-2">
+          <abbr title="Gestionar proyectos"><a th:href="@{/proyecto/}" type="button"
+              class="but_tarea btn-success rounded-pill btn-lg">
+              <span class="material-icons">
+                login
+              </span></a></abbr>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+
+    <div class="col-9 container borderbox-box">
+      <div class="row">
+        <div class="col justify-content-center mt-2">
+          <label method="post" class="titulo">Alarma de trabajo</label>
+        </div>
+        <select class="form-select" aria-label="Default select example">
+          <option selected>Elije una opción</option>
+
+          <div th:each="alarma : ${alarmas}">
+          <option th:text="${alarma.nombre}" th:value="${alarma.nombre}" >alarma 1</option>
+          </div>
+        
+        </select>
+
+      </div>
+    </div>
+    <br>
+    <div class="col-9 container borderbox-box">
+      <div class="row">
+        <div class="col justify-content-center mt-2">
+          <label method="post" class="titulo">Alarma de descanso</label>
+        </div>
+        <select class="form-select" aria-label="Default select example">
+          <option selected>Elije una opción</option>
+
+          <div th:each="alarma : ${alarmas}">
+          <option th:text="${alarma.nombre}" th:value="${alarma.nombre}" >alarma 1</option>
+          </div>
+        
+        </select>
+
+      </div>
+    </div>
+    <br>
+
+
+    <div class="col-9 container borderbox-box">
+      <div class="row">
+        <div class="col justify-content-center mt-2">
+          <label method="post" class="titulo">Sonido de fondo</label>
+        </div>
+        <select class="form-select" aria-label="Default select example">
+          <option selected>Elije una opción</option>
+
+          <div th:each="sonido : ${sonidos}">
+          <option th:text="${sonido.nombre}" th:value="${sonido.nombre}" >sonido 1</option>
+          </div>
+        
+        </select>
+
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="col-9 container borderbox-box">
+      <div class="row">
+        <div class="col-10">
+          <label method="post" class="titulo">Duracion del pomodoro</label>
+        </div>
+        <div class="duracion justify-content-center mt-4">
+            <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="duracionPom" id="duracionPom1">
+            <label class="form-check-label" for="flexRadioDefault1">
+              20 minutos
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="duracionPom" id="duracionPom2" checked>
+            <label class="form-check-label" for="flexRadioDefault2">
+              25 minutos
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="duracionPom" id="duracionPom3">
+            <label class="form-check-label" for="flexRadioDefault1">
+              30 minutos
+            </label>
+          </div>
+          </div>
+
+        </div>
+      </div>
+    
+
+  <br>
+  <div class="col-9 container borderbox-box">
+    <div class="row">
+      <div class="col-10">
+        <label method="post" class="titulo">Descanso corto</label>
+      </div>
+      <div class="duracion justify-content-center mt-4">
+      
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="descansoCorto" id="descansoCorto1">
+          <label class="form-check-label" for="flexRadioDefault1">
+            4 minutos
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="descansoCorto" id="descansoCorto2" checked>
+          <label class="form-check-label" for="flexRadioDefault2">
+            5 minutos
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="descansoCorto" id="descansoCorto3">
+          <label class="form-check-label" for="flexRadioDefault1">
+            6 minutos
+          </label>
+        </div>
+        </div>
+
+      </div>
+    </div>
+
+
+<br>
+<div class="col-9 container borderbox-box">
+  <div class="row">
+    <div class="col-10">
+      <label method="post" class="titulo">Descanso largo</label>
+    </div>
+    <div class="duracion justify-content-center mt-4">
+      
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="descansoLargo" id="descansoLargo1">
+        <label class="form-check-label" for="flexRadioDefault1">
+          15 minutos
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="descansoLargo" id="descansoLargo2" checked>
+        <label class="form-check-label" for="flexRadioDefault2">
+          20 minutos
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="descansoLargo" id="descansoLargo3">
+        <label class="form-check-label" for="flexRadioDefault1">
+          30 minutos
+        </label>
+      </div>
+      </div>
+
+    </div>
+  </div>
+
+
+<br>
+ 
+<div class="col-9 container borderbox-box">
+  <div class="row">
+    <div class="col-10">
+      <label method="post" class="titulo">Intervalo de descanso largo</label>
+    </div>
+    <div class="duracion justify-content-center mt-4">
+      
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="Intervalo" id="Intervalo1">
+        <label class="form-check-label" for="flexRadioDefault1">
+          4 poms
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="Intervalo" id="Intervalo2" checked>
+        <label class="form-check-label" for="flexRadioDefault2">
+          5 poms
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="Intervalo" id="Intervalo3">
+        <label class="form-check-label" for="flexRadioDefault1">
+          6 poms
+        </label>
+      </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<br>

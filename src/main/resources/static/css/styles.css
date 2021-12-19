@@ -14,6 +14,15 @@
   border-radius: 10px;
   box-shadow: rgba(0,0,0,0.5);
 }
+.imgregister{
+width: 350px;
+margin-bottom: auto;
+margin-top: auto;
+margin-right: auto;
+display: inline;
+margin-left: auto;
+box-sizing: border-box;
+}
 .obs{
   
   font-weight: bolder;
@@ -21,6 +30,7 @@
 }
 .headerRegistro{
   background-color: #9DF3C4;
+  box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.3) ;
 }
   
 .linkheader{
@@ -54,6 +64,21 @@ letter-spacing: normal;
 word-wrap: normal;
 white-space: nowrap;
 direction: ltr;
+}
+.switch_control{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 25px;
+  color: white;
+  
+  }
+
+.boxregister{
+margin-bottom: auto;
+margin-top: auto;
+margin-right: auto;
+display: inline;
+margin-left: auto;
 }
 
 /* Geri */
@@ -95,6 +120,10 @@ color:white
 .marca{
   font-family: 'Pacifico', cursive;  
   text-shadow: 2px 2px rgba(0,0,0,0.3);   
+}
+
+.duracion{
+  color: black;
 }
 /* Facu */
 .vista-reloj {
@@ -170,105 +199,98 @@ color:white
 
 
 .login{
-    background: #D7FBE8;
-   }
-   
-   .main-container{
-       width: 1100px;
-       height: 400px;
-       background: #9DF3C4;
-       margin-top: 150px;
-       margin-left: 65px;
-       padding: 40px 40px 40px 40px;
-       border-radius: 10px;
-       box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.4) ;
-   
-   }
-   
-   .caja-imagen{
-       width: 300px;
-       height: 300px;
-       background: transparent;
-   }
-   
-   .caja-imagen img{
-   width: 250px;
-   margin-top: 10px;
-   margin-left: 120px;
-   display: inline;
-   margin-right: 0px;
-   box-sizing: border-box;
-   }
-   
-   .caja-form{
-   width: 500px;
-   height: 300px;
-   background: transparent;
-   margin-left: 600px;
-   margin-top: -350px;
-   }
-   
-   .pre-control{
-   padding-top: 10px;
-   padding-bottom: 10px;
-   font-size: 20px;
-   color: white;
-   text-shadow: 2px 2px rgba(0,0,0,0.3);
-   }
-   
-   .control{
-   width: 100%;
-   height: 35px;
-   border-radius: 5px;
-   padding-top: 10px;
-   padding-bottom: 10px;
-   background: #D7FBE8;
-   
-   }
-   
-   .titulo{
-       font-size: 40px;
-       font-weight: bolder;
-       font-style: oblique;
-       color: white;
-       text-shadow: 2px 2px rgba(0,0,0,0.3);
-       
-   }
-   
-   .boton {
-       margin-left: 81%;
-       background-color: #62D2A2;
-       box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.4) ;
-       border-color:none;
-   }
-   
-   .derivada{
-       margin-top: -30px;
-       
-   }
-   
-   .nombre-app{
-       font-family: 'Pacifico', cursive;  
-       text-shadow: 2px 2px rgba(0,0,0,0.3); 
-       margin-top: -24px;
-       margin-left:120px;
-       color:white
-   }  
-       
-    .borderbox-box{
-        background-color: #D7FBE8;
-        border: none;
-        border-radius: 10px;
-        box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.4) ;
-    
-   }
-
-   .linkeable{
-    background-color: none;
-    border-color:none;
-    text-align: justify;
-    margin-left: 25%;
-   }
+  background: #D7FBE8;
+ }
+ 
+ .main-container{
+     width: 1100px;
+     height: 400px;
+     background: #9DF3C4;
+     margin-top: 150px;
+     margin-left: 65px;
+     padding: 40px 40px 40px 40px;
+     border-radius: 10px;
+     box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.4) ;
+ 
+ }
+ 
+ .caja-imagen{
+     width: 300px;
+     height: 300px;
+     background: transparent;
+ }
+ 
+ .caja-imagen img{
+ width: 250px;
+ margin-top: 10px;
+ margin-left: 120px;
+ display: inline;
+ margin-right: 0px;
+ box-sizing: border-box;
+ }
+ 
+ .caja-form{
+ width: 500px;
+ height: 300px;
+ background: transparent;
+ margin-left: 600px;
+ margin-top: -350px;
+ }
+ 
+ .pre-control{
+ padding-top: 10px;
+ padding-bottom: 10px;
+ font-size: 20px;
+ color: white;
+ text-shadow: 2px 2px rgba(0,0,0,0.3);
+ }
+ 
+ .control{
+ width: 100%;
+ height: 35px;
+ border-radius: 5px;
+ padding-top: 10px;
+ padding-bottom: 10px;
+ background: #D7FBE8;
+ 
+ }
+ 
+ .titulo{
+     font-size: 40px;
+     font-weight: bolder;
+     font-style: oblique;
+     color: white;
+     text-shadow: 2px 2px rgba(0,0,0,0.3);
+     
+ }
+ 
+ .boton {
+     margin-left: 81%;
+     background-color: #62D2A2;
+     box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.4) ;
+     border-color:none;
+ }
+ 
+ .derivada{
+     margin-top: -30px;
+     
+ }
+ 
+ .nombre-app{
+     font-family: 'Pacifico', cursive;  
+     text-shadow: 2px 2px rgba(0,0,0,0.3); 
+     margin-top: -24px;
+     margin-left:120px;
+     color:white
+ }  
+     
+  .borderbox-box{
+      background-color: #D7FBE8;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.4) ;
+      
+ }
 
    .imagen-box{
        height: 45px;
