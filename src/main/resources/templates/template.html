@@ -38,7 +38,7 @@
                         <a class="nav-link link-secondary fs-4" th:href="@{/reloj}" >Reloj</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link link-secondary fs-4" th:href="@{...}">Configuracion</a>
+                        <a class="nav-link link-secondary fs-4" th:href="@{/configuracion/}">Configuracion</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link link-secondary fs-4" href="/logout">Cerrar Sesion</a>
@@ -73,7 +73,7 @@
                                                                 class="col-sm-2 col-form-label pre-control">Nombre</label>
                                                             <div class="col-sm-12 borderbox">
                                                                 <input type="text" class="form-control" id="nombre"
-                                                                    name="nombre" th:text="${usuario.nombre}">
+                                                                    name="nombre" th:text="${session.usuarioSession.nombre}">
                                                             </div>
                                                         </div>
                                                         <div class="col mb-1">
@@ -81,7 +81,7 @@
                                                                 class="col-sm-2 col-form-label pre-control">Apellido</label>
                                                             <div class="col-sm-12 borderbox">
                                                                 <input type="text" class="form-control" id="apellido"
-                                                                    name="apellido" th:text="${usuario.apellido}">
+                                                                    name="apellido" th:text="${session.usuarioSession.apellido}">
                                                             </div>
                                                         </div>
                                                         <div class="col mb-1">
@@ -89,7 +89,7 @@
                                                                 class="col-sm-2 col-form-label pre-control">Email</label>
                                                             <div class="col-sm-12 borderbox">
                                                                 <input type="email" class="form-control" id="email"
-                                                                    th:text="${usuario.email}" disabled>
+                                                                    th:text="${session.usuarioSession. mail}" disabled>
                                                             </div>
                                                         </div>
                                                         <div class="col mb-1">
@@ -97,8 +97,7 @@
                                                                 class="col-sm-2 col-form-label pre-control">Contraseña</label>
                                                             <div class="col-sm-12 borderbox">
                                                                 <input type="password" class="form-control"
-                                                                    id="Contraseña1" name="contrasena1"
-                                                                    th:text="${usuario.password}">
+                                                                    id="Contraseña1" name="contrasena1">
                                                             </div>
                                                         </div>
                                                         <div class="col mb-1">

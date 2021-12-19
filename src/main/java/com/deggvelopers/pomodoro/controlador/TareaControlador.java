@@ -60,7 +60,7 @@ public class TareaControlador {
 	}
 
 	@GetMapping("/mañana")
-	public String listarMañana(ModelMap model) {
+	public String listarMañana(@RequestParam String usuario_id, ModelMap model) {
 
 		Date mañana = new Date();
 
@@ -69,7 +69,7 @@ public class TareaControlador {
 		c.add(Calendar.DATE, 1);
 		mañana = c.getTime();
 
-		List<Proyecto> proyectos = proyectoRepo.findByUserId("usuario_id");
+		List<Proyecto> proyectos = proyectoRepo.findByUserId(usuario_id);
 		List<Tarea> tareas = tareaServicio.buscarTareasPorProyectos(proyectos, mañana);
 
 		model.put("vista", "Mañana");
@@ -80,7 +80,7 @@ public class TareaControlador {
 	}
 
 	@GetMapping("/proximo")
-	public String listarProximo(ModelMap model) {
+	public String listarProximo(@RequestParam String usuario_id, ModelMap model) {
 
 		Date proximo = new Date();
 
@@ -89,7 +89,7 @@ public class TareaControlador {
 		c.add(Calendar.DATE, 1);
 		proximo = c.getTime();
 
-		List<Proyecto> proyectos = proyectoRepo.findByUserId("usuario_id");
+		List<Proyecto> proyectos = proyectoRepo.findByUserId(usuario_id);
 		List<Tarea> tareas = tareaRepo.buscarPorProximo(proximo);
 
 		model.put("vista", "Proximo");
