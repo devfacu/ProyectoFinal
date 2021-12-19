@@ -15,58 +15,58 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 public class ProyectoServicio {
 
-    @Autowired
-    private ProyectoRepositorio proyectoRepositorio;
+	@Autowired
+	private ProyectoRepositorio proyectoRepositorio;
 
-    public Proyecto crearProyecto(@Validated String nombre, @Validated Usuario usuario) throws ErrorServicio {
-        Proyecto proyecto = new Proyecto();
+	public Proyecto crearProyecto(@Validated String nombre, @Validated Usuario usuario) throws ErrorServicio {
+		Proyecto proyecto = new Proyecto();
 
-        validar(nombre);
+		validar(nombre);
 
-        proyecto.setNombre(nombre);
-        proyecto.setUsuario(usuario);
-        proyectoRepositorio.save(proyecto);
+		proyecto.setNombre(nombre);
+		proyecto.setUsuario(usuario);
+		proyectoRepositorio.save(proyecto);
 
-        return proyecto;
-    }
+		return proyecto;
+	}
 
-    public void modificar(@Validated String id, @Validated String nombre) throws ErrorServicio {
+	public void modificar(@Validated String id, @Validated String nombre) throws ErrorServicio {
 
-        validar(nombre);
+		validar(nombre);
 
-        Optional<Proyecto> respuesta = proyectoRepositorio.findById(id);
+		Optional<Proyecto> respuesta = proyectoRepositorio.findById(id);
 
-        if (respuesta.isPresent()) {
-            Proyecto proyecto = proyectoRepositorio.findById(id).get();
-            proyecto.setNombre(nombre);
+		if (respuesta.isPresent()) {
+			Proyecto proyecto = proyectoRepositorio.findById(id).get();
+			proyecto.setNombre(nombre);
 
-            proyectoRepositorio.save(proyecto);
-        } else {
-            throw new ErrorServicio("No se encontro el usuario solicitado");
-        }
-    }
+			proyectoRepositorio.save(proyecto);
+		} else {
+			throw new ErrorServicio("No se encontro el usuario solicitado");
+		}
+	}
 
-    public void eliminarAutor(@Validated String id, @Validated String nombre) throws ErrorServicio {
+	public void eliminarProyecto(@Validated String id, @Validated String nombre) throws ErrorServicio {
 
-        long cantidadProyecto = proyectoRepositorio.count();
+		long cantidadProyecto = proyectoRepositorio.count();
 
-        if (cantidadProyecto > 1) {
-            Optional<Proyecto> respuesta = proyectoRepositorio.findById(id);
-            if (respuesta.isPresent()) {
-                Proyecto proyecto = respuesta.get();
-                proyectoRepositorio.deleteById(id);
-            } else {
-                throw new ErrorServicio("El proyecto no existe");
-            }
-        } else {
-            throw new ErrorServicio("No es posible eliminar todos los proyectos. ");
-        }
-    }
+		if (cantidadProyecto > 1) {
+			Optional<Proyecto> respuesta = proyectoRepositorio.findById(id);
+			if (respuesta.isPresent()) {
+				Proyecto proyecto = respuesta.get();
+				proyectoRepositorio.deleteById(id);
+			} else {
+				throw new ErrorServicio("El proyecto no existe");
+			}
+		} else {
+			throw new ErrorServicio("No es posible eliminar todos los proyectos. ");
+		}
+	}
 
-    public void validar(@Validated String nombre) throws ErrorServicio {
+	public void validar(@Validated String nombre) throws ErrorServicio {
 
-        if (nombre == null || nombre.isEmpty()) {
-            throw new ErrorServicio("El nombre del Proyecto no puede ser nulo");
-        }
-    }
+		if (nombre == null || nombre.isEmpty()) {
+			throw new ErrorServicio("El nombre del Proyecto no puede ser nulo");
+		}
+	}
 }

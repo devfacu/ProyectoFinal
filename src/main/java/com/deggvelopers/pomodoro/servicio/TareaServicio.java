@@ -1,12 +1,16 @@
 package com.deggvelopers.pomodoro.servicio;
 
+import com.deggvelopers.pomodoro.entidad.Configuracion;
 import com.deggvelopers.pomodoro.entidad.Prioridad;
 import com.deggvelopers.pomodoro.entidad.Proyecto;
 import com.deggvelopers.pomodoro.entidad.Tarea;
 import com.deggvelopers.pomodoro.errores.ErrorServicio;
+import com.deggvelopers.pomodoro.repositorio.ConfiguracionRepositorio;
 import com.deggvelopers.pomodoro.repositorio.ProyectoRepositorio;
 import com.deggvelopers.pomodoro.repositorio.TareaRepositorio;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,63 +20,76 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 public class TareaServicio {
 
-    @Autowired
-    private TareaRepositorio tareaRepositorio;
-    
-    @Autowired
-    private ProyectoRepositorio proyectoRepo; 
+	@Autowired
+	private TareaRepositorio tareaRepo;
 
-    public Tarea crearTarea(@Validated String nombre, @Validated Date fecha, @Validated String id_proyecto, @Validated Prioridad prioridad, @Validated Integer tiempoInvertido, @Validated Boolean Completado, @Validated Integer cantidadPom, @Validated Integer duracionPom) throws ErrorServicio {
+	@Autowired
+	private ProyectoRepositorio proyectoRepo;
 
-        validar(nombre);
-        
-        Proyecto proyecto = proyectoRepo.findById(id_proyecto).get(); 
-        Tarea tarea = new Tarea();
+	@Autowired
+	private ConfiguracionRepositorio configRepo;
 
-        tarea.setNombre(nombre);
-        tarea.setFecha(fecha);
-        tarea.setProyecto(proyecto);
-        tarea.setPrioridad(prioridad);
-        tarea.setTiempoInvertido(tiempoInvertido);
-        tarea.setCompletado(Completado);
-        tarea.setCantidadPom(cantidadPom);
-        tarea.setDuracionPom(duracionPom);
-        tareaRepositorio.save(tarea);
+	public Tarea crearTarea(@Validated String nombre, @Validated Date fecha, @Validated String id_proyecto, @Validated Prioridad prioridad, @Validated Integer cantidadPom, @Validated String config_id) throws ErrorServicio {
 
-        return tarea;
-    }
+		validar(nombre);
 
-    public void modificarT(@Validated String id, @Validated String nombre, @Validated Date fecha, @Validated String id_proyecto, @Validated Prioridad prioridad, @Validated Integer cantidadPom ) throws ErrorServicio {
+		Configuracion config = configRepo.getById(config_id);
+		Proyecto proyecto = proyectoRepo.findById(id_proyecto).get();
+		Tarea tarea = new Tarea();
 
-        validar(nombre);
-        
-        Optional<Tarea> respuesta = tareaRepositorio.findById(id);
-        
-        Proyecto proyecto = proyectoRepo.findById(id_proyecto).get();
-        
-        if (respuesta.isPresent()) {
-            Tarea tarea = tareaRepositorio.findById(id).get();
-            tarea.setNombre(nombre);
-            tarea.setFecha(fecha);
-            tarea.setProyecto(proyecto);
-            tarea.setPrioridad(prioridad);
-            tarea.setCantidadPom(cantidadPom);
+		tarea.setNombre(nombre);
+		tarea.setFecha(fecha);
+		tarea.setProyecto(proyecto);
+		tarea.setPrioridad(prioridad);
+		tarea.setTiempoInvertido(0);
+		tarea.setCompletado(Boolean.FALSE);
+		tarea.setCantidadPom(cantidadPom);
+		tarea.setDuracionPom(config.getDuracionPom());
+		tareaRepo.save(tarea);
 
-            tareaRepositorio.save(tarea);
-        } else {
-            throw new ErrorServicio("No se encontro la tarea solicitada"); 
-        }
-    }
+		return tarea;
+	}
 
-    public void eliminarT(@Validated String id) throws ErrorServicio {
+	public void modificarT(@Validated String id, @Validated String nombre, @Validated Date fecha, @Validated String id_proyecto, @Validated Prioridad prioridad, @Validated Integer cantidadPom) throws ErrorServicio {
 
-       tareaRepositorio.deleteById(id);
-    }
+		validar(nombre);
 
-    public void validar(@Validated String nombre) throws ErrorServicio {
+		Optional<Tarea> respuesta = tareaRepo.findById(id);
 
-        if (nombre == null || nombre.isEmpty()) {
-            throw new ErrorServicio("El nombre del Proyecto no puede ser nulo");
-        }
-    }
+		Proyecto proyecto = proyectoRepo.findById(id_proyecto).get();
+
+		if (respuesta.isPresent()) {
+			Tarea tarea = tareaRepo.findById(id).get();
+			tarea.setNombre(nombre);
+			tarea.setFecha(fecha);
+			tarea.setProyecto(proyecto);
+			tarea.setPrioridad(prioridad);
+			tarea.setCantidadPom(cantidadPom);
+
+			tareaRepo.save(tarea);
+		} else {
+			throw new ErrorServicio("No se encontro la tarea solicitada");
+		}
+	}
+
+	public void eliminarT(@Validated String id) throws ErrorServicio {
+		tareaRepo.deleteById(id);
+	}
+
+	public void validar(@Validated String nombre) throws ErrorServicio {
+
+		if (nombre == null || nombre.isEmpty()) {
+			throw new ErrorServicio("El nombre del Proyecto no puede ser nulo");
+		}
+	}
+
+	public List<Tarea> buscarTareasPorProyectos(List<Proyecto> proyectos, Date fecha) {
+		List<Tarea> todasLasTareas = new ArrayList<>();
+		proyectos.forEach((proyecto) -> {
+			List<Tarea> tareas = tareaRepo.buscarPorFecha(proyecto.getId(), fecha);
+			todasLasTareas.addAll(tareas);
+		});
+		return todasLasTareas;
+	}
+
 }
