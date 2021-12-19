@@ -46,7 +46,7 @@ public class ProyectoServicio {
         }
     }
 
-    public void eliminarProyecto(@Validated String id, @Validated String nombre) throws ErrorServicio {
+    public void eliminarAutor(@Validated String id, @Validated String nombre) throws ErrorServicio {
 
         long cantidadProyecto = proyectoRepositorio.count();
 

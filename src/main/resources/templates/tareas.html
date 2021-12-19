@@ -19,6 +19,8 @@
 
 
 <body class="bodyIndex">
+
+    <nav th:replace="template.html :: nav"></nav>
     <div class="container-lg col-6 my-5 borderedit">
 
         <header>
@@ -54,7 +56,7 @@
                                                     <label for="inputname"
                                                         class="col-sm-2 col-form-label pre-control">Nombre</label>
                                                     <div class="col-sm-12 borderbox">
-                                                        <input type="text" class="form-control" id="nombre"
+                                                        <input type="text" class="form-control" id="Nombre"
                                                             name="nombre">
                                                     </div>
                                                 </div>
@@ -62,7 +64,7 @@
                                                     <label for="inputdate"
                                                         class="col-sm-2 col-form-label pre-control">Fecha</label>
                                                     <div class="col-sm-12 borderbox">
-                                                        <input type="date" class="form-control" id="fecha"
+                                                        <input type="date" class="form-control" id="Nombre"
                                                             name="fecha">
                                                     </div>
                                                 </div>
@@ -80,12 +82,10 @@
                                                         class="col-sm-6 col-form-label pre-control">Proyecto
                                                     </label>
                                                     <div class="input-group mb-3">
-                                                        <select class="form-select"
+                                                        <select class="form-select" th:each="proyecto : ${proyectos}"
                                                             id="inputGroupSelect01">
                                                             <option selected>Elije un proyecto</option>
-                                                            <div th:each="proyecto : ${proyectos}">
-                                                                <option th:text="${proyecto.nombre}">One</option>
-                                                            </div>
+                                                            <option th:text="${proyecto.nombre}">One</option>
                                                         </select>
                                                     </div>
                                                 </div>
