@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/tarea")
@@ -26,7 +27,7 @@ public class TareaControlador {
 
 	@Autowired
 	private TareaRepositorio tareaRepo;
-	
+
 	@Autowired
 	private UsuarioRepositorio usuarioRepo;
 
@@ -135,6 +136,22 @@ public class TareaControlador {
 			model.put("error", e.getMessage());
 			return "vistaPrincipal.html";
 		}
+	}
+
+	@PostMapping("/eliminar")
+	public ModelAndView eliminar(ModelMap model, @RequestParam String tarea_id, @RequestParam String vista, String usuario_id) {
+
+		try {
+			ModelAndView  modelView = new ModelAndView("redirect:/tarea/" + vista.toLowerCase());
+			model.put("vista", vista);
+			tareaServicio.eliminarT(tarea_id);
+			return modelView;
+		} catch (ErrorServicio ex) {
+			model.put("error", ex.getMessage());
+			ModelAndView  modelView = new ModelAndView("redirect:/tarea/" + vista.toLowerCase());
+			return modelView;
+		}
+
 	}
 
 }
