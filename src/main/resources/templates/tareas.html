@@ -85,7 +85,8 @@
                                                         <select class="form-select" id="inputGroupSelect01">
                                                             <option selected>Elije un proyecto</option>
                                                             <div th:each="proyecto : ${proyectos}">
-                                                                <option th:text="${proyecto.nombre}" th:value="${proyecto.nombre}">One</option>
+                                                                <option th:text="${proyecto.nombre}"
+                                                                    th:value="${proyecto.nombre}">One</option>
                                                             </div>
                                                         </select>
                                                     </div>
@@ -118,9 +119,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="col mt-4">
+                                                    <button type="submit"
+                                                        class="btn but btn-success me-3">Guardar</button>
                                                     <button type="button" class="btn but btn-success"
-                                                        data-bs-dismiss="modal">Cerrar</button>
-                                                    <button type="submit" class="btn but btn-success">Guardar</button>
+                                                        data-bs-dismiss="modal">Cancelar</button>
                                                 </div>
 
                                             </form>
@@ -159,15 +161,14 @@
                                                 Tarea:</p>
                                         </div>
                                         <div class="row">
-                                            <div class="col">
+                                            <div class="col-4">
                                                 <p th:text="${tarea.cantidadPom}"
-                                                    class="boxtarea text-center text-secondary">N°
-                                                    ciclos:
+                                                    class="boxtarea text-center text-secondary">5
                                                 </p>
                                             </div>
-                                            <div class="col">
+                                            <div class="col-8">
                                                 <p th:text="${tarea.fecha}" class="boxtarea text-center text-secondary">
-                                                    Fecha</p>
+                                                    2021-12-15</p>
                                             </div>
                                             <div class="row">
                                                 <div class="col text-start">
@@ -281,11 +282,12 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="col mt-4">
+                                                                            <button type="submit"
+                                                                                class="btn but btn-success me-3">Guardar</button>
                                                                             <button type="button"
                                                                                 class="btn but btn-success"
-                                                                                data-bs-dismiss="modal">Cerrar</button>
-                                                                            <button type="submit"
-                                                                                class="btn but btn-success">Guardar</button>
+                                                                                data-bs-dismiss="modal">Cancelar</button>
+
                                                                         </div>
 
                                                                     </form>
@@ -295,7 +297,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col text-end me-0">
+                                                <div class="col text-end">
                                                     <a href="#" class="link-success text-decoration-none"
                                                         data-bs-toggle="modal"
                                                         data-bs-target="#eliminateModal">Eliminar</a>
@@ -304,7 +306,7 @@
                                                         <div class="modal-dialog">
                                                             <div class="modal-content borderedit">
                                                                 <div class="modal-header">
-                                                                    <h5 class="modal-title fs-2 text marca text-decoration-underline"
+                                                                    <h5 class="modal-title fs-2 text marca text-decoration-underline text-white"
                                                                         id="exampleModalLabel">Eliminar Tarea</h5>
                                                                     <button type="button" class="btn-close"
                                                                         data-bs-dismiss="modal"
@@ -321,12 +323,13 @@
                                                                                 toda la
                                                                                 información de la misma</p>
                                                                         </div>
-                                                                        <div class="col mt-4">
+                                                                        <div class="col mt-4 modal-footer">
+                                                                            <button type="submit"
+                                                                                class="btn but btn-success me-3">Eliminar</button>
                                                                             <button type="button"
                                                                                 class="btn but btn-success"
                                                                                 data-bs-dismiss="modal">Cancelar</button>
-                                                                            <button type="submit"
-                                                                                class="btn but btn-success">Eliminar</button>
+
                                                                         </div>
                                                                     </form>
                                                                 </div>
