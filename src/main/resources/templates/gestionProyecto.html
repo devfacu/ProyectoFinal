@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Font Pacifico -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <!-- https://material.io/resources/icons/?style=baseline -->
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}">
+    <title>Gestión de Proyectos</title>
+</head>
+
+<body class="bodyIndex">
+
+    <div class="borderedit container col-9 px-8 py-5 my-4 ">
+        <div class="col-10 container mb-4">
+            <h1 class="marca">Gestión de Proyectos</h1>
+        </div><br>
+
+        <table>
+            <tbody>
+                <tr th:each="proyecto : ${proyectos}">
+                    <div class="col-10 container borderbox-box">
+                        <div class="row">
+                            <div class="col-8">
+                               <div th:text="${proyecto.nombre}>
+                                <label method="post" class="titulo">Tarea</label>
+                                </div>
+                            </div>
+                            <div class="col justify-content-center mt-2">
+                                <abbr title="Editar Proyecto"><a th:href="@{/proyecto/editar}" type="button"
+                                        data-bs-toggle="modal" data-bs-target="#editarProyecto"
+                                        class="but_tarea btn-success rounded-pill btn-lg">
+                                        <span class="material-icons">
+                                            settings
+                                        </span></a></abbr>
+                            </div>
+                            <div class="col justify-content-center mt-2">
+                                <abbr title="Eliminar Proyecto"><a th:href="@{/proyecto/eliminar}" type="button"
+                                        data-bs-toggle="modal" data-bs-target="#eliminarProyecto"
+                                        class="but_tarea btn-danger rounded-pill btn-lg">
+                                        <span class="material-icons">
+                                            delete
+                                        </span></a></abbr>
+                            </div>
+                        </div>
+                    </div>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+
+        <div class="modal fade" id="editarProyecto" tabindex="-1" aria-labelledby="editarProyecto" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content borderedit">
+                    <div class="modal-header">
+                        <h5 class="modal-title fs-2 text marca text-decoration-underline" id="editarProyecto">Editar
+                            Proyecto</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body my-3">
+                        <form th:action="@{/proyecto/nuevo(usuario_id=__${session.usuarioSession.id}__)}" method="post">
+                            <div>
+                                <p th:if="${error!=null}" th:text="${error}"></p>
+                            </div>
+                            <div class="col mb-1">
+                                <label for="inputname" class="col-sm-6 col-form-label pre-control">Nombre
+                                    del proyecto:</label>
+                                <div class="col-sm-12 borderbox">
+                                    <input type="text" class="form-control" id="Nombre" name="nombre">
+                                </div>
+
+                                <div class="col mt-4">
+                                    <button type="button" class="btn btn-danger"
+                                        data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-success">Guardar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="modal fade" id="eliminarProyecto" tabindex="-1" aria-labelledby="eliminarProyecto"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content borderedit">
+                    <div class="modal-header">
+                        <h5 class="modal-title fs-2 text marca text-decoration-underline" id="eliminarProyecto">Eliminar
+                            Proyecto</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body my-3">
+                        <form th:action="@{/proyecto/nuevo(usuario_id=__${session.usuarioSession.id}__)}" method="post">
+                            <div>
+                                <p th:if="${error!=null}" th:text="${error}"></p>
+                            </div>
+                            <div class="col mb-1">
+                                <label for="inputname" class="col-sm-6 col-form-label pre-control">¿Esta seguro que
+                                    desea eliminar el proyecto?</label>
+
+                                <div class="col mt-4">
+                                    <button type="button" class="btn btn-danger"
+                                        data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-success">Eliminar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+
+</html>
