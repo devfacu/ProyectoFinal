@@ -48,7 +48,7 @@
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body my-3">
-                                            <form th:action="@{/tarea/nueva(vista=__${vista}__)}" method="post">
+                                            <form th:action="@{/tarea/nueva(vista=__${vista}__, usuario_id=__${session.usuarioSession.id}__)}" method="post">
                                                 <div>
                                                     <p th:if="${error!=null}" th:text="${error}"></p>
                                                 </div>
@@ -74,7 +74,7 @@
                                                         pom</label>
                                                     <div class="col-sm-12 borderbox">
                                                         <input type="number" class="form-control" id="cantidadPom"
-                                                            name="tiempoinv">
+                                                            name="cantidadPom">
                                                     </div>
                                                 </div>
                                                 <div class="col mb-1">
@@ -82,11 +82,11 @@
                                                         class="col-sm-6 col-form-label pre-control">Proyecto
                                                     </label>
                                                     <div class="input-group mb-3">
-                                                        <select class="form-select" id="inputGroupSelect01">
+                                                        <select class="form-select" id="inputGroupSelect01" name="proyecto_id">
                                                             <option selected>Elije un proyecto</option>
                                                             <div th:each="proyecto : ${proyectos}">
                                                                 <option th:text="${proyecto.nombre}"
-                                                                    th:value="${proyecto.nombre}">One</option>
+                                                                    th:value="${proyecto.id}">One</option>
                                                             </div>
                                                         </select>
                                                     </div>

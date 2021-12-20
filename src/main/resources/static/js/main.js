@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    let startMinutes = 5;
+    let startMinutes = 25;
     let remainingSeconds = startMinutes * 60;
 
     var interval = null;
@@ -44,7 +44,7 @@ $(document).ready(function () {
         if (interval === null) {
             $("#btn-start").html(`<span class="material-icons">play_arrow</span>`);
             $("#btn-start").addClass("timer_btn-start");
-            $("#btn-start").removeClass("timer_btn-stop");
+            $("#btn-start").removeClass("timer_btn-pause");
         } else {
             $("#btn-start").html(`<span class="material-icons">pause</span>`);
             $("#btn-start").addClass("timer_btn-pause");

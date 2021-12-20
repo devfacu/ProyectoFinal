@@ -34,7 +34,7 @@ public class ControladorPrincipal {
 
 	@GetMapping("/prueba")
 	public String prueba(Model model) {
-		return "reloj.html";
+		return "relojPrueba.html";
 	}
 
 	@PreAuthorize("hasAnyRole('ROLE_USUARIO_REGISTRADO')")

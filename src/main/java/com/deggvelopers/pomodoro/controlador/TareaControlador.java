@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/tarea")
@@ -139,17 +138,15 @@ public class TareaControlador {
 	}
 
 	@PostMapping("/eliminar")
-	public ModelAndView eliminar(ModelMap model, @RequestParam String tarea_id, @RequestParam String vista, String usuario_id) {
+	public String eliminar(ModelMap model, @RequestParam String tarea_id, @RequestParam String vista, String usuario_id) {
 
 		try {
-			ModelAndView  modelView = new ModelAndView("redirect:/tarea/" + vista.toLowerCase());
 			model.put("vista", vista);
 			tareaServicio.eliminarT(tarea_id);
-			return modelView;
+			return "redirect:/principal";
 		} catch (ErrorServicio ex) {
 			model.put("error", ex.getMessage());
-			ModelAndView  modelView = new ModelAndView("redirect:/tarea/" + vista.toLowerCase());
-			return modelView;
+			return "redirect:/principal";
 		}
 
 	}
