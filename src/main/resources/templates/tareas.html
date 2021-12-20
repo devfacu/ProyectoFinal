@@ -82,10 +82,11 @@
                                                         class="col-sm-6 col-form-label pre-control">Proyecto
                                                     </label>
                                                     <div class="input-group mb-3">
-                                                        <select class="form-select" th:each="proyecto : ${proyectos}"
-                                                            id="inputGroupSelect01">
+                                                        <select class="form-select" id="inputGroupSelect01">
                                                             <option selected>Elije un proyecto</option>
-                                                            <option th:text="${proyecto.nombre}">One</option>
+                                                            <div th:each="proyecto : ${proyectos}">
+                                                                <option th:text="${proyecto.nombre}" th:value="${proyecto.nombre}">One</option>
+                                                            </div>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -154,16 +155,19 @@
                                     </div>
                                     <div class="col-8 my-1">
                                         <div class="row">
-                                            <p th:text="${tarea.nombre}" class="boxtarea text-center text-secondary">Tarea:</p>
+                                            <p th:text="${tarea.nombre}" class="boxtarea text-center text-secondary">
+                                                Tarea:</p>
                                         </div>
                                         <div class="row">
                                             <div class="col">
-                                                <p th:text="${tarea.cantidadPom}" class="boxtarea text-center text-secondary">N°
+                                                <p th:text="${tarea.cantidadPom}"
+                                                    class="boxtarea text-center text-secondary">N°
                                                     ciclos:
                                                 </p>
                                             </div>
                                             <div class="col">
-                                                <p th:text="${tarea.fecha}" class="boxtarea text-center text-secondary">Fecha</p>
+                                                <p th:text="${tarea.fecha}" class="boxtarea text-center text-secondary">
+                                                    Fecha</p>
                                             </div>
                                             <div class="row">
                                                 <div class="col text-start">
@@ -201,7 +205,8 @@
                                                                                 class="col-sm-2 col-form-label pre-control">Fecha</label>
                                                                             <div class="col-sm-12 borderbox">
                                                                                 <input type="date" class="form-control"
-                                                                                    id="fecha" name="fecha" th:text="${tarea.fecha}">
+                                                                                    id="fecha" name="fecha"
+                                                                                    th:text="${tarea.fecha}">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col mb-1">
@@ -225,11 +230,13 @@
                                                                                     th:each="proyectos : ${listaProyectos}"
                                                                                     id="inputGroupSelect01">
                                                                                     <option selected
-                                                                                        th:if="${tarea.proyecto = proyectos.nombre}" th:text="${tarea.proyecto}">
+                                                                                        th:if="${tarea.proyecto = proyectos.nombre}"
+                                                                                        th:text="${tarea.proyecto}">
                                                                                         Elije un proyecto
                                                                                     </option>
                                                                                     <option
-                                                                                        th:text="${proyectos.nombre}">One
+                                                                                        th:text="${proyectos.nombre}">
+                                                                                        One
                                                                                     </option>
                                                                                 </select>
                                                                             </div>
@@ -250,7 +257,8 @@
                                                                                             class="form-check-label obs text-secondary"
                                                                                             for="inlineRadio1">Alta</label>
                                                                                     </div>
-                                                                                    <div class=" col-3 form-check form-check-inline">                                                                                        
+                                                                                    <div
+                                                                                        class=" col-3 form-check form-check-inline">
                                                                                         <input class="form-check-input"
                                                                                             type="radio"
                                                                                             name="prioridad" id="media"
@@ -259,7 +267,8 @@
                                                                                             class="form-check-label obs text-secondary"
                                                                                             for="inlineRadio2">Media</label>
                                                                                     </div>
-                                                                                    <div class="col-3 form-check form-check-inline">
+                                                                                    <div
+                                                                                        class="col-3 form-check form-check-inline">
                                                                                         <input class="form-check-input"
                                                                                             type="radio"
                                                                                             name="prioridad" id="baja"
@@ -304,10 +313,12 @@
                                                                 <div class="modal-body my-3">
                                                                     <form th:action="@{/tarea/eliminar}" method="post">
                                                                         <div class="col-12 text-start">
-                                                                            <p class="text-secondary fs-4"> ¿Estas seguro que
+                                                                            <p class="text-secondary fs-4"> ¿Estas
+                                                                                seguro que
                                                                                 quieres eliminar la tarea?
                                                                             </p>
-                                                                            <p class="text-secondary fs-4"> Perderas toda la
+                                                                            <p class="text-secondary fs-4"> Perderas
+                                                                                toda la
                                                                                 información de la misma</p>
                                                                         </div>
                                                                         <div class="col mt-4">
