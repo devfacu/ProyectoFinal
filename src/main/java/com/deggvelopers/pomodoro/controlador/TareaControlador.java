@@ -6,6 +6,7 @@ import com.deggvelopers.pomodoro.entidad.Tarea;
 import com.deggvelopers.pomodoro.errores.ErrorServicio;
 import com.deggvelopers.pomodoro.repositorio.ProyectoRepositorio;
 import com.deggvelopers.pomodoro.repositorio.TareaRepositorio;
+import com.deggvelopers.pomodoro.repositorio.UsuarioRepositorio;
 import com.deggvelopers.pomodoro.servicio.TareaServicio;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -25,6 +26,9 @@ public class TareaControlador {
 
 	@Autowired
 	private TareaRepositorio tareaRepo;
+	
+	@Autowired
+	private UsuarioRepositorio usuarioRepo;
 
 	@Autowired
 	private TareaServicio tareaServicio;
@@ -111,21 +115,26 @@ public class TareaControlador {
 	@PostMapping("/nueva")
 	public String crearTarea(@RequestParam String vista,
 			@RequestParam String nombre,
-			@RequestParam Date fecha,
+			@RequestParam String fecha,
 			@RequestParam String proyecto_id,
 			@RequestParam Prioridad prioridad,
 			@RequestParam Integer cantidadPom,
-			@RequestParam String config_id,
+			@RequestParam String usuario_id,
 			ModelMap model) {
 
 		try {
-			tareaServicio.crearTarea(nombre, fecha, proyecto_id, prioridad, cantidadPom, config_id);
-			return "redirect:/tarea" + vista;
+			String config_id = usuarioRepo.getById(usuario_id).getConfiguracion().getId();
+			System.out.println("La fecha es " + fecha);
+			int anio = Integer.parseInt(fecha.substring(0, 4));
+			int mes = Integer.parseInt(fecha.substring(5, 7));
+			int dia = Integer.parseInt(fecha.substring(8, 10));
+			Date date = new Date(anio - 1900, mes - 1, dia);
+			tareaServicio.crearTarea(nombre, date, proyecto_id, prioridad, cantidadPom, config_id);
+			return "vistaPrincipal.html";
 		} catch (ErrorServicio e) {
 			model.put("error", e.getMessage());
-			return "redirect:/tarea" + vista;
+			return "vistaPrincipal.html";
 		}
-
 	}
 
 }
