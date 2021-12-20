@@ -38,7 +38,7 @@
                         <a class="nav-link link-secondary fs-4" th:href="@{/reloj}" >Reloj</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link link-secondary fs-4" th:href="@{/configuracion/}">Configuracion</a>
+                        <a class="nav-link link-secondary fs-4" th:href="@{/configuracion/(usuario_id=__${session.usuarioSession.id}__)}">Configuracion</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link link-secondary fs-4" href="/logout">Cerrar Sesion</a>
