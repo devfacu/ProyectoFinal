@@ -29,7 +29,7 @@ public class UsuarioControlador {
 			@RequestParam String nombre, 
 			@RequestParam String apellido, 
 			@RequestParam String email, 
-			@RequestParam String password) {
+			 String password) {
 		
 		try {
 			usuarioServicio.modificar(id, nombre, apellido, email, password);

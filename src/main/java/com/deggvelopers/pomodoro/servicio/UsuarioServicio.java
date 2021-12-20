@@ -69,8 +69,10 @@ public class UsuarioServicio implements UserDetailsService {
 			usuario.setNombre(nombre);
 			usuario.setMail(email);
 
-			String encriptada = new BCryptPasswordEncoder().encode(password);
-			usuario.setPassword(encriptada);
+			if (password != null || !password.isEmpty()) {
+				String encriptada = new BCryptPasswordEncoder().encode(password);
+				usuario.setPassword(encriptada);
+			}
 
 			usuarioRepositorio.save(usuario);
 		} else {
