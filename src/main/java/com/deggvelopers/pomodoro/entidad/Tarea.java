@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Tarea implements Serializable {
@@ -22,6 +23,7 @@ public class Tarea implements Serializable {
 	private String id;
 	private String nombre;
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat( pattern="dd-MM-yyyy")
 	private Date fecha;
 	@JoinColumn(referencedColumnName = "id")
 	@ManyToOne

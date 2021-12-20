@@ -24,7 +24,6 @@ public class ConfiguracionServicio {
 		config.setAlarmaDescanso("alarmaDescanso");
 		config.setAmbiente("ambiente");
 		config.setDuracionPom(25);
-		config.setCantidadPom(4);
 		config.setDescansoCorto(5);
 		config.setDescansoLargo(20);
 		config.setIntervaloDescansoLargo(4);

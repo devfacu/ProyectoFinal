@@ -28,13 +28,23 @@ public class TareaServicio {
 
 	@Autowired
 	private ConfiguracionRepositorio configRepo;
-
-	public Tarea crearTarea(@Validated String nombre, @Validated Date fecha, @Validated String id_proyecto, @Validated Prioridad prioridad, @Validated Integer cantidadPom, @Validated String config_id) throws ErrorServicio {
+	
+	public void crearTarea(String nombre, Date fecha, String id_proyecto, Prioridad prioridad, Integer cantidadPom, String config_id) throws ErrorServicio {
 
 		validar(nombre);
 
-		Configuracion config = configRepo.getById(config_id);
-		Proyecto proyecto = proyectoRepo.findById(id_proyecto).get();
+		Optional<Configuracion> ansConfig = configRepo.findById(config_id);
+		if (!ansConfig.isPresent()) {
+			throw new ErrorServicio("No se encontro la configuracion al crear la tarea");
+		}
+		Configuracion config = ansConfig.get();
+		
+		Optional<Proyecto> ansProyecto = proyectoRepo.findById(id_proyecto);
+		if (!ansProyecto.isPresent()) {
+			throw new ErrorServicio("No se encontro el proyecto al crear la tarea");
+		}
+		Proyecto proyecto = ansProyecto.get();
+		
 		Tarea tarea = new Tarea();
 
 		tarea.setNombre(nombre);
@@ -47,7 +57,7 @@ public class TareaServicio {
 		tarea.setDuracionPom(config.getDuracionPom());
 		tareaRepo.save(tarea);
 
-		return tarea;
+//		return tarea;
 	}
 
 	public void modificarT(@Validated String id, @Validated String nombre, @Validated Date fecha, @Validated String id_proyecto, @Validated Prioridad prioridad, @Validated Integer cantidadPom) throws ErrorServicio {

@@ -21,7 +21,6 @@ public class Configuracion implements Serializable {
 	private String alarmaDescanso;
 	private String ambiente;
 	private Integer duracionPom;
-	private Integer cantidadPom;
 	private Integer descansoCorto;
 	private Integer descansoLargo;
 	private Integer intervaloDescansoLargo;
@@ -67,14 +66,6 @@ public class Configuracion implements Serializable {
 
 	public void setDuracionPom(Integer duracionPom) {
 		this.duracionPom = duracionPom;
-	}
-
-	public Integer getCantidadPom() {
-		return cantidadPom;
-	}
-
-	public void setCantidadPom(Integer cantidadPom) {
-		this.cantidadPom = cantidadPom;
 	}
 
 	public Integer getDescansoCorto() {
