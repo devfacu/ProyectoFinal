@@ -168,6 +168,7 @@ public class TareaControlador {
 	@PostMapping("/eliminar")
 	public String eliminar(ModelMap model, RedirectAttributes attr, @RequestParam String tarea_id, @RequestParam String vista, String usuario_id) {
 
+		vista = vista.toLowerCase();
 		try {
 			model.put("vista", vista);
 			attr.addAttribute("attrUsr_id", usuario_id);

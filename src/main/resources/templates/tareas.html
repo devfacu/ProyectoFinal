@@ -143,6 +143,7 @@
                 </div>
                 <table>
                     <tbody>
+                        <td th:if="${#lists.isEmpty(tareas)}" class="text-secondary">No tienes tareas para realizar.</td>
                         <tr th:each="tarea : ${tareas}">
                             <div class="container borderbox my-2">
                                 <div class="row">
@@ -167,7 +168,7 @@
                                                 </p>
                                             </div>
                                             <div class="col-8">
-                                                <p th:text="${tarea.fecha}" class="boxtarea text-center text-secondary">
+                                                <p th:text="${'Fecha: ' + tarea.fecha}" class="boxtarea text-center text-secondary">
                                                     2021-12-15</p>
                                             </div>
                                             <div class="row">
