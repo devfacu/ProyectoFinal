@@ -16,9 +16,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/tarea")
@@ -50,10 +52,16 @@ public class TareaControlador {
 	}
 
 	@GetMapping("/hoy")
-	public String listarHoy(@RequestParam String usuario_id, ModelMap model) {
-
+	public String listarHoy(@ModelAttribute String attrUsr_id, String usuario_id, ModelMap model) {
+		
+		String usr_id;
+		if (usuario_id != null) {
+			usr_id = usuario_id;
+		} else {
+			usr_id = attrUsr_id;
+		}
 		Date hoy = new Date();
-		List<Proyecto> proyectos = proyectoRepo.findByUserId(usuario_id);
+		List<Proyecto> proyectos = proyectoRepo.findByUserId(usr_id);
 		List<Tarea> tareas = tareaServicio.buscarTareasPorProyectos(proyectos, hoy);
 
 		model.put("vista", "Hoy");
@@ -64,8 +72,15 @@ public class TareaControlador {
 	}
 
 	@GetMapping("/mañana")
-	public String listarMañana(@RequestParam String usuario_id, ModelMap model) {
+	public String listarMañana(@ModelAttribute String attrUsr_id, String usuario_id, ModelMap model) {
 
+		String usr_id;
+		if (usuario_id != null) {
+			usr_id = usuario_id;
+		} else {
+			usr_id = attrUsr_id;
+		}
+		
 		Date mañana = new Date();
 
 		Calendar c = Calendar.getInstance();
@@ -73,7 +88,7 @@ public class TareaControlador {
 		c.add(Calendar.DATE, 1);
 		mañana = c.getTime();
 
-		List<Proyecto> proyectos = proyectoRepo.findByUserId(usuario_id);
+		List<Proyecto> proyectos = proyectoRepo.findByUserId(usr_id);
 		List<Tarea> tareas = tareaServicio.buscarTareasPorProyectos(proyectos, mañana);
 
 		model.put("vista", "Mañana");
@@ -84,8 +99,15 @@ public class TareaControlador {
 	}
 
 	@GetMapping("/proximo")
-	public String listarProximo(@RequestParam String usuario_id, ModelMap model) {
+	public String listarProximo(@ModelAttribute String attrUsr_id, String usuario_id, ModelMap model) {
 
+		String usr_id;
+		if (usuario_id != null) {
+			usr_id = usuario_id;
+		} else {
+			usr_id = attrUsr_id;
+		}
+		
 		Date proximo = new Date();
 
 		Calendar c = Calendar.getInstance();
@@ -93,7 +115,7 @@ public class TareaControlador {
 		c.add(Calendar.DATE, 1);
 		proximo = c.getTime();
 
-		List<Proyecto> proyectos = proyectoRepo.findByUserId(usuario_id);
+		List<Proyecto> proyectos = proyectoRepo.findByUserId(usr_id);
 		List<Tarea> tareas = tareaRepo.buscarPorProximo(proximo);
 
 		model.put("vista", "Proximo");
@@ -120,8 +142,10 @@ public class TareaControlador {
 			@RequestParam Prioridad prioridad,
 			@RequestParam Integer cantidadPom,
 			@RequestParam String usuario_id,
-			ModelMap model) {
+			ModelMap model,
+			RedirectAttributes attr) {
 
+		vista = vista.toLowerCase();
 		try {
 			String config_id = usuarioRepo.getById(usuario_id).getConfiguracion().getId();
 			System.out.println("La fecha es " + fecha);
@@ -130,23 +154,28 @@ public class TareaControlador {
 			int dia = Integer.parseInt(fecha.substring(8, 10));
 			Date date = new Date(anio - 1900, mes - 1, dia);
 			tareaServicio.crearTarea(nombre, date, proyecto_id, prioridad, cantidadPom, config_id);
-			return "vistaPrincipal.html";
+			attr.addAttribute("usuario_id", usuario_id);
+			return "redirect:/tarea/" + vista;
+			
 		} catch (ErrorServicio e) {
+			
 			model.put("error", e.getMessage());
-			return "vistaPrincipal.html";
+			attr.addAttribute("attrUsr_id", usuario_id);
+			return "redirect:/tarea/" + vista;
 		}
 	}
 
 	@PostMapping("/eliminar")
-	public String eliminar(ModelMap model, @RequestParam String tarea_id, @RequestParam String vista, String usuario_id) {
+	public String eliminar(ModelMap model, RedirectAttributes attr, @RequestParam String tarea_id, @RequestParam String vista, String usuario_id) {
 
 		try {
 			model.put("vista", vista);
+			attr.addAttribute("attrUsr_id", usuario_id);
 			tareaServicio.eliminarT(tarea_id);
-			return "redirect:/principal";
+			return "redirect:/tarea/" + vista;
 		} catch (ErrorServicio ex) {
 			model.put("error", ex.getMessage());
-			return "redirect:/principal";
+			return "redirect:/tarea/" + vista;
 		}
 
 	}
