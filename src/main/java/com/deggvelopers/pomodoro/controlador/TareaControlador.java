@@ -39,11 +39,18 @@ public class TareaControlador {
 	private ProyectoRepositorio proyectoRepo;
 
 	@GetMapping("/")
-	public String todasTareasProyecto(@RequestParam String proyecto_id, ModelMap model) {
+	public String todasTareasProyecto(String attrPry_id, String proyecto_id, ModelMap model) {
 
+		String pry_id;
+		if (proyecto_id != null) {
+			pry_id = proyecto_id;
+		} else {
+			pry_id = attrPry_id;
+		}
+		
 		List<Proyecto> proyectos = new ArrayList<>();
-		proyectos.add(proyectoRepo.findById(proyecto_id).get());
-		List<Tarea> tareas = tareaRepo.buscarPorProyecto(proyecto_id);
+		proyectos.add(proyectoRepo.findById(pry_id).get());
+		List<Tarea> tareas = tareaRepo.buscarPorProyecto(pry_id);
 
 		model.put("proyectos", proyectos);
 		model.put("tareas", tareas);
@@ -53,7 +60,7 @@ public class TareaControlador {
 
 	@GetMapping("/hoy")
 	public String listarHoy(@ModelAttribute String attrUsr_id, String usuario_id, ModelMap model) {
-		
+
 		String usr_id;
 		if (usuario_id != null) {
 			usr_id = usuario_id;
@@ -80,7 +87,7 @@ public class TareaControlador {
 		} else {
 			usr_id = attrUsr_id;
 		}
-		
+
 		Date mañana = new Date();
 
 		Calendar c = Calendar.getInstance();
@@ -107,7 +114,7 @@ public class TareaControlador {
 		} else {
 			usr_id = attrUsr_id;
 		}
-		
+
 		Date proximo = new Date();
 
 		Calendar c = Calendar.getInstance();
@@ -145,7 +152,8 @@ public class TareaControlador {
 			ModelMap model,
 			RedirectAttributes attr) {
 
-		vista = vista.toLowerCase();
+		vista = vistaChk(vista);
+		
 		try {
 			String config_id = usuarioRepo.getById(usuario_id).getConfiguracion().getId();
 			System.out.println("La fecha es " + fecha);
@@ -155,10 +163,11 @@ public class TareaControlador {
 			Date date = new Date(anio - 1900, mes - 1, dia);
 			tareaServicio.crearTarea(nombre, date, proyecto_id, prioridad, cantidadPom, config_id);
 			attr.addAttribute("usuario_id", usuario_id);
+			attr.addAttribute("attrPry_id", proyecto_id);
 			return "redirect:/tarea/" + vista;
-			
+
 		} catch (ErrorServicio e) {
-			
+
 			model.put("error", e.getMessage());
 			attr.addAttribute("attrUsr_id", usuario_id);
 			return "redirect:/tarea/" + vista;
@@ -166,19 +175,31 @@ public class TareaControlador {
 	}
 
 	@PostMapping("/eliminar")
-	public String eliminar(ModelMap model, RedirectAttributes attr, @RequestParam String tarea_id, @RequestParam String vista, String usuario_id) {
-
-		vista = vista.toLowerCase();
+	public String eliminar(ModelMap model, RedirectAttributes attr, @RequestParam String tarea_id, @RequestParam String vista, String usuario_id, String proyecto_id) {
+		
+		vista = vistaChk(vista);
+		
 		try {
+			System.out.println("El proyecto: " + proyecto_id);
 			model.put("vista", vista);
 			attr.addAttribute("attrUsr_id", usuario_id);
+			attr.addAttribute("attrPry_id", proyecto_id);
 			tareaServicio.eliminarT(tarea_id);
-			return "redirect:/tarea/" + vista;
+			return "redirect:/tarea/";
 		} catch (ErrorServicio ex) {
 			model.put("error", ex.getMessage());
 			return "redirect:/tarea/" + vista;
 		}
 
 	}
+	
+	private String vistaChk(String vista) {
+		if (vista == null) {
+			return "";
+		}else{
+			return vista.toLowerCase();
+		}
+	}
+	
 
 }

@@ -317,7 +317,7 @@
                                                                         aria-label="Close"></button>
                                                                 </div>
                                                                 <div class="modal-body my-3">
-                                                                    <form th:action="@{/tarea/eliminar(tarea_id=__${tarea.id}__, vista=__${vista}__, usuario_id=__${session.usuarioSession.id}__)}" method="post">
+                                                                    <form th:action="@{/tarea/eliminar(tarea_id=__${tarea.id}__, vista=__${vista}__, usuario_id=__${session.usuarioSession.id}__, proyecto_id=__${proyecto.id}__)}" method="post">
                                                                         <div class="col-12 text-start">
                                                                             <p class="text-secondary fs-4"> ¿Estas
                                                                                 seguro que
