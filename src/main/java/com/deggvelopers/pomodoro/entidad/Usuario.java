@@ -25,6 +25,15 @@ public class Usuario implements Serializable {
     @Column(unique = true)
     private String mail;
     private String password;
+    private String password2; 
+
+    public String getPassword2() {
+        return password2;
+    }
+
+    public void setPassword2(String password2) {
+        this.password2 = password2;
+    }
     private Boolean habilitado;
     @JoinColumn(referencedColumnName = "id")
     @OneToOne

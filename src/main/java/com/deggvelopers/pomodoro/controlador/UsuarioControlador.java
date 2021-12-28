@@ -29,10 +29,10 @@ public class UsuarioControlador {
             @RequestParam String nombre,
             @RequestParam String apellido,
             @RequestParam String email,
-            String password) {
+            @RequestParam String password, @RequestParam String password2) {
 
         try {
-            usuarioServicio.modificar(id, nombre, apellido, email, password);
+            usuarioServicio.modificar(id, nombre, apellido, email, password, password2);
             Usuario usuario = usuarioRepo.getById(id);
             session.setAttribute("usuarioSession", usuario);
             return "redirect:/principal";
