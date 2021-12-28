@@ -18,28 +18,28 @@ public class UsuarioControlador {
 
     @Autowired
     private UsuarioServicio usuarioServicio;
-	
-	@Autowired
-	private UsuarioRepositorio usuarioRepo;
+
+    @Autowired
+    private UsuarioRepositorio usuarioRepo;
 
     @PostMapping("/actualizar-perfil")
-    public String modificar(ModelMap model, 
-			HttpSession session, 
-			@RequestParam String id, 
-			@RequestParam String nombre, 
-			@RequestParam String apellido, 
-			@RequestParam String email, 
-			 String password) {
-		
-		try {
-			usuarioServicio.modificar(id, nombre, apellido, email, password);
-			Usuario usuario = usuarioRepo.getById(id);
-			session.setAttribute("usuarioSession", usuario);
-			return "redirect:/principal";
-		} catch (ErrorServicio ex) {
-			model.put("error", ex.getMessage());
-			return "redirect:/principal";
-		}
+    public String modificar(ModelMap model,
+            HttpSession session,
+            @RequestParam String id,
+            @RequestParam String nombre,
+            @RequestParam String apellido,
+            @RequestParam String email,
+            String password) {
+
+        try {
+            usuarioServicio.modificar(id, nombre, apellido, email, password);
+            Usuario usuario = usuarioRepo.getById(id);
+            session.setAttribute("usuarioSession", usuario);
+            return "redirect:/principal";
+        } catch (ErrorServicio ex) {
+            model.put("error", ex.getMessage());
+            return "redirect:/principal";
+        }
     }
 
 }

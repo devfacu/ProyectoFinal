@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -26,180 +27,191 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/tarea")
 public class TareaControlador {
 
-	@Autowired
-	private TareaRepositorio tareaRepo;
+    @Autowired
+    private TareaRepositorio tareaRepo;
 
-	@Autowired
-	private UsuarioRepositorio usuarioRepo;
+    @Autowired
+    private UsuarioRepositorio usuarioRepo;
 
-	@Autowired
-	private TareaServicio tareaServicio;
+    @Autowired
+    private ProyectoRepositorio proyectoRepo;
 
-	@Autowired
-	private ProyectoRepositorio proyectoRepo;
+    @Autowired
+    private TareaServicio tareaServicio;
 
-	@GetMapping("/")
-	public String todasTareasProyecto(String attrPry_id, String proyecto_id, ModelMap model) {
+    @GetMapping("/")
+    public String todasTareasProyecto(String attrPry_id, String proyecto_id, ModelMap model) {
 
-		String pry_id;
-		if (proyecto_id != null) {
-			pry_id = proyecto_id;
-		} else {
-			pry_id = attrPry_id;
-		}
-		
-		List<Proyecto> proyectos = new ArrayList<>();
-		proyectos.add(proyectoRepo.findById(pry_id).get());
-		List<Tarea> tareas = tareaRepo.buscarPorProyecto(pry_id);
+        String pry_id;
+        if (proyecto_id != null) {
+            pry_id = proyecto_id;
+        } else {
+            pry_id = attrPry_id;
+        }
 
-		model.put("proyectos", proyectos);
-		model.put("tareas", tareas);
+        List<Proyecto> proyectos = new ArrayList<>();
+        proyectos.add(proyectoRepo.findById(pry_id).get());
+        List<Tarea> tareas = tareaRepo.buscarPorProyecto(pry_id);
 
-		return "tareas.html";
-	}
+        model.put("proyectos", proyectos);
+        model.put("tareas", tareas);
 
-	@GetMapping("/hoy")
-	public String listarHoy(@ModelAttribute String attrUsr_id, String usuario_id, ModelMap model) {
+        return "tareas.html";
+    }
 
-		String usr_id;
-		if (usuario_id != null) {
-			usr_id = usuario_id;
-		} else {
-			usr_id = attrUsr_id;
-		}
-		Date hoy = new Date();
-		List<Proyecto> proyectos = proyectoRepo.findByUserId(usr_id);
-		List<Tarea> tareas = tareaServicio.buscarTareasPorProyectos(proyectos, hoy);
+    @GetMapping("/hoy")
+    public String listarHoy(@ModelAttribute String attrUsr_id, String usuario_id, ModelMap model) {
 
-		model.put("vista", "Hoy");
-		model.put("proyectos", proyectos);
-		model.put("tareas", tareas);
+        String usr_id;
+        if (usuario_id != null) {
+            usr_id = usuario_id;
+        } else {
+            usr_id = attrUsr_id;
+        }
+        Date hoy = new Date();
+        List<Proyecto> proyectos = proyectoRepo.findByUserId(usr_id);
+        List<Tarea> tareas = tareaServicio.buscarTareasPorProyectos(proyectos, hoy);
 
-		return "tareas.html";
-	}
+        model.put("vista", "Hoy");
+        model.put("proyectos", proyectos);
+        model.put("tareas", tareas);
 
-	@GetMapping("/mañana")
-	public String listarMañana(@ModelAttribute String attrUsr_id, String usuario_id, ModelMap model) {
+        return "tareas.html";
+    }
 
-		String usr_id;
-		if (usuario_id != null) {
-			usr_id = usuario_id;
-		} else {
-			usr_id = attrUsr_id;
-		}
+    @GetMapping("/mañana")
+    public String listarMañana(@ModelAttribute String attrUsr_id, String usuario_id, ModelMap model) {
 
-		Date mañana = new Date();
+        String usr_id;
+        if (usuario_id != null) {
+            usr_id = usuario_id;
+        } else {
+            usr_id = attrUsr_id;
+        }
 
-		Calendar c = Calendar.getInstance();
-		c.setTime(mañana);
-		c.add(Calendar.DATE, 1);
-		mañana = c.getTime();
+        Date mañana = new Date();
 
-		List<Proyecto> proyectos = proyectoRepo.findByUserId(usr_id);
-		List<Tarea> tareas = tareaServicio.buscarTareasPorProyectos(proyectos, mañana);
+        Calendar c = Calendar.getInstance();
+        c.setTime(mañana);
+        c.add(Calendar.DATE, 1);
+        mañana = c.getTime();
 
-		model.put("vista", "Mañana");
-		model.put("proyectos", proyectos);
-		model.put("tareas", tareas);
+        List<Proyecto> proyectos = proyectoRepo.findByUserId(usr_id);
+        List<Tarea> tareas = tareaServicio.buscarTareasPorProyectos(proyectos, mañana);
 
-		return "tareas.html";
-	}
+        model.put("vista", "Mañana");
+        model.put("proyectos", proyectos);
+        model.put("tareas", tareas);
 
-	@GetMapping("/proximo")
-	public String listarProximo(@ModelAttribute String attrUsr_id, String usuario_id, ModelMap model) {
+        return "tareas.html";
+    }
 
-		String usr_id;
-		if (usuario_id != null) {
-			usr_id = usuario_id;
-		} else {
-			usr_id = attrUsr_id;
-		}
+    @GetMapping("/proximo")
+    public String listarProximo(@ModelAttribute String attrUsr_id, String usuario_id, ModelMap model) {
 
-		Date proximo = new Date();
+        String usr_id;
+        if (usuario_id != null) {
+            usr_id = usuario_id;
+        } else {
+            usr_id = attrUsr_id;
+        }
 
-		Calendar c = Calendar.getInstance();
-		c.setTime(proximo);
-		c.add(Calendar.DATE, 1);
-		proximo = c.getTime();
+        Date proximo = new Date();
 
-		List<Proyecto> proyectos = proyectoRepo.findByUserId(usr_id);
-		List<Tarea> tareas = tareaRepo.buscarPorProximo(proximo);
+        Calendar c = Calendar.getInstance();
+        c.setTime(proximo);
+        c.add(Calendar.DATE, 1);
+        proximo = c.getTime();
 
-		model.put("vista", "Proximo");
-		model.put("proyectos", proyectos);
-		model.put("tareas", tareas);
+        List<Proyecto> proyectos = proyectoRepo.findByUserId(usr_id);
+        List<Tarea> tareas = tareaRepo.buscarPorProximo(proximo);
 
-		return "tareas.html";
-	}
+        model.put("vista", "Proximo");
+        model.put("proyectos", proyectos);
+        model.put("tareas", tareas);
 
-	@GetMapping("/completado")
-	public String listarCompletado(ModelMap model) {
+        return "tareas.html";
+    }
 
-		List<Tarea> tareas = tareaRepo.buscarPorCompletado(Boolean.TRUE);
-		model.put("tareas", tareas);
+    @GetMapping("/completado")
+    public String listarCompletado(ModelMap model) {
 
-		return "tareas.html";
-	}
+        List<Tarea> tareas = tareaRepo.buscarPorCompletado(Boolean.TRUE);
+        model.put("tareas", tareas);
 
-	@PostMapping("/nueva")
-	public String crearTarea(@RequestParam String vista,
-			@RequestParam String nombre,
-			@RequestParam String fecha,
-			@RequestParam String proyecto_id,
-			@RequestParam Prioridad prioridad,
-			@RequestParam Integer cantidadPom,
-			@RequestParam String usuario_id,
-			ModelMap model,
-			RedirectAttributes attr) {
+        return "tareas.html";
+    }
 
-		vista = vistaChk(vista);
-		
-		try {
-			String config_id = usuarioRepo.getById(usuario_id).getConfiguracion().getId();
-			System.out.println("La fecha es " + fecha);
-			int anio = Integer.parseInt(fecha.substring(0, 4));
-			int mes = Integer.parseInt(fecha.substring(5, 7));
-			int dia = Integer.parseInt(fecha.substring(8, 10));
-			Date date = new Date(anio - 1900, mes - 1, dia);
-			tareaServicio.crearTarea(nombre, date, proyecto_id, prioridad, cantidadPom, config_id);
-			attr.addAttribute("usuario_id", usuario_id);
-			attr.addAttribute("attrPry_id", proyecto_id);
-			return "redirect:/tarea/" + vista;
+    @PostMapping("/nueva")
+    public String crearTarea(@RequestParam String vista,
+            @RequestParam String nombre,
+            @RequestParam String fecha,
+            @RequestParam String proyecto_id,
+            @RequestParam Prioridad prioridad,
+            @RequestParam Integer cantidadPom,
+            @RequestParam String usuario_id,
+            ModelMap model,
+            RedirectAttributes attr) {
 
-		} catch (ErrorServicio e) {
+        vista = vistaChk(vista);
 
-			model.put("error", e.getMessage());
-			attr.addAttribute("attrUsr_id", usuario_id);
-			return "redirect:/tarea/" + vista;
-		}
-	}
+        try {
+            String config_id = usuarioRepo.getById(usuario_id).getConfiguracion().getId();
+            System.out.println("La fecha es " + fecha);
+            int anio = Integer.parseInt(fecha.substring(0, 4));
+            int mes = Integer.parseInt(fecha.substring(5, 7));
+            int dia = Integer.parseInt(fecha.substring(8, 10));
+            Date date = new Date(anio - 1900, mes - 1, dia);
+            tareaServicio.crearTarea(nombre, date, proyecto_id, prioridad, cantidadPom, config_id);
+            attr.addAttribute("usuario_id", usuario_id);
+            attr.addAttribute("attrPry_id", proyecto_id);
+            return "redirect:/tarea/" + vista;
 
-	@PostMapping("/eliminar")
-	public String eliminar(ModelMap model, RedirectAttributes attr, @RequestParam String tarea_id, @RequestParam String vista, String usuario_id, String proyecto_id) {
-		
-		vista = vistaChk(vista);
-		
-		try {
-			System.out.println("El proyecto: " + proyecto_id);
-			model.put("vista", vista);
-			attr.addAttribute("attrUsr_id", usuario_id);
-			attr.addAttribute("attrPry_id", proyecto_id);
-			tareaServicio.eliminarT(tarea_id);
-			return "redirect:/tarea/";
-		} catch (ErrorServicio ex) {
-			model.put("error", ex.getMessage());
-			return "redirect:/tarea/" + vista;
-		}
+        } catch (ErrorServicio e) {
 
-	}
-	
-	private String vistaChk(String vista) {
-		if (vista == null) {
-			return "";
-		}else{
-			return vista.toLowerCase();
-		}
-	}
-	
+            model.put("error", e.getMessage());
+            attr.addAttribute("attrUsr_id", usuario_id);
+            return "redirect:/tarea/" + vista;
+        }
+    }
+
+    @PostMapping("/eliminar")
+    public String eliminar(ModelMap model, RedirectAttributes attr, @RequestParam String tarea_id, @RequestParam String vista, String usuario_id, String proyecto_id) {
+
+        vista = vistaChk(vista);
+
+        try {
+            System.out.println("El proyecto: " + proyecto_id);
+            model.put("vista", vista);
+            attr.addAttribute("attrUsr_id", usuario_id);
+            attr.addAttribute("attrPry_id", proyecto_id);
+            tareaServicio.eliminarT(tarea_id);
+            return "redirect:/tarea/";
+        } catch (ErrorServicio ex) {
+            model.put("error", ex.getMessage());
+            return "redirect:/tarea/" + vista;
+        }
+
+    }
+
+    private String vistaChk(String vista) {
+        if (vista == null) {
+            return "";
+        } else {
+            return vista.toLowerCase();
+        }
+    }
+
+    @PostMapping("/modificar")
+    public String modificar(@RequestParam String id, @RequestParam String nombre, @RequestParam String id_proyecto, @RequestParam Date fecha, @RequestParam Prioridad prioridad, @RequestParam Integer cantidadPom) throws ErrorServicio {
+
+        Optional<Tarea> respuesta = tareaRepo.findById(id);
+
+        Proyecto proyecto = proyectoRepo.findById(id_proyecto).get();
+
+        tareaServicio.modificarT(id, nombre, fecha, id_proyecto, prioridad, cantidadPom);
+
+        return "tareas.html";
+    }
 
 }
