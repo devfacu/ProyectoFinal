@@ -183,14 +183,14 @@ public class TareaControlador {
     }
 
     @PostMapping("/modificar")
-    public String modificar(@RequestParam String id, @RequestParam String nombre, @RequestParam String id_proyecto, @RequestParam Date fecha, @RequestParam Prioridad prioridad, @RequestParam Integer cantidadPom)  throws ErrorServicio {
-        
+    public String modificar(@RequestParam String id, @RequestParam String nombre, @RequestParam String id_proyecto, @RequestParam Date fecha, @RequestParam Prioridad prioridad, @RequestParam Integer cantidadPom) throws ErrorServicio {
+
         Optional<Tarea> respuesta = tareaRepo.findById(id);
 
         Proyecto proyecto = proyectoRepo.findById(id_proyecto).get();
 
         tareaServicio.modificarT(id, nombre, fecha, id_proyecto, prioridad, cantidadPom);
-      
+
         return "tareas.html";
     }
 
