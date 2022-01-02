@@ -79,7 +79,7 @@ public class TareaControlador {
         return "tareas.html";
     }
 
-    @GetMapping("/mañana")
+    @GetMapping("/manana")
     public String listarMañana(@ModelAttribute String attrUsr_id, String usuario_id, ModelMap model) {
 
         String usr_id;
