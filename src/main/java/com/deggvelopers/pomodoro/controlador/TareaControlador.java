@@ -78,7 +78,7 @@ public class TareaControlador {
 		return "tareas.html";
 	}
 
-	@GetMapping("/mañana")
+	@GetMapping("/manana")
 	public String listarMañana(@ModelAttribute String attrUsr_id, String usuario_id, ModelMap model) {
 
 		String usr_id;
@@ -194,10 +194,13 @@ public class TareaControlador {
 	}
 	
 	private String vistaChk(String vista) {
-		if (vista == null) {
+		if (null == vista) {
 			return "";
-		}else{
-			return vista.toLowerCase();
+		}else switch (vista) {
+			case "Mañana":
+				return "manana";
+			default:
+				return vista.toLowerCase();
 		}
 	}
 	
