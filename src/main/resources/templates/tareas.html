@@ -231,15 +231,11 @@
                                                                                 <select class="form-select"
                                                                                     id="inputGroupSelect01">
                                                                                     <div th:each="proyectos : ${listaProyectos}">
-                                                                                        <option selected
-                                                                                            th:if="${tarea.proyecto = proyectos.nombre}"
-                                                                                            th:text="${tarea.proyecto}">
+                                                                                        <div th:if="${tarea.proyecto.nombre == proyectos.nombre}">
+                                                                                            <option selected th:text="${tarea.proyecto.nombre}">
                                                                                             Elije un proyecto
-                                                                                        </option>
-                                                                                        <option
-                                                                                            th:text="${proyectos.nombre}">
-                                                                                            One
-                                                                                        </option>
+                                                                                            </option>
+                                                                                        </div>
                                                                                     </div>
 
                                                                                 </select>

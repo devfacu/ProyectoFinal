@@ -54,6 +54,7 @@ public class TareaControlador {
 		List<Tarea> tareas = tareaRepo.buscarPorProyecto(pry_id);
 
 		model.put("proyectos", proyectos);
+		model.put("listaProyectos", proyectos);
 		model.put("tareas", tareas);
 
 		return "tareas.html";
@@ -74,6 +75,7 @@ public class TareaControlador {
 
 		model.put("vista", "Hoy");
 		model.put("proyectos", proyectos);
+		model.put("listaProyectos", proyectos);
 		model.put("tareas", tareas);
 
 		return "tareas.html";
@@ -101,6 +103,7 @@ public class TareaControlador {
 
 		model.put("vista", "Mañana");
 		model.put("proyectos", proyectos);
+		model.put("listaProyectos", proyectos);
 		model.put("tareas", tareas);
 
 		return "tareas.html";
@@ -128,6 +131,7 @@ public class TareaControlador {
 
 		model.put("vista", "Proximo");
 		model.put("proyectos", proyectos);
+		model.put("listaProyectos", proyectos);
 		model.put("tareas", tareas);
 
 		return "tareas.html";
