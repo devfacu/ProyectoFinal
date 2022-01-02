@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -33,21 +34,21 @@ public class TareaControlador {
 	private UsuarioRepositorio usuarioRepo;
 
 	@Autowired
-	private TareaServicio tareaServicio;
+	private ProyectoRepositorio proyectoRepo;
 
 	@Autowired
-	private ProyectoRepositorio proyectoRepo;
+	private TareaServicio tareaServicio;
 
 	@GetMapping("/")
 	public String todasTareasProyecto(String attrPry_id, String proyecto_id, ModelMap model) {
 
 		String pry_id;
-		if (proyecto_id != null) {
-			pry_id = proyecto_id;
-		} else {
+		if (proyecto_id == null || proyecto_id.isEmpty()) {
 			pry_id = attrPry_id;
+		} else {
+			pry_id = proyecto_id;
 		}
-		
+
 		List<Proyecto> proyectos = new ArrayList<>();
 		proyectos.add(proyectoRepo.findById(pry_id).get());
 		List<Tarea> tareas = tareaRepo.buscarPorProyecto(pry_id);
@@ -62,10 +63,10 @@ public class TareaControlador {
 	public String listarHoy(@ModelAttribute String attrUsr_id, String usuario_id, ModelMap model) {
 
 		String usr_id;
-		if (usuario_id != null) {
-			usr_id = usuario_id;
-		} else {
+		if (usuario_id == null || usuario_id.isEmpty()) {
 			usr_id = attrUsr_id;
+		} else {
+			usr_id = usuario_id;
 		}
 		Date hoy = new Date();
 		List<Proyecto> proyectos = proyectoRepo.findByUserId(usr_id);
@@ -82,10 +83,10 @@ public class TareaControlador {
 	public String listarMañana(@ModelAttribute String attrUsr_id, String usuario_id, ModelMap model) {
 
 		String usr_id;
-		if (usuario_id != null) {
-			usr_id = usuario_id;
-		} else {
+		if (usuario_id == null || usuario_id.isEmpty()) {
 			usr_id = attrUsr_id;
+		} else {
+			usr_id = usuario_id;
 		}
 
 		Date mañana = new Date();
@@ -109,10 +110,10 @@ public class TareaControlador {
 	public String listarProximo(@ModelAttribute String attrUsr_id, String usuario_id, ModelMap model) {
 
 		String usr_id;
-		if (usuario_id != null) {
-			usr_id = usuario_id;
-		} else {
+		if (usuario_id == null || usuario_id.isEmpty()) {
 			usr_id = attrUsr_id;
+		} else {
+			usr_id = usuario_id;
 		}
 
 		Date proximo = new Date();
@@ -153,7 +154,7 @@ public class TareaControlador {
 			RedirectAttributes attr) {
 
 		vista = vistaChk(vista);
-		
+
 		try {
 			String config_id = usuarioRepo.getById(usuario_id).getConfiguracion().getId();
 			System.out.println("La fecha es " + fecha);
@@ -176,23 +177,23 @@ public class TareaControlador {
 
 	@PostMapping("/eliminar")
 	public String eliminar(ModelMap model, RedirectAttributes attr, @RequestParam String tarea_id, @RequestParam String vista, String usuario_id, String proyecto_id) {
-		
+
 		vista = vistaChk(vista);
-		
+
 		try {
-			System.out.println("El proyecto: " + proyecto_id);
 			model.put("vista", vista);
-			attr.addAttribute("attrUsr_id", usuario_id);
+			attr.addAttribute("usuario_id", usuario_id);
 			attr.addAttribute("attrPry_id", proyecto_id);
 			tareaServicio.eliminarT(tarea_id);
-			return "redirect:/tarea/";
+			return "redirect:/tarea/" + vista;
 		} catch (ErrorServicio ex) {
 			model.put("error", ex.getMessage());
+			attr.addAttribute("attrUsr_id", usuario_id);
 			return "redirect:/tarea/" + vista;
 		}
 
 	}
-	
+
 	private String vistaChk(String vista) {
 		if (null == vista) {
 			return "";
@@ -203,6 +204,17 @@ public class TareaControlador {
 				return vista.toLowerCase();
 		}
 	}
-	
+
+	@PostMapping("/modificar")
+	public String modificar(@RequestParam String id, @RequestParam String nombre, @RequestParam String id_proyecto, @RequestParam Date fecha, @RequestParam Prioridad prioridad, @RequestParam Integer cantidadPom) throws ErrorServicio {
+
+		Optional<Tarea> respuesta = tareaRepo.findById(id);
+
+		Proyecto proyecto = proyectoRepo.findById(id_proyecto).get();
+
+		tareaServicio.modificarT(id, nombre, fecha, id_proyecto, prioridad, cantidadPom);
+
+		return "tareas.html";
+	}
 
 }

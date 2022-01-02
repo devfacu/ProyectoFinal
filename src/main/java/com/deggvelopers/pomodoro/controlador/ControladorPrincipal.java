@@ -67,7 +67,7 @@ public class ControladorPrincipal {
 	public String registrar(ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String email, @RequestParam String contrasena1, @RequestParam String contrasena2) throws ErrorServicio {
 
 		try {
-			usuarioServicio.registrar(nombre, apellido, email, contrasena1);
+			usuarioServicio.registrar(nombre, apellido, email, contrasena1, contrasena2);
 		} catch (ErrorServicio e) {
 			modelo.put("error", e.getMessage());
 			modelo.put("nombre", nombre);

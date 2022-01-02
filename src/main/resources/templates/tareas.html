@@ -230,8 +230,7 @@
                                                                             <div class="input-group mb-3">
                                                                                 <select class="form-select"
                                                                                     id="inputGroupSelect01">
-                                                                                    <div
-                                                                                        th:each="proyectos : ${listaProyectos}">
+                                                                                    <div th:each="proyectos : ${listaProyectos}">
                                                                                         <option selected
                                                                                             th:if="${tarea.proyecto = proyectos.nombre}"
                                                                                             th:text="${tarea.proyecto}">
