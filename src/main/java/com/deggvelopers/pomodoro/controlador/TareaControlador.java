@@ -195,12 +195,15 @@ public class TareaControlador {
     }
 
     private String vistaChk(String vista) {
-        if (vista == null) {
-            return "";
-        } else {
-            return vista.toLowerCase();
-        }
-    }
+		if (null == vista) {
+			return "";
+		}else switch (vista) {
+			case "Mañana":
+				return "manana";
+			default:
+				return vista.toLowerCase();
+		}
+	}
 
     @PostMapping("/modificar")
     public String modificar(@RequestParam String id, @RequestParam String nombre, @RequestParam String id_proyecto, @RequestParam Date fecha, @RequestParam Prioridad prioridad, @RequestParam Integer cantidadPom) throws ErrorServicio {
