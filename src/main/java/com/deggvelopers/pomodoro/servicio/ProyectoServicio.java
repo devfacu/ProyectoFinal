@@ -36,14 +36,13 @@ public class ProyectoServicio {
 
 		Optional<Proyecto> respuesta = proyectoRepositorio.findById(id);
 
-		if (respuesta.isPresent()) {
-			Proyecto proyecto = proyectoRepositorio.findById(id).get();
-			proyecto.setNombre(nombre);
-
-			proyectoRepositorio.save(proyecto);
-		} else {
+		if (!respuesta.isPresent()) {
 			throw new ErrorServicio("No se encontro el usuario solicitado");
 		}
+		Proyecto proyecto = proyectoRepositorio.findById(id).get();
+		proyecto.setNombre(nombre);
+
+		proyectoRepositorio.save(proyecto);
 	}
 
 	public void eliminarProyecto(@Validated String id, @Validated String nombre) throws ErrorServicio {

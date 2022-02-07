@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -161,20 +160,18 @@ public class TareaControlador {
 
 		try {
 			String config_id = usuarioRepo.getById(usuario_id).getConfiguracion().getId();
-			System.out.println("La fecha es " + fecha);
-			int anio = Integer.parseInt(fecha.substring(0, 4));
-			int mes = Integer.parseInt(fecha.substring(5, 7));
-			int dia = Integer.parseInt(fecha.substring(8, 10));
-			Date date = new Date(anio - 1900, mes - 1, dia);
+			
+			Date date = stringToDate(fecha);
+			
 			tareaServicio.crearTarea(nombre, date, proyecto_id, prioridad, cantidadPom, config_id);
 			attr.addAttribute("usuario_id", usuario_id);
 			attr.addAttribute("attrPry_id", proyecto_id);
 			return "redirect:/tarea/" + vista;
 
-		} catch (ErrorServicio e) {
-
-			model.put("error", e.getMessage());
-			attr.addAttribute("attrUsr_id", usuario_id);
+		} catch (ErrorServicio ex) {
+			model.put("error", ex.getMessage());
+			attr.addAttribute("usuario_id", usuario_id);
+			attr.addAttribute("attrPry_id", proyecto_id);
 			return "redirect:/tarea/" + vista;
 		}
 	}
@@ -192,12 +189,57 @@ public class TareaControlador {
 			return "redirect:/tarea/" + vista;
 		} catch (ErrorServicio ex) {
 			model.put("error", ex.getMessage());
+			model.put("vista", vista);
 			attr.addAttribute("attrUsr_id", usuario_id);
+			attr.addAttribute("attrPry_id", proyecto_id);
 			return "redirect:/tarea/" + vista;
 		}
 
 	}
 
+	@PostMapping("/editar")
+	public String editar(
+			@RequestParam String vista,
+			@RequestParam String usuario_id,
+			@RequestParam String tarea_id,
+			@RequestParam String nombre, 
+			@RequestParam String proyecto_id, 
+			@RequestParam String fecha,
+			@RequestParam Prioridad prioridad,
+			@RequestParam Integer cantidadPom,
+			ModelMap model,
+			RedirectAttributes attr) throws ErrorServicio 
+	{
+		
+		vista = vistaChk(vista);
+		
+		try {
+			Date date = stringToDate(fecha);
+			
+			tareaServicio.editarT(tarea_id, nombre, date, proyecto_id, prioridad, cantidadPom);
+			model.put("vista", vista);
+			attr.addAttribute("usuario_id", usuario_id);
+			attr.addAttribute("attrPry_id", proyecto_id);
+			return "redirect:/tarea/" + vista;
+		} catch (ErrorServicio e) {
+			model.put("error", e.getMessage());
+			model.put("vista", vista);
+			attr.addAttribute("usuario_id", usuario_id);
+			attr.addAttribute("attrPry_id", proyecto_id);
+			return "redirect:/tarea/" + vista;
+		}
+	
+	}
+	
+	private Date stringToDate(String string){
+		int anio = Integer.parseInt(string.substring(0, 4));
+		int mes = Integer.parseInt(string.substring(5, 7));
+		int dia = Integer.parseInt(string.substring(8, 10));
+		Date date = new Date(anio - 1900, mes - 1, dia);
+		return date;
+	}
+
+	
 	private String vistaChk(String vista) {
 		if (null == vista) {
 			return "";
@@ -208,17 +250,4 @@ public class TareaControlador {
 				return vista.toLowerCase();
 		}
 	}
-
-	@PostMapping("/modificar")
-	public String modificar(@RequestParam String id, @RequestParam String nombre, @RequestParam String id_proyecto, @RequestParam Date fecha, @RequestParam Prioridad prioridad, @RequestParam Integer cantidadPom) throws ErrorServicio {
-
-		Optional<Tarea> respuesta = tareaRepo.findById(id);
-
-		Proyecto proyecto = proyectoRepo.findById(id_proyecto).get();
-
-		tareaServicio.modificarT(id, nombre, fecha, id_proyecto, prioridad, cantidadPom);
-
-		return "tareas.html";
-	}
-
 }

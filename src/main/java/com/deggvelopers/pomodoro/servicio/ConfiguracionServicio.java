@@ -28,7 +28,7 @@ public class ConfiguracionServicio {
 		config.setDescansoLargo(20);
 		config.setIntervaloDescansoLargo(4);
 		
-		configRepo.save(config);
+		config = configRepo.save(config);
 		
 		return config;
 	}

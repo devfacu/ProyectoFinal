@@ -18,7 +18,7 @@ public interface TareaRepositorio extends JpaRepository<Tarea, String> {
 	@Query("SELECT c FROM Tarea c WHERE c.fecha > :fecha")
 	public List<Tarea> buscarPorProximo(@Param("fecha") Date fecha);
 
-	@Query("SELECT c FROM Tarea c JOIN c.proyecto p WHERE p.id = :proyecto_id")
+	@Query("SELECT c FROM Tarea c WHERE c.proyecto.id = :proyecto_id")
 	public List<Tarea> buscarPorProyecto(@Param("proyecto_id") String proyecto_id);
 
 }

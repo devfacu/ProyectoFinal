@@ -53,12 +53,6 @@ public class ProyectoControlador {
         }
     }
 
-    public String crear(@RequestParam String nombre, @RequestParam Usuario usuario) throws ErrorServicio {
-
-        proyectoServicio.crearProyecto(nombre, usuario);
-        return "vistaPrincipal.html";
-    }
-
     @PostMapping("/modificar")
     public String modificar(@RequestParam String nombre) throws ErrorServicio {
 
