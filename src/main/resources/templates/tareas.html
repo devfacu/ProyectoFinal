@@ -155,7 +155,7 @@
                                                 <abbr title="Tarea Terminada">
                                                     <button type="button"
                                                             class="tarea-chk btn but_tarea btn-success rounded-pill btn-lg"
-                                                            th:id="${tarea.id}"><span class="material-icons">radio_button_unchecked</span></button>
+                                                            th:id="${tarea.id}"><span th:text="${tarea.completado} ? check_circle_outline : radio_button_unchecked" class="material-icons"></span></button>
                                                 </abbr>
                                             </div>
                                         </div>
