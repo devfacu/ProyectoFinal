@@ -52,7 +52,6 @@ public class ProyectoServicio {
 		if (cantidadProyecto > 1) {
 			Optional<Proyecto> respuesta = proyectoRepositorio.findById(id);
 			if (respuesta.isPresent()) {
-				Proyecto proyecto = respuesta.get();
 				proyectoRepositorio.deleteById(id);
 			} else {
 				throw new ErrorServicio("El proyecto no existe");

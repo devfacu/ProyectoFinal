@@ -1,4 +1,25 @@
 $(document).ready(function () {
+
+    $(".tarea-chk").click(function () {
+        let tareaId = $(this).attr("id");
+
+        $.ajax({
+            url: "/api/tarea/" + tareaId,
+            contentType: "application/json",
+            type: "POST",
+            success: function () {
+                let text = $("#" + tareaId).html();
+                
+                if(text === `<span class="material-icons">radio_button_unchecked</span>`) {
+                    $("#" + tareaId).html(`<span class="material-icons">check_circle_outline</span>`);
+                } else {
+                    $("#" + tareaId).html(`<span class="material-icons">radio_button_unchecked</span>`);
+                }
+            }
+        });
+    });
+
+    
     let startMinutes = 25;
     let remainingSeconds = startMinutes * 60;
 
@@ -71,5 +92,7 @@ $(document).ready(function () {
             checked = true;
         }
     });
+
+    
     
 });

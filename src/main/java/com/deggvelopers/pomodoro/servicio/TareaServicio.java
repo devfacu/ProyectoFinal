@@ -101,5 +101,23 @@ public class TareaServicio {
         });
         return todasLasTareas;
     }
+	
+	public Integer duracionPomTarea(String id){
+		Tarea tarea = tareaRepo.getById(id);
+		Integer minutos = tarea.getDuracionPom();
+		return minutos;
+	}
 
+	public void switchCompletado(String id) {
+		Tarea tarea = tareaRepo.getById(id);
+		Boolean completado = tarea.getCompletado();
+		if (completado) {
+			tarea.setCompletado(false);
+		} else {
+			tarea.setCompletado(true);
+		}
+		
+		tareaRepo.save(tarea);
+	}
+	
 }
