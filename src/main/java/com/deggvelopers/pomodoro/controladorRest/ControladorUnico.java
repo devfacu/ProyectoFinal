@@ -29,8 +29,7 @@ public class ControladorUnico {
 	public Map<String, Integer> duracionPom(@PathVariable String id) {
 		Integer minutos = tareaServicio.duracionPomTarea(id);
 		
-		//return Collections.singletonMap("minutos", minutos);
-		return Map.of("minutos", minutos);
+		return Collections.singletonMap("minutos", minutos);
 	}
 
 	//Intercambiar el estado completado de las tareas
