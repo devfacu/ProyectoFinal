@@ -54,6 +54,7 @@ public class TareaServicio {
         tarea.setTiempoInvertido(0);
         tarea.setCompletado(Boolean.FALSE);
         tarea.setCantidadPom(cantidadPom);
+	tarea.setPomRealizados(0);
         tarea.setDuracionPom(config.getDuracionPom());
         tareaRepo.save(tarea);
 

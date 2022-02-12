@@ -33,6 +33,7 @@ public class Tarea implements Serializable {
 	private Integer tiempoInvertido;
 	private Boolean completado;
 	private Integer cantidadPom;
+	private Integer pomRealizados;
 	private Integer duracionPom;
 
 	/// CONSTRUCTOR VACIO ///
@@ -103,6 +104,15 @@ public class Tarea implements Serializable {
 	public void setDuracionPom(Integer duracionPom) {
 		this.duracionPom = duracionPom;
 	}
+
+	public Integer getPomRealizados() {
+		return pomRealizados;
+	}
+
+	public void setPomRealizados(Integer pomRealizados) {
+		this.pomRealizados = pomRealizados;
+	}
+	
 
 	/**
 	 * @return the proyecto

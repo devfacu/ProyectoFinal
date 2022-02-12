@@ -126,6 +126,14 @@ color:white
   color: black;
 }
 /* Facu */
+
+.boxtarea2 {
+  font-size: 20px;
+  font-weight: bolder;
+  font-style: oblique;
+  color: black;
+  text-shadow: 1px 1px rgba(0,0,0,0.3);
+}
 .vista-reloj {
   background-color: #9df3c4;
 }
