@@ -1,13 +1,13 @@
-package com.deggvelopers.pomodoro.repositorio;
+package com.deggvelopers.pomodoro.repository;
 
-import com.deggvelopers.pomodoro.entidad.Usuario;
+import com.deggvelopers.pomodoro.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-public interface UsuarioRepositorio extends JpaRepository<Usuario, String> {
+public interface UserRepository extends JpaRepository<User, String> {
 
 	@Query("SELECT c FROM Usuario c WHERE c.mail = :mail")
-	public Usuario buscarPorMail(@Param("mail") String mail);
+	public User buscarPorMail(@Param("mail") String mail);
 
 }

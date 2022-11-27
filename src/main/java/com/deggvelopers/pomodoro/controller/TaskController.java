@@ -1,14 +1,14 @@
 
-package com.deggvelopers.pomodoro.controlador;
+package com.deggvelopers.pomodoro.controller;
 
-import com.deggvelopers.pomodoro.entidad.Prioridad;
-import com.deggvelopers.pomodoro.entidad.Proyecto;
-import com.deggvelopers.pomodoro.entidad.Tarea;
+import com.deggvelopers.pomodoro.entity.Priority;
+import com.deggvelopers.pomodoro.entity.Project;
+import com.deggvelopers.pomodoro.entity.Task;
 import com.deggvelopers.pomodoro.errores.ErrorServicio;
-import com.deggvelopers.pomodoro.repositorio.ProyectoRepositorio;
-import com.deggvelopers.pomodoro.repositorio.TareaRepositorio;
-import com.deggvelopers.pomodoro.repositorio.UsuarioRepositorio;
-import com.deggvelopers.pomodoro.servicio.TareaServicio;
+import com.deggvelopers.pomodoro.repository.ProjectRepository;
+import com.deggvelopers.pomodoro.repository.TaskRepository;
+import com.deggvelopers.pomodoro.repository.UserRepository;
+import com.deggvelopers.pomodoro.service.TaskService;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -25,19 +25,19 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/tarea")
-public class TareaControlador {
+public class TaskController {
 
 	@Autowired
-	private TareaRepositorio tareaRepo;
+	private TaskRepository tareaRepo;
 
 	@Autowired
-	private UsuarioRepositorio usuarioRepo;
+	private UserRepository usuarioRepo;
 
 	@Autowired
-	private ProyectoRepositorio proyectoRepo;
+	private ProjectRepository proyectoRepo;
 
 	@Autowired
-	private TareaServicio tareaServicio;
+	private TaskService taskService;
 
 	@GetMapping("/")
 	public String todasTareasProyecto(String attrPry_id, String proyecto_id, ModelMap model) {
@@ -49,13 +49,13 @@ public class TareaControlador {
 			pry_id = proyecto_id;
 		}
 
-		List<Proyecto> proyectos = new ArrayList<>();
-		proyectos.add(proyectoRepo.findById(pry_id).get());
-		List<Tarea> tareas = tareaRepo.buscarPorProyecto(pry_id);
+		List<Project> projects = new ArrayList<>();
+		projects.add(proyectoRepo.findById(pry_id).get());
+		List<Task> tasks = tareaRepo.buscarPorProyecto(pry_id);
 
-		model.put("proyectos", proyectos);
-		model.put("listaProyectos", proyectos);
-		model.put("tareas", tareas);
+		model.put("proyectos", projects);
+		model.put("listaProyectos", projects);
+		model.put("tareas", tasks);
 
 		return "tareas.html";
 	}
@@ -70,13 +70,13 @@ public class TareaControlador {
 			usr_id = usuario_id;
 		}
 		Date hoy = new Date();
-		List<Proyecto> proyectos = proyectoRepo.findByUserId(usr_id);
-		List<Tarea> tareas = tareaServicio.buscarTareasPorProyectos(proyectos, hoy);
+		List<Project> projects = proyectoRepo.findByUserId(usr_id);
+		List<Task> tasks = taskService.buscarTareasPorProyectos(projects, hoy);
 
 		model.put("vista", "Hoy");
-		model.put("proyectos", proyectos);
-		model.put("listaProyectos", proyectos);
-		model.put("tareas", tareas);
+		model.put("proyectos", projects);
+		model.put("listaProyectos", projects);
+		model.put("tareas", tasks);
 
 		return "tareas.html";
 	}
@@ -98,13 +98,13 @@ public class TareaControlador {
 		c.add(Calendar.DATE, 1);
 		mañana = c.getTime();
 
-		List<Proyecto> proyectos = proyectoRepo.findByUserId(usr_id);
-		List<Tarea> tareas = tareaServicio.buscarTareasPorProyectos(proyectos, mañana);
+		List<Project> projects = proyectoRepo.findByUserId(usr_id);
+		List<Task> tasks = taskService.buscarTareasPorProyectos(projects, mañana);
 
 		model.put("vista", "Mañana");
-		model.put("proyectos", proyectos);
-		model.put("listaProyectos", proyectos);
-		model.put("tareas", tareas);
+		model.put("proyectos", projects);
+		model.put("listaProyectos", projects);
+		model.put("tareas", tasks);
 
 		return "tareas.html";
 	}
@@ -126,13 +126,13 @@ public class TareaControlador {
 		c.add(Calendar.DATE, 1);
 		proximo = c.getTime();
 
-		List<Proyecto> proyectos = proyectoRepo.findByUserId(usr_id);
-		List<Tarea> tareas = tareaRepo.buscarPorProximo(proximo);
+		List<Project> projects = proyectoRepo.findByUserId(usr_id);
+		List<Task> tasks = tareaRepo.buscarPorProximo(proximo);
 
 		model.put("vista", "Proximo");
-		model.put("proyectos", proyectos);
-		model.put("listaProyectos", proyectos);
-		model.put("tareas", tareas);
+		model.put("proyectos", projects);
+		model.put("listaProyectos", projects);
+		model.put("tareas", tasks);
 
 		return "tareas.html";
 	}
@@ -140,8 +140,8 @@ public class TareaControlador {
 	@GetMapping("/completado")
 	public String listarCompletado(ModelMap model) {
 
-		List<Tarea> tareas = tareaRepo.buscarPorCompletado(Boolean.TRUE);
-		model.put("tareas", tareas);
+		List<Task> tasks = tareaRepo.buscarPorCompletado(Boolean.TRUE);
+		model.put("tareas", tasks);
 
 		return "tareas.html";
 	}
@@ -151,7 +151,7 @@ public class TareaControlador {
 			@RequestParam String nombre,
 			@RequestParam String fecha,
 			@RequestParam String proyecto_id,
-			@RequestParam Prioridad prioridad,
+			@RequestParam Priority priority,
 			@RequestParam Integer cantidadPom,
 			@RequestParam String usuario_id,
 			ModelMap model,
@@ -160,11 +160,11 @@ public class TareaControlador {
 		vista = vistaChk(vista);
 
 		try {
-			String config_id = usuarioRepo.getById(usuario_id).getConfiguracion().getId();
+			String config_id = usuarioRepo.getById(usuario_id).getConfiguration().getId();
 			
 			Date date = stringToDate(fecha);
 			
-			tareaServicio.crearTarea(nombre, date, proyecto_id, prioridad, cantidadPom, config_id);
+			taskService.crearTarea(nombre, date, proyecto_id, priority, cantidadPom, config_id);
 			attr.addAttribute("usuario_id", usuario_id);
 			attr.addAttribute("attrPry_id", proyecto_id);
 			return "redirect:/tarea/" + vista;
@@ -186,7 +186,7 @@ public class TareaControlador {
 			model.put("vista", vista);
 			attr.addAttribute("usuario_id", usuario_id);
 			attr.addAttribute("attrPry_id", proyecto_id);
-			tareaServicio.eliminarT(tarea_id);
+			taskService.eliminarT(tarea_id);
 			return "redirect:/tarea/" + vista;
 		} catch (ErrorServicio ex) {
 			model.put("error", ex.getMessage());
@@ -206,7 +206,7 @@ public class TareaControlador {
 			@RequestParam String nombre, 
 			@RequestParam String proyecto_id, 
 			@RequestParam String fecha,
-			@RequestParam Prioridad prioridad,
+			@RequestParam Priority priority,
 			@RequestParam Integer cantidadPom,
 			ModelMap model,
 			RedirectAttributes attr) throws ErrorServicio 
@@ -217,7 +217,7 @@ public class TareaControlador {
 		try {
 			Date date = stringToDate(fecha);
 			
-			tareaServicio.editarT(tarea_id, nombre, date, proyecto_id, prioridad, cantidadPom);
+			taskService.editarT(tarea_id, nombre, date, proyecto_id, priority, cantidadPom);
 			model.put("vista", vista);
 			attr.addAttribute("usuario_id", usuario_id);
 			attr.addAttribute("attrPry_id", proyecto_id);

@@ -1,7 +1,7 @@
 
 package com.deggvelopers.pomodoro.controladorRest;
 
-import com.deggvelopers.pomodoro.servicio.TareaServicio;
+import com.deggvelopers.pomodoro.service.TaskService;
 import java.util.Collections;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +22,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class ControladorUnico {
 	
 	@Autowired
-	TareaServicio tareaServicio;
+    TaskService taskService;
 
 	//Recuperar informacion de los minutos del pomodoro de la tarea
 	@GetMapping("/tarea/{id}/minutos")
 	public Map<String, Integer> duracionPom(@PathVariable String id) {
-		Integer minutos = tareaServicio.duracionPomTarea(id);
+		Integer minutos = taskService.duracionPomTarea(id);
 		
 		return Collections.singletonMap("minutos", minutos);
 	}
@@ -35,7 +35,7 @@ public class ControladorUnico {
 	//Intercambiar el estado completado de las tareas
 	@PostMapping("/tarea/{id}")
 	public Map<String, String> cambioEstadoCompletado(@PathVariable String id) {
-		tareaServicio.switchCompletado(id);
+		taskService.switchCompletado(id);
 		return Collections.singletonMap("ok", "ok");
 	}
 	

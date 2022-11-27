@@ -1,6 +1,6 @@
-package com.deggvelopers.pomodoro.configuracion;
+package com.deggvelopers.pomodoro.configuration;
 
-import com.deggvelopers.pomodoro.servicio.UsuarioServicio;
+import com.deggvelopers.pomodoro.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -16,12 +16,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class Login extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private UsuarioServicio usuarioServicio;
+    private UserService userService;
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
-                .userDetailsService(usuarioServicio)
+                .userDetailsService(userService)
                 .passwordEncoder(new BCryptPasswordEncoder());
     }
 

@@ -38,7 +38,7 @@
                         <a class="nav-link link-secondary fs-4" th:href="@{/prueba}" >Reloj</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link link-secondary fs-4" th:href="@{/configuracion/(usuario_id=__${session.usuarioSession.id}__)}">Configuracion</a>
+                        <a class="nav-link link-secondary fs-4" th:href="@{/configuration/(usuario_id=__${session.usuarioSession.id}__)}">Configuracion</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link link-secondary fs-4" href="/logout">Cerrar Sesion</a>
@@ -117,7 +117,7 @@
                                                                 id="flexSwitchCheckChecked" name="habilitado" checked>
                                                             <label class="form-check-label fs-5 mx-2 text-secondary"
                                                                 for="flexSwitchCheckChecked">Aqui puede
-                                                                activar o desactivar su usuario</label>
+                                                                activar o desactivar su user</label>
                                                         </div>
                                                         <div class="col mt-4">
                                                             <button type="button" class="btn but btn-success"

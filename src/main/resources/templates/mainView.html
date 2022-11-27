@@ -20,7 +20,7 @@
   <div class="borderedit container col-9 px-8 py-5 my-4 ">
 
     <div class="col-9 container">
-      <a class="fs-2 btn butG btn-success" th:href="@{/tarea/hoy(usuario_id=__${session.usuarioSession.id}__)}">
+      <a class="fs-2 btn butG btn-success" th:href="@{/task/hoy(usuario_id=__${session.usuarioSession.id}__)}">
         <div class="row">
           <div class="col-1">
             <img src="../static/img/sol.png" th:src="@{/img/sol.png}" alt="sol" class="imagen-box">
@@ -36,7 +36,7 @@
     <br>
 
     <div class="col-9 container">
-      <a class="fs-2 btn butG btn-success" th:href="@{/tarea/manana(usuario_id=__${session.usuarioSession.id}__)}" method="get">
+      <a class="fs-2 btn butG btn-success" th:href="@{/task/manana(usuario_id=__${session.usuarioSession.id}__)}" method="get">
         <div class="row">
           <div class="col-1">
             <img src="../static/img/flecha.png" th:src="@{/img/flecha.png}" alt="flecha" class="imagen-box">
@@ -51,7 +51,7 @@
     <br>
 
     <div class="col-9 container">
-      <a class="fs-2 btn butG btn-success" th:href="@{/tarea/proximo(usuario_id=__${session.usuarioSession.id}__)}" method="get">
+      <a class="fs-2 btn butG btn-success" th:href="@{/task/proximo(usuario_id=__${session.usuarioSession.id}__)}" method="get">
         <div class="row">
           <div class="col-1">
             <img src="../static/img/calendario.png" th:src="@{/img/calendario.png}" alt="calendario" class="imagen-box">
@@ -66,7 +66,7 @@
     <br>
 
     <div class="col-9 container">
-      <a class="fs-2 btn butG btn-success" th:href="@{/tarea/completado(usuario_id=__${session.usuarioSession.id}__)}" method="get">
+      <a class="fs-2 btn butG btn-success" th:href="@{/task/completado(usuario_id=__${session.usuarioSession.id}__)}" method="get">
         <div class="row">
           <div class="col-1">
             <img src="../static/img/chek.png" th:src="@{/img/chek.png}" alt="chek" class="imagen-box">
@@ -82,16 +82,16 @@
 
     <table>
       <tbody>
-        <tr th:each="proyecto : ${proyectos}">
+        <tr th:each="project : ${projects}">
           <br>
           <div class="col-9 container">
-            <a class="fs-2 btn butG btn-success" th:href="@{/tarea/(proyecto_id=__${proyecto.id}__)}" method="get">
+            <a class="fs-2 btn butG btn-success" th:href="@{/task/(proyecto_id=__${project.id}__)}" method="get">
               <div class="row">
                 <div class="col-1">
-                  <img src="../static/img/tarea.png" th:src="@{/img/tarea.png}" alt="tarea" class="imagen-box">
+                  <img src="../static/img/task.png" th:src="@{/img/task.png}" alt="task" class="imagen-box">
                 </div>
                 <div class="col-11">
-                  <div th:text="${proyecto.nombre}"
+                  <div th:text="${project.nombre}"
                     class="but-principal">Tareas
                 </div>
                 </div>
@@ -128,13 +128,13 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body my-3">
-            <form th:action="@{/proyecto/nuevo(usuario_id=__${session.usuarioSession.id}__)}" method="post">
+            <form th:action="@{/project/nuevo(usuario_id=__${session.usuarioSession.id}__)}" method="post">
               <div>
                 <p th:if="${error!=null}" th:text="${error}"></p>
               </div>
               <div class="col mb-1">
                 <label for="inputname" class="col-sm-6 col-form-label pre-control">Nombre
-                  del proyecto:</label>
+                  del project:</label>
                 <div class="col-sm-12 borderbox">
                   <input type="text" class="form-control" id="Nombre" name="nombre">
                 </div>

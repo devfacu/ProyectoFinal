@@ -1,8 +1,8 @@
 
-package com.deggvelopers.pomodoro.servicio;
+package com.deggvelopers.pomodoro.service;
 
-import com.deggvelopers.pomodoro.entidad.Configuracion;
-import com.deggvelopers.pomodoro.repositorio.ConfiguracionRepositorio;
+import com.deggvelopers.pomodoro.entity.Configuration;
+import com.deggvelopers.pomodoro.repository.ConfigurationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,14 +11,14 @@ import org.springframework.stereotype.Service;
  * @author facundov
  */
 @Service
-public class ConfiguracionServicio {
+public class ConfigurationService {
 
 	@Autowired
-	private ConfiguracionRepositorio configRepo;
+	private ConfigurationRepository configRepo;
 	
-	public Configuracion crear() {
+	public Configuration crear() {
 		//Se creara un objeto Configuracion con los valores predeterminados
-		Configuracion config = new Configuracion();
+		Configuration config = new Configuration();
 		
 		config.setAlarmaTrabajo("alarmaTrabajo");
 		config.setAlarmaDescanso("alarmaDescanso");

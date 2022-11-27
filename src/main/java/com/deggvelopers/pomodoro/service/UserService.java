@@ -1,9 +1,9 @@
-package com.deggvelopers.pomodoro.servicio;
+package com.deggvelopers.pomodoro.service;
 
-import com.deggvelopers.pomodoro.entidad.Configuracion;
-import com.deggvelopers.pomodoro.entidad.Usuario;
+import com.deggvelopers.pomodoro.entity.Configuration;
+import com.deggvelopers.pomodoro.entity.User;
 import com.deggvelopers.pomodoro.errores.ErrorServicio;
-import com.deggvelopers.pomodoro.repositorio.UsuarioRepositorio;
+import com.deggvelopers.pomodoro.repository.UserRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -12,7 +12,6 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -24,58 +23,58 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 @Service
 @Validated
-public class UsuarioServicio implements UserDetailsService {
+public class UserService implements UserDetailsService {
 
     @Autowired
-    private UsuarioRepositorio usuarioRepositorio;
+    private UserRepository userRepository;
 
     @Autowired
-    private ProyectoServicio proyectoServicio;
+    private ProjectService projectService;
 
     @Autowired
-    private ConfiguracionServicio configServicio;
+    private ConfigurationService configService;
 
     @Transactional
-    public Usuario registrar(@Validated String nombre, @Validated String apellido, @Validated String mail, @Validated String password, @Validated String password2) throws ErrorServicio {
-        Usuario usuario = new Usuario();
-        Configuracion configuracion = configServicio.crear();
+    public User registrar(@Validated String name, @Validated String lastName, @Validated String mail, @Validated String password, @Validated String password2) throws ErrorServicio {
+        User user = new User();
+        Configuration configuration = configService.crear();
 
-        validacion(nombre, apellido, mail, password, password2);
+        validacion(name, lastName, mail, password, password2);
 
-        usuario.setNombre(nombre);
-        usuario.setApellido(apellido);
-        usuario.setMail(mail);
-        usuario.setPassword(password);
-        usuario.setPassword2(password2);
+        user.setName(name);
+        user.setLastName(lastName);
+        user.setMail(mail);
+        user.setPassword(password);
+        user.setPassword2(password2);
 
-        String encriptada = new BCryptPasswordEncoder().encode(password);
-        usuario.setPassword(encriptada);
-        usuario.setHabilitado(Boolean.TRUE);
-        usuario.setConfiguracion(configuracion);
-        usuarioRepositorio.save(usuario);
+        String encrypted = new BCryptPasswordEncoder().encode(password);
+        user.setPassword(encrypted);
+        user.setEnabled(Boolean.TRUE);
+        user.setConfiguration(configuration);
+        userRepository.save(user);
 
-        proyectoServicio.crearProyecto("Tareas", usuario);
+        projectService.crearProyecto("Tareas", user);
 
-        return usuario;
+        return user;
     }
 
     @Transactional
     public void modificar(String id, String nombre, String apellido, String email, String password, String password2) throws ErrorServicio {
         validacion(nombre, apellido, email, password, password2);
 
-        Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
+        Optional<User> respuesta = userRepository.findById(id);
         if (respuesta.isPresent()) {
-            Usuario usuario = respuesta.get();
-            usuario.setApellido(apellido);
-            usuario.setNombre(nombre);
-            usuario.setMail(email);
+            User user = respuesta.get();
+            user.setLastName(apellido);
+            user.setName(nombre);
+            user.setMail(email);
 
             if (password != null || !password.isEmpty()) {
                 String encriptada = new BCryptPasswordEncoder().encode(password);
-                usuario.setPassword(encriptada);
+                user.setPassword(encriptada);
             }
 
-            usuarioRepositorio.save(usuario);
+            userRepository.save(user);
         } else {
             throw new ErrorServicio("No se encontro el usuario solicitado");
         }
@@ -110,7 +109,7 @@ public class UsuarioServicio implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(@Validated String email) throws UsernameNotFoundException {
-        Usuario usuario = usuarioRepositorio.buscarPorMail(email);
+        User usuario = userRepository.buscarPorMail(email);
         if (usuario != null) {
 
             List<GrantedAuthority> permisos = new ArrayList<>();
@@ -121,7 +120,7 @@ public class UsuarioServicio implements UserDetailsService {
             ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
             HttpSession session = attr.getRequest().getSession(true);
             session.setAttribute("usuarioSession", usuario);
-            User user = new User(usuario.getMail(), usuario.getPassword(), permisos);
+            org.springframework.security.core.userdetails.User user = new org.springframework.security.core.userdetails.User(usuario.getMail(), usuario.getPassword(), permisos);
             return user;
         } else {
             return null;

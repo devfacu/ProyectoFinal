@@ -1,11 +1,10 @@
-package com.deggvelopers.pomodoro.controlador;
+package com.deggvelopers.pomodoro.controller;
 
-import com.deggvelopers.pomodoro.entidad.Proyecto;
-import com.deggvelopers.pomodoro.entidad.Usuario;
+import com.deggvelopers.pomodoro.entity.Project;
+import com.deggvelopers.pomodoro.entity.User;
 import com.deggvelopers.pomodoro.errores.ErrorServicio;
-import com.deggvelopers.pomodoro.repositorio.ProyectoRepositorio;
-import com.deggvelopers.pomodoro.repositorio.UsuarioRepositorio;
-import com.deggvelopers.pomodoro.servicio.ProyectoServicio;
+import com.deggvelopers.pomodoro.repository.UserRepository;
+import com.deggvelopers.pomodoro.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -16,21 +15,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/proyecto")
-public class ProyectoControlador {
+public class ProjectController {
 
     @Autowired
-    private UsuarioRepositorio usuarioRepo;
+    private UserRepository usuarioRepo;
 
     @Autowired
-    private ProyectoServicio proyectoServicio;
-
-    @Autowired
-    private ProyectoRepositorio proyectoRepo;
+    private ProjectService projectService;
 
     @GetMapping("/")
     public String gestion(ModelMap model, @RequestParam String id) {
         try {
-            Proyecto proyectos = new Proyecto();
+            Project proyectos = new Project();
             model.put("proyectos", proyectos);
             return "gestionProyecto.html";
         } catch (Exception e) {
@@ -43,8 +39,8 @@ public class ProyectoControlador {
     @PostMapping("/nuevo")
     public String crear(@RequestParam String nombre, @RequestParam String usuario_id, ModelMap model) {
         try {
-            Usuario usuario = usuarioRepo.getById(usuario_id);
-            proyectoServicio.crearProyecto(nombre, usuario);
+            User user = usuarioRepo.getById(usuario_id);
+            projectService.crearProyecto(nombre, user);
             return "redirect:/principal";
 
         } catch (ErrorServicio ex) {
@@ -56,14 +52,14 @@ public class ProyectoControlador {
     @PostMapping("/modificar")
     public String modificar(@RequestParam String nombre) throws ErrorServicio {
 
-        proyectoServicio.modificar(nombre, nombre);
+        projectService.modificar(nombre, nombre);
         return "gestionProyecto.html";
     }
 
     @PostMapping("/eliminar")
     public String eliminar(@RequestParam String id, @RequestParam String nombre) throws ErrorServicio {
 
-        proyectoServicio.eliminarProyecto(id, nombre);
+        projectService.eliminarProyecto(id, nombre);
         return "gestionProyecto.html";
     }
 }

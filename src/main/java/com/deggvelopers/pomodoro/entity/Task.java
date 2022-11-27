@@ -1,4 +1,4 @@
-package com.deggvelopers.pomodoro.entidad;
+package com.deggvelopers.pomodoro.entity;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -15,7 +15,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-public class Tarea implements Serializable {
+public class Task implements Serializable {
 
 	@Id
 	@GeneratedValue(generator = "uuid")
@@ -27,9 +27,9 @@ public class Tarea implements Serializable {
 	private Date fecha;
 	@JoinColumn(referencedColumnName = "id")
 	@ManyToOne
-	private Proyecto proyecto;
+	private Project project;
 	@Enumerated(EnumType.STRING)
-	private Prioridad prioridad;
+	private Priority priority;
 	private Integer tiempoInvertido;
 	private Boolean completado;
 	private Integer cantidadPom;
@@ -37,7 +37,7 @@ public class Tarea implements Serializable {
 	private Integer duracionPom;
 
 	/// CONSTRUCTOR VACIO ///
-	public Tarea() {
+	public Task() {
 	}
 
 	////GETTERS Y SETTERS //////////
@@ -65,12 +65,12 @@ public class Tarea implements Serializable {
 		this.fecha = fecha;
 	}
 
-	public Prioridad getPrioridad() {
-		return prioridad;
+	public Priority getPrioridad() {
+		return priority;
 	}
 
-	public void setPrioridad(Prioridad prioridad) {
-		this.prioridad = prioridad;
+	public void setPrioridad(Priority priority) {
+		this.priority = priority;
 	}
 
 	public Integer getTiempoInvertido() {
@@ -117,14 +117,14 @@ public class Tarea implements Serializable {
 	/**
 	 * @return the proyecto
 	 */
-	public Proyecto getProyecto() {
-		return proyecto;
+	public Project getProyecto() {
+		return project;
 	}
 
 	/**
-	 * @param proyecto the proyecto to set
+	 * @param project the proyecto to set
 	 */
-	public void setProyecto(Proyecto proyecto) {
-		this.proyecto = proyecto;
+	public void setProyecto(Project project) {
+		this.project = project;
 	}
 }

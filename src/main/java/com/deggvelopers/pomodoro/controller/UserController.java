@@ -1,9 +1,9 @@
-package com.deggvelopers.pomodoro.controlador;
+package com.deggvelopers.pomodoro.controller;
 
-import com.deggvelopers.pomodoro.entidad.Usuario;
+import com.deggvelopers.pomodoro.entity.User;
 import com.deggvelopers.pomodoro.errores.ErrorServicio;
-import com.deggvelopers.pomodoro.repositorio.UsuarioRepositorio;
-import com.deggvelopers.pomodoro.servicio.UsuarioServicio;
+import com.deggvelopers.pomodoro.repository.UserRepository;
+import com.deggvelopers.pomodoro.service.UserService;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/usuario")
-public class UsuarioControlador {
+public class UserController {
 
     @Autowired
-    private UsuarioServicio usuarioServicio;
+    private UserService userService;
 
     @Autowired
-    private UsuarioRepositorio usuarioRepo;
+    private UserRepository usuarioRepo;
 
     @PostMapping("/actualizar-perfil")
     public String modificar(ModelMap model,
@@ -32,9 +32,9 @@ public class UsuarioControlador {
             @RequestParam String password, @RequestParam String password2) {
 
         try {
-            usuarioServicio.modificar(id, nombre, apellido, email, password, password2);
-            Usuario usuario = usuarioRepo.getById(id);
-            session.setAttribute("usuarioSession", usuario);
+            userService.modificar(id, nombre, apellido, email, password, password2);
+            User user = usuarioRepo.getById(id);
+            session.setAttribute("usuarioSession", user);
             return "redirect:/principal";
         } catch (ErrorServicio ex) {
             model.put("error", ex.getMessage());

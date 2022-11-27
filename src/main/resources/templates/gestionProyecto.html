@@ -26,15 +26,15 @@
 
         <table>
             <tbody>
-                <tr th:each="proyecto : ${proyectos}">
+                <tr th:each="project : ${projects}">
                     <div class="col-10 container borderbox-box">
                         <div class="row">
                             <div class="col-8">
-                                <label th:text="${proyecto.nombre}" class="titulo">Tarea</label>
+                                <label th:text="${project.nombre}" class="titulo">Tarea</label>
                             </div>
 
                             <div class="col justify-content-center mt-2">
-                                <abbr title="Editar Proyecto"><a th:href="@{/proyecto/editar}" type="button"
+                                <abbr title="Editar Proyecto"><a th:href="@{/project/editar}" type="button"
                                         data-bs-toggle="modal" data-bs-target="#editarProyecto"
                                         class="but_tarea btn-success rounded-pill btn-lg">
                                         <span class="material-icons">
@@ -42,7 +42,7 @@
                                         </span></a></abbr>
                             </div>
                             <div class="col justify-content-center mt-2">
-                                <abbr title="Eliminar Proyecto"><a th:href="@{/proyecto/eliminar}" type="button"
+                                <abbr title="Eliminar Proyecto"><a th:href="@{/project/eliminar}" type="button"
                                         data-bs-toggle="modal" data-bs-target="#eliminarProyecto"
                                         class="but_tarea btn-danger rounded-pill btn-lg">
                                         <span class="material-icons">
@@ -68,16 +68,16 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body my-3">
-                    <form th:action="@{/proyecto/modificar}" method="post">
+                    <form th:action="@{/project/modificar}" method="post">
                         <div>
                             <p th:if="${error!=null}" th:text="${error}"></p>
                         </div>
                         <div class="col mb-1">
                             <label for="inputname" class="col-sm-6 col-form-label pre-control">Nombre
-                                del proyecto:</label>
+                                del project:</label>
                             <div class="col-sm-12 borderbox">
-                                <input type="hidden" th:value="${proyecto.id}">
-                                <input th:value="${proyecto.nombre}" type="text" class="form-control" id="Nombre"
+                                <input type="hidden" th:value="${project.id}">
+                                <input th:value="${project.nombre}" type="text" class="form-control" id="Nombre"
                                     name="nombre">
                             </div>
 
@@ -102,13 +102,13 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body my-3">
-                    <form th:action="@{/proyecto/eliminar(proyecto_id=_${proyecto.id}_)}" method="post">
+                    <form th:action="@{/project/eliminar(proyecto_id=_${project.id}_)}" method="post">
                         <div>
                             <p th:if="${error!=null}" th:text="${error}"></p>
                         </div>
                         <div class="col mb-1">
                             <label for="inputname" class="col-sm-6 col-form-label pre-control">¿Esta seguro que
-                                desea eliminar el proyecto?</label>
+                                desea eliminar el project?</label>
 
                             <div class="col mt-4">
                                 <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cancelar</button>

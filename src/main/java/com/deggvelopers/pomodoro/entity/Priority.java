@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.deggvelopers.pomodoro.entidad;
+package com.deggvelopers.pomodoro.entity;
 
 /**
  *
  * @author Administrador
  */
-public enum Prioridad {
+public enum Priority {
     BAJA, MEDIA, ALTA
 }

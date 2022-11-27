@@ -1,4 +1,4 @@
-package com.deggvelopers.pomodoro.entidad;
+package com.deggvelopers.pomodoro.entity;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
@@ -11,9 +11,13 @@ import org.hibernate.annotations.GenericGenerator;
  * @author facundov
  */
 @Entity
-public class Configuracion implements Serializable {
+public class Configuration implements Serializable {
 
-	@Id
+	/**
+   * 
+   */
+    private static final long serialVersionUID = 1L;
+    @Id
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
@@ -25,7 +29,7 @@ public class Configuracion implements Serializable {
 	private Integer descansoLargo;
 	private Integer intervaloDescansoLargo;
 
-	public Configuracion() {
+	public Configuration() {
 	}
 
 	public String getId() {

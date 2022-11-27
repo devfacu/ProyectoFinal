@@ -1,4 +1,4 @@
-package com.deggvelopers.pomodoro.entidad;
+package com.deggvelopers.pomodoro.entity;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
@@ -9,7 +9,7 @@ import javax.persistence.ManyToOne;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-public class Proyecto implements Serializable {
+public class Project implements Serializable {
 
     @Id
     @GeneratedValue(generator = "uuid")
@@ -18,15 +18,15 @@ public class Proyecto implements Serializable {
     private String nombre;
     @JoinColumn(referencedColumnName = "id")
     @ManyToOne
-    private Usuario usuario;
+    private User user;
 
-    public Proyecto() {
+    public Project() {
     }
 
-    public Proyecto(String id, String nombre, Usuario usuario) {
+    public Project(String id, String nombre, User user) {
         this.id = id;
         this.nombre = nombre;
-        this.usuario = usuario;
+        this.user = user;
     }
 
     public String getId() {
@@ -45,11 +45,11 @@ public class Proyecto implements Serializable {
         this.nombre = nombre;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public User getUsuario() {
+        return user;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setUsuario(User user) {
+        this.user = user;
     }
 }

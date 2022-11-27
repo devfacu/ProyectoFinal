@@ -1,9 +1,9 @@
-package com.deggvelopers.pomodoro.servicio;
+package com.deggvelopers.pomodoro.service;
 
-import com.deggvelopers.pomodoro.entidad.Proyecto;
-import com.deggvelopers.pomodoro.entidad.Usuario;
+import com.deggvelopers.pomodoro.entity.Project;
+import com.deggvelopers.pomodoro.entity.User;
 import com.deggvelopers.pomodoro.errores.ErrorServicio;
-import com.deggvelopers.pomodoro.repositorio.ProyectoRepositorio;
+import com.deggvelopers.pomodoro.repository.ProjectRepository;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,46 +13,46 @@ import org.springframework.validation.annotation.Validated;
 
 @Service
 @Validated
-public class ProyectoServicio {
+public class ProjectService {
 
 	@Autowired
-	private ProyectoRepositorio proyectoRepositorio;
+	private ProjectRepository projectRepository;
 
-	public Proyecto crearProyecto(@Validated String nombre, @Validated Usuario usuario) throws ErrorServicio {
-		Proyecto proyecto = new Proyecto();
+	public Project crearProyecto(@Validated String nombre, @Validated User user) throws ErrorServicio {
+		Project project = new Project();
 
 		validar(nombre);
 
-		proyecto.setNombre(nombre);
-		proyecto.setUsuario(usuario);
-		proyectoRepositorio.save(proyecto);
+		project.setNombre(nombre);
+		project.setUsuario(user);
+		projectRepository.save(project);
 
-		return proyecto;
+		return project;
 	}
 
 	public void modificar(@Validated String id, @Validated String nombre) throws ErrorServicio {
 
 		validar(nombre);
 
-		Optional<Proyecto> respuesta = proyectoRepositorio.findById(id);
+		Optional<Project> respuesta = projectRepository.findById(id);
 
 		if (!respuesta.isPresent()) {
 			throw new ErrorServicio("No se encontro el usuario solicitado");
 		}
-		Proyecto proyecto = proyectoRepositorio.findById(id).get();
-		proyecto.setNombre(nombre);
+		Project project = projectRepository.findById(id).get();
+		project.setNombre(nombre);
 
-		proyectoRepositorio.save(proyecto);
+		projectRepository.save(project);
 	}
 
 	public void eliminarProyecto(@Validated String id, @Validated String nombre) throws ErrorServicio {
 
-		long cantidadProyecto = proyectoRepositorio.count();
+		long cantidadProyecto = projectRepository.count();
 
 		if (cantidadProyecto > 1) {
-			Optional<Proyecto> respuesta = proyectoRepositorio.findById(id);
+			Optional<Project> respuesta = projectRepository.findById(id);
 			if (respuesta.isPresent()) {
-				proyectoRepositorio.deleteById(id);
+				projectRepository.deleteById(id);
 			} else {
 				throw new ErrorServicio("El proyecto no existe");
 			}
