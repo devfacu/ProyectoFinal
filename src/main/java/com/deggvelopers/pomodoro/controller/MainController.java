@@ -2,7 +2,7 @@ package com.deggvelopers.pomodoro.controller;
 
 import com.deggvelopers.pomodoro.entity.Project;
 import com.deggvelopers.pomodoro.entity.User;
-import com.deggvelopers.pomodoro.errores.ErrorServicio;
+import com.deggvelopers.pomodoro.exception.NotFoundException;
 import com.deggvelopers.pomodoro.repository.ProjectRepository;
 import com.deggvelopers.pomodoro.service.UserService;
 import java.util.List;
@@ -41,7 +41,7 @@ public class MainController {
 	@GetMapping("/main")
 	public String main(ModelMap model, HttpSession session) {
 
-		User user = (User) session.getAttribute("usuarioSession");
+		User user = (User) session.getAttribute("userSession");
 		List<Project> projects = projectRepository.findByUserId(user.getId());
 
 		model.put("projects", projects);
@@ -64,11 +64,11 @@ public class MainController {
 	}
 
 	@PostMapping("/register")
-	public String register(ModelMap model, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String email, @RequestParam String contrasena1, @RequestParam String contrasena2) throws ErrorServicio {
+	public String register(ModelMap model, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String email, @RequestParam String contrasena1, @RequestParam String contrasena2) throws NotFoundException {
 
 		try {
-			userService.registrar(nombre, apellido, email, contrasena1, contrasena2);
-		} catch (ErrorServicio e) {
+			userService.register(nombre, apellido, email, contrasena1, contrasena2);
+		} catch (NotFoundException e) {
 			model.put("error", e.getMessage());
 			model.put("nombre", nombre);
 			model.put("apellido", apellido);

@@ -15,7 +15,7 @@ public class Project implements Serializable {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
-    private String nombre;
+    private String name;
     @JoinColumn(referencedColumnName = "id")
     @ManyToOne
     private User user;
@@ -23,9 +23,9 @@ public class Project implements Serializable {
     public Project() {
     }
 
-    public Project(String id, String nombre, User user) {
+    public Project(String id, String name, User user) {
         this.id = id;
-        this.nombre = nombre;
+        this.name = name;
         this.user = user;
     }
 
@@ -37,19 +37,19 @@ public class Project implements Serializable {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public User getUsuario() {
+    public User getUser() {
         return user;
     }
 
-    public void setUsuario(User user) {
+    public void setUser(User user) {
         this.user = user;
     }
 }

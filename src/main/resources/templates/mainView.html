@@ -20,7 +20,7 @@
   <div class="borderedit container col-9 px-8 py-5 my-4 ">
 
     <div class="col-9 container">
-      <a class="fs-2 btn butG btn-success" th:href="@{/task/hoy(usuario_id=__${session.usuarioSession.id}__)}">
+      <a class="fs-2 btn butG btn-success" th:href="@{/task/hoy(user_id=__${session.userSession.id}__)}">
         <div class="row">
           <div class="col-1">
             <img src="../static/img/sol.png" th:src="@{/img/sol.png}" alt="sol" class="imagen-box">
@@ -36,7 +36,7 @@
     <br>
 
     <div class="col-9 container">
-      <a class="fs-2 btn butG btn-success" th:href="@{/task/manana(usuario_id=__${session.usuarioSession.id}__)}" method="get">
+      <a class="fs-2 btn butG btn-success" th:href="@{/task/manana(user_id=__${session.userSession.id}__)}" method="get">
         <div class="row">
           <div class="col-1">
             <img src="../static/img/flecha.png" th:src="@{/img/flecha.png}" alt="flecha" class="imagen-box">
@@ -51,7 +51,7 @@
     <br>
 
     <div class="col-9 container">
-      <a class="fs-2 btn butG btn-success" th:href="@{/task/proximo(usuario_id=__${session.usuarioSession.id}__)}" method="get">
+      <a class="fs-2 btn butG btn-success" th:href="@{/task/proximo(user_id=__${session.userSession.id}__)}" method="get">
         <div class="row">
           <div class="col-1">
             <img src="../static/img/calendario.png" th:src="@{/img/calendario.png}" alt="calendario" class="imagen-box">
@@ -66,7 +66,7 @@
     <br>
 
     <div class="col-9 container">
-      <a class="fs-2 btn butG btn-success" th:href="@{/task/completado(usuario_id=__${session.usuarioSession.id}__)}" method="get">
+      <a class="fs-2 btn butG btn-success" th:href="@{/task/completado(user_id=__${session.userSession.id}__)}" method="get">
         <div class="row">
           <div class="col-1">
             <img src="../static/img/chek.png" th:src="@{/img/chek.png}" alt="chek" class="imagen-box">
@@ -91,8 +91,8 @@
                   <img src="../static/img/task.png" th:src="@{/img/task.png}" alt="task" class="imagen-box">
                 </div>
                 <div class="col-11">
-                  <div th:text="${project.nombre}"
-                    class="but-principal">Tareas
+                  <div th:text="${project.name}"
+                    class="but-principal">Tarea
                 </div>
                 </div>
               </div>
@@ -111,8 +111,8 @@
             <img src="../static/img/mas.png" th:src="@{/img/mas.png}" alt="mas" class="imagen-box">
           </div>
           <div class="col-11">
-            <imput class="but-principal">Nuevo Proyecto
-            </imput>
+            <div class="but-principal">Nuevo Proyecto
+            </div>
           </div>
         </div>
       </a>
@@ -128,7 +128,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body my-3">
-            <form th:action="@{/project/nuevo(usuario_id=__${session.usuarioSession.id}__)}" method="post">
+            <form th:action="@{/project/nuevo(user_id=__${session.userSession.id}__)}" method="post">
               <div>
                 <p th:if="${error!=null}" th:text="${error}"></p>
               </div>

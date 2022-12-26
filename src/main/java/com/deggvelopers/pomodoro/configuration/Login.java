@@ -37,7 +37,7 @@ public class Login extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/logincheck")
                 .usernameParameter("email")
                 .passwordParameter("contrasena")
-                .defaultSuccessUrl("/principal")
+                .defaultSuccessUrl("/main")
                 .permitAll()
                 .and()
                 .logout()

@@ -2,11 +2,10 @@ package com.deggvelopers.pomodoro.service;
 
 import com.deggvelopers.pomodoro.entity.Project;
 import com.deggvelopers.pomodoro.entity.User;
-import com.deggvelopers.pomodoro.errores.ErrorServicio;
+import com.deggvelopers.pomodoro.exception.NotFoundException;
 import com.deggvelopers.pomodoro.repository.ProjectRepository;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import org.springframework.validation.annotation.Validated;
@@ -15,37 +14,38 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 public class ProjectService {
 
-	@Autowired
-	private ProjectRepository projectRepository;
+	private final ProjectRepository projectRepository;
 
-	public Project crearProyecto(@Validated String nombre, @Validated User user) throws ErrorServicio {
+	public ProjectService(ProjectRepository projectRepository) {
+		this.projectRepository = projectRepository;
+	}
+
+	public Project create(@Validated String name, @Validated User user) throws NotFoundException {
 		Project project = new Project();
+		validar(name);
+		project.setName(name);
+		project.setUser(user);
 
-		validar(nombre);
-
-		project.setNombre(nombre);
-		project.setUsuario(user);
-		projectRepository.save(project);
-
-		return project;
+		return projectRepository.save(project);
 	}
 
-	public void modificar(@Validated String id, @Validated String nombre) throws ErrorServicio {
+	public void update(@Validated String id, @Validated String nombre) throws NotFoundException {
 
 		validar(nombre);
-
-		Optional<Project> respuesta = projectRepository.findById(id);
-
-		if (!respuesta.isPresent()) {
-			throw new ErrorServicio("No se encontro el usuario solicitado");
-		}
-		Project project = projectRepository.findById(id).get();
-		project.setNombre(nombre);
+		Project project = getById(id);
+		project.setName(nombre);
 
 		projectRepository.save(project);
 	}
 
-	public void eliminarProyecto(@Validated String id, @Validated String nombre) throws ErrorServicio {
+	private Project getById(String id) throws NotFoundException {
+		return projectRepository.findById(id)
+				.orElseThrow(
+						() -> new NotFoundException(String.format("Project with id s% not found.", id))
+				);
+	}
+
+	public void eliminarProyecto(@Validated String id, @Validated String nombre) throws NotFoundException {
 
 		long cantidadProyecto = projectRepository.count();
 
@@ -54,17 +54,17 @@ public class ProjectService {
 			if (respuesta.isPresent()) {
 				projectRepository.deleteById(id);
 			} else {
-				throw new ErrorServicio("El proyecto no existe");
+				throw new NotFoundException("El proyecto no existe");
 			}
 		} else {
-			throw new ErrorServicio("No es posible eliminar todos los proyectos. ");
+			throw new NotFoundException("No es posible eliminar todos los proyectos. ");
 		}
 	}
 
-	public void validar(@Validated String nombre) throws ErrorServicio {
+	public void validar(@Validated String nombre) throws NotFoundException {
 
 		if (nombre == null || nombre.isEmpty()) {
-			throw new ErrorServicio("El nombre del Proyecto no puede ser nulo");
+			throw new NotFoundException("El nombre del Proyecto no puede ser nulo");
 		}
 	}
 }

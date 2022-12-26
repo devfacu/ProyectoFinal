@@ -21,26 +21,24 @@ public class Task implements Serializable {
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
-	private String nombre;
+	private String name;
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat( pattern="dd-MM-yyyy")
-	private Date fecha;
+	private Date date;
 	@JoinColumn(referencedColumnName = "id")
 	@ManyToOne
 	private Project project;
 	@Enumerated(EnumType.STRING)
 	private Priority priority;
-	private Integer tiempoInvertido;
-	private Boolean completado;
-	private Integer cantidadPom;
-	private Integer pomRealizados;
-	private Integer duracionPom;
+	private Integer investedTime;
+	private Boolean done;
+	private Integer pomQuantity;
+	private Integer pomFinalized;
+	private Integer pomDuration;
 
-	/// CONSTRUCTOR VACIO ///
 	public Task() {
 	}
 
-	////GETTERS Y SETTERS //////////
 	public String getId() {
 		return id;
 	}
@@ -49,82 +47,75 @@ public class Task implements Serializable {
 		this.id = id;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getName() {
+		return name;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public Date getFecha() {
-		return fecha;
+	public Date getDate() {
+		return date;
 	}
 
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
-	public Priority getPrioridad() {
+	public Priority getPriority() {
 		return priority;
 	}
 
-	public void setPrioridad(Priority priority) {
+	public void setPriority(Priority priority) {
 		this.priority = priority;
 	}
 
-	public Integer getTiempoInvertido() {
-		return tiempoInvertido;
+	public Integer getInvestedTime() {
+		return investedTime;
 	}
 
-	public void setTiempoInvertido(Integer tiempoInvertido) {
-		this.tiempoInvertido = tiempoInvertido;
+	public void setInvestedTime(Integer investedTime) {
+		this.investedTime = investedTime;
 	}
 
-	public Boolean getCompletado() {
-		return completado;
+	public Boolean isDone() {
+		return done;
 	}
 
-	public void setCompletado(Boolean completado) {
-		this.completado = completado;
+	public void setDone(Boolean done) {
+		this.done = done;
 	}
 
-	public Integer getCantidadPom() {
-		return cantidadPom;
+	public Integer getPomQuantity() {
+		return pomQuantity;
 	}
 
-	public void setCantidadPom(Integer cantidadPom) {
-		this.cantidadPom = cantidadPom;
+	public void setPomQuantity(Integer pomQuantity) {
+		this.pomQuantity = pomQuantity;
 	}
 
-	public Integer getDuracionPom() {
-		return duracionPom;
+	public Integer getPomDuration() {
+		return pomDuration;
 	}
 
-	public void setDuracionPom(Integer duracionPom) {
-		this.duracionPom = duracionPom;
+	public void setPomDuration(Integer pomDuration) {
+		this.pomDuration = pomDuration;
 	}
 
-	public Integer getPomRealizados() {
-		return pomRealizados;
+	public Integer getPomFinalized() {
+		return pomFinalized;
 	}
 
-	public void setPomRealizados(Integer pomRealizados) {
-		this.pomRealizados = pomRealizados;
+	public void setPomFinalized(Integer pomFinalized) {
+		this.pomFinalized = pomFinalized;
 	}
-	
 
-	/**
-	 * @return the proyecto
-	 */
-	public Project getProyecto() {
+	public Project getProject() {
 		return project;
 	}
 
-	/**
-	 * @param project the proyecto to set
-	 */
-	public void setProyecto(Project project) {
+	public void setProject(Project project) {
 		this.project = project;
 	}
 }

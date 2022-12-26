@@ -49,7 +49,7 @@
                                         </div>
                                         <div class="modal-body my-3">
                                             <form
-                                                th:action="@{/task/nueva(vista=__${vista}__, usuario_id=__${session.usuarioSession.id}__)}"
+                                                th:action="@{/task/nueva(vista=__${vista}__, usuario_id=__${session.userSession.id}__)}"
                                                 method="post">
                                                 <div>
                                                     <p th:if="${error!=null}" th:text="${error}"></p>
@@ -202,7 +202,7 @@
                                                                 </div>
                                                                 <div class="modal-body my-3">
                                                                     <form
-                                                                        th:action="@{/task/editar(tarea_id=__${task.id}__, vista=__${vista}__, usuario_id=__${session.usuarioSession.id}__, proyecto_id=__${project.id}__)}"
+                                                                        th:action="@{/task/editar(tarea_id=__${task.id}__, vista=__${vista}__, usuario_id=__${session.userSession.id}__, proyecto_id=__${project.id}__)}"
                                                                         method="post">
                                                                         <div>
                                                                             <p th:if="${error!=null}"
@@ -336,7 +336,7 @@
                                                                 </div>
                                                                 <div class="modal-body my-3">
                                                                     <form
-                                                                        th:action="@{/task/eliminar(tarea_id=__${task.id}__, vista=__${vista}__, usuario_id=__${session.usuarioSession.id}__, proyecto_id=__${project.id}__)}"
+                                                                        th:action="@{/task/eliminar(tarea_id=__${task.id}__, vista=__${vista}__, usuario_id=__${session.userSession.id}__, proyecto_id=__${project.id}__)}"
                                                                         method="post">
                                                                         <div class="col-12 text-start">
                                                                             <p class="text-secondary fs-4"> ¿Estas

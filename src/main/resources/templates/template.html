@@ -38,7 +38,7 @@
                         <a class="nav-link link-secondary fs-4" th:href="@{/prueba}" >Reloj</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link link-secondary fs-4" th:href="@{/configuration/(usuario_id=__${session.usuarioSession.id}__)}">Configuracion</a>
+                        <a class="nav-link link-secondary fs-4" th:href="@{/configuration/(usuario_id=__${session.userSession.id}__)}">Configuracion</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link link-secondary fs-4" href="/logout">Cerrar Sesion</a>
@@ -47,7 +47,7 @@
                 <div class="d-flex justify-content-end ms-5">
                     <a href="#" class="text-white text-decoration-none" data-bs-toggle="modal"
                         data-bs-target="#exampleModal">
-                        <h2 class="linkheader fs-3 text-end" th:text="${session.usuarioSession.nombre}">Francisco</h2>
+                        <h2 class="linkheader fs-3 text-end" th:text="${session.userSession.name}">Francisco</h2>
                     </a>
                     <div class="container">
                         <div class="row">
@@ -73,7 +73,7 @@
                                                                 class="col-sm-2 col-form-label pre-control">Nombre</label>
                                                             <div class="col-sm-12 borderbox">
                                                                 <input type="text" class="form-control" id="nombre"
-                                                                    name="nombre" th:value="${session.usuarioSession.nombre}">
+                                                                    name="nombre" th:value="${session.userSession.name}">
                                                             </div>
                                                         </div>
                                                         <div class="col mb-1">
@@ -81,7 +81,7 @@
                                                                 class="col-sm-2 col-form-label pre-control">Apellido</label>
                                                             <div class="col-sm-12 borderbox">
                                                                 <input type="text" class="form-control" id="apellido"
-                                                                    name="apellido" th:value="${session.usuarioSession.apellido}">
+                                                                    name="apellido" th:value="${session.userSession.lastName}">
                                                             </div>
                                                         </div>
                                                         <div class="col mb-1">
@@ -89,7 +89,7 @@
                                                                 class="col-sm-2 col-form-label pre-control">Email</label>
                                                             <div class="col-sm-12 borderbox">
                                                                 <input type="email" class="form-control" id="email"
-                                                                    th:value="${session.usuarioSession.mail}" disabled>
+                                                                    th:value="${session.userSession.email}" disabled>
                                                             </div>
                                                         </div>
                                                         <div class="col mb-1">

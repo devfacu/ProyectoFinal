@@ -4,7 +4,7 @@ package com.deggvelopers.pomodoro.controller;
 import com.deggvelopers.pomodoro.entity.Priority;
 import com.deggvelopers.pomodoro.entity.Project;
 import com.deggvelopers.pomodoro.entity.Task;
-import com.deggvelopers.pomodoro.errores.ErrorServicio;
+import com.deggvelopers.pomodoro.exception.NotFoundException;
 import com.deggvelopers.pomodoro.repository.ProjectRepository;
 import com.deggvelopers.pomodoro.repository.TaskRepository;
 import com.deggvelopers.pomodoro.repository.UserRepository;
@@ -51,7 +51,7 @@ public class TaskController {
 
 		List<Project> projects = new ArrayList<>();
 		projects.add(proyectoRepo.findById(pry_id).get());
-		List<Task> tasks = tareaRepo.buscarPorProyecto(pry_id);
+		List<Task> tasks = tareaRepo.findByProject(pry_id);
 
 		model.put("proyectos", projects);
 		model.put("listaProyectos", projects);
@@ -127,7 +127,7 @@ public class TaskController {
 		proximo = c.getTime();
 
 		List<Project> projects = proyectoRepo.findByUserId(usr_id);
-		List<Task> tasks = tareaRepo.buscarPorProximo(proximo);
+		List<Task> tasks = tareaRepo.findByDate(proximo);
 
 		model.put("vista", "Proximo");
 		model.put("proyectos", projects);
@@ -140,7 +140,7 @@ public class TaskController {
 	@GetMapping("/completado")
 	public String listarCompletado(ModelMap model) {
 
-		List<Task> tasks = tareaRepo.buscarPorCompletado(Boolean.TRUE);
+		List<Task> tasks = tareaRepo.findByDone(Boolean.TRUE);
 		model.put("tareas", tasks);
 
 		return "tareas.html";
@@ -169,7 +169,7 @@ public class TaskController {
 			attr.addAttribute("attrPry_id", proyecto_id);
 			return "redirect:/tarea/" + vista;
 
-		} catch (ErrorServicio ex) {
+		} catch (NotFoundException ex) {
 			model.put("error", ex.getMessage());
 			attr.addAttribute("usuario_id", usuario_id);
 			attr.addAttribute("attrPry_id", proyecto_id);
@@ -188,7 +188,7 @@ public class TaskController {
 			attr.addAttribute("attrPry_id", proyecto_id);
 			taskService.eliminarT(tarea_id);
 			return "redirect:/tarea/" + vista;
-		} catch (ErrorServicio ex) {
+		} catch (NotFoundException ex) {
 			model.put("error", ex.getMessage());
 			model.put("vista", vista);
 			attr.addAttribute("attrUsr_id", usuario_id);
@@ -209,7 +209,7 @@ public class TaskController {
 			@RequestParam Priority priority,
 			@RequestParam Integer cantidadPom,
 			ModelMap model,
-			RedirectAttributes attr) throws ErrorServicio 
+			RedirectAttributes attr) throws NotFoundException
 	{
 		
 		vista = vistaChk(vista);
@@ -222,7 +222,7 @@ public class TaskController {
 			attr.addAttribute("usuario_id", usuario_id);
 			attr.addAttribute("attrPry_id", proyecto_id);
 			return "redirect:/tarea/" + vista;
-		} catch (ErrorServicio e) {
+		} catch (NotFoundException e) {
 			model.put("error", e.getMessage());
 			model.put("vista", vista);
 			attr.addAttribute("usuario_id", usuario_id);

@@ -2,7 +2,7 @@ package com.deggvelopers.pomodoro.controller;
 
 import com.deggvelopers.pomodoro.entity.Project;
 import com.deggvelopers.pomodoro.entity.User;
-import com.deggvelopers.pomodoro.errores.ErrorServicio;
+import com.deggvelopers.pomodoro.exception.NotFoundException;
 import com.deggvelopers.pomodoro.repository.UserRepository;
 import com.deggvelopers.pomodoro.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,24 +40,24 @@ public class ProjectController {
     public String crear(@RequestParam String nombre, @RequestParam String usuario_id, ModelMap model) {
         try {
             User user = usuarioRepo.getById(usuario_id);
-            projectService.crearProyecto(nombre, user);
+            projectService.create(nombre, user);
             return "redirect:/principal";
 
-        } catch (ErrorServicio ex) {
+        } catch (NotFoundException ex) {
             model.put("error", ex.getMessage());
             return "redirect:/principal";
         }
     }
 
     @PostMapping("/modificar")
-    public String modificar(@RequestParam String nombre) throws ErrorServicio {
+    public String modificar(@RequestParam String nombre) throws NotFoundException {
 
-        projectService.modificar(nombre, nombre);
+        projectService.update(nombre, nombre);
         return "gestionProyecto.html";
     }
 
     @PostMapping("/eliminar")
-    public String eliminar(@RequestParam String id, @RequestParam String nombre) throws ErrorServicio {
+    public String eliminar(@RequestParam String id, @RequestParam String nombre) throws NotFoundException {
 
         projectService.eliminarProyecto(id, nombre);
         return "gestionProyecto.html";
