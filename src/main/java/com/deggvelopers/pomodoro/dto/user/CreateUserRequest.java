@@ -1,22 +1,32 @@
 package com.deggvelopers.pomodoro.dto.user;
 
-public class userDTO {
+public class UserDTO {
 
+    private String id;
     private String name;
     private String lastName;
     private String email;
     private String password;
-    private String getPassword2;
+    private String password2;
 
-    public userDTO() {
+    public UserDTO() {
     }
 
-    public userDTO(String name, String lastName, String email, String password, String getPassword2) {
+    public UserDTO(String id, String name, String lastName, String email, String password, String password2) {
+        this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.getPassword2 = getPassword2;
+        this.password2 = password2;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -51,11 +61,11 @@ public class userDTO {
         this.password = password;
     }
 
-    public String getGetPassword2() {
-        return getPassword2;
+    public String getPassword2() {
+        return password2;
     }
 
-    public void setGetPassword2(String getPassword2) {
-        this.getPassword2 = getPassword2;
+    public void setPassword2(String password2) {
+        this.password2 = password2;
     }
 }
