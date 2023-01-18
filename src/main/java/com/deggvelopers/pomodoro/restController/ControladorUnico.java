@@ -1,5 +1,5 @@
 
-package com.deggvelopers.pomodoro.controladorRest;
+package com.deggvelopers.pomodoro.restController;
 
 import com.deggvelopers.pomodoro.service.TaskService;
 import java.util.Collections;
