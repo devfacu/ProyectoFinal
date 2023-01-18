@@ -1,32 +1,22 @@
 package com.deggvelopers.pomodoro.dto.user;
 
-public class UserDTO {
+public class CreateUserRequest {
 
-    private String id;
     private String name;
     private String lastName;
     private String email;
     private String password;
     private String password2;
 
-    public UserDTO() {
+    public CreateUserRequest() {
     }
 
-    public UserDTO(String id, String name, String lastName, String email, String password, String password2) {
-        this.id = id;
+    public CreateUserRequest(String name, String lastName, String email, String password, String password2) {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.password2 = password2;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getName() {

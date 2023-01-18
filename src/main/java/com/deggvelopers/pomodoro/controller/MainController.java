@@ -1,5 +1,6 @@
 package com.deggvelopers.pomodoro.controller;
 
+import com.deggvelopers.pomodoro.dto.user.CreateUserRequest;
 import com.deggvelopers.pomodoro.entity.Project;
 import com.deggvelopers.pomodoro.entity.User;
 import com.deggvelopers.pomodoro.exception.NotFoundException;
@@ -64,22 +65,18 @@ public class MainController {
 	}
 
 	@PostMapping("/register")
-	public String register(ModelMap model, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String email, @RequestParam String contrasena1, @RequestParam String contrasena2) throws NotFoundException {
+	public String register(ModelMap model, CreateUserRequest createUserRequest) throws NotFoundException {
 
 		try {
-			userService.register(nombre, apellido, email, contrasena1, contrasena2);
+			userService.register(createUserRequest);
 		} catch (NotFoundException e) {
 			model.put("error", e.getMessage());
-			model.put("nombre", nombre);
-			model.put("apellido", apellido);
-			model.put("email", email);
-			model.put("clave1", contrasena1);
-			model.put("clave2", contrasena2);
+			model.put("user", createUserRequest);
 			return "register.html";
 		}
 
 		model.put("titulo", "Bienvenido a Pomodoro App");
-		model.put("descripcion", "Tu usuario fue registrado de manera satisfactoria");
+		model.put("descripcion", "Tu usuario fue registrado satisfactoriamente.");
 		return "thanks.html";
 	}
 }
