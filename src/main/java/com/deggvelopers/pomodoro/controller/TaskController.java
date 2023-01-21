@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("/tarea")
+@RequestMapping("/task")
 public class TaskController {
 
 	@Autowired
@@ -60,7 +60,7 @@ public class TaskController {
 		return "tareas.html";
 	}
 
-	@GetMapping("/hoy")
+	@GetMapping("/today")
 	public String listarHoy(@ModelAttribute String attrUsr_id, String usuario_id, ModelMap model) {
 
 		String usr_id;
@@ -233,10 +233,10 @@ public class TaskController {
 	}
 	
 	private Date stringToDate(String string){
-		int anio = Integer.parseInt(string.substring(0, 4));
-		int mes = Integer.parseInt(string.substring(5, 7));
-		int dia = Integer.parseInt(string.substring(8, 10));
-		Date date = new Date(anio - 1900, mes - 1, dia);
+		int year = Integer.parseInt(string.substring(0, 4));
+		int month = Integer.parseInt(string.substring(5, 7));
+		int day = Integer.parseInt(string.substring(8, 10));
+		Date date = new Date(year - 1900, month - 1, day);
 		return date;
 	}
 
