@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/proyecto")
+@RequestMapping("/project")
 public class ProjectController {
 
     @Autowired
@@ -37,15 +37,15 @@ public class ProjectController {
     }
 
     @PostMapping("/nuevo")
-    public String crear(@RequestParam String nombre, @RequestParam String usuario_id, ModelMap model) {
+    public String crear(@RequestParam String nombre, @RequestParam String user_id, ModelMap model) {
         try {
-            User user = usuarioRepo.getById(usuario_id);
+            User user = usuarioRepo.getById(user_id);
             projectService.create(nombre, user);
-            return "redirect:/principal";
+            return "redirect:/mainView";
 
         } catch (NotFoundException ex) {
             model.put("error", ex.getMessage());
-            return "redirect:/principal";
+            return "redirect:/mainView";
         }
     }
 
