@@ -21,18 +21,18 @@
 
     <nav class="navbar navbar-expand-lg headerRegistro p-2" th:fragment="nav">
         <div class="container-fluid">
-            <a th:href="@{/principal}" class="d-flex align-items-center mb-2">
+            <a th:href="@{/main}" class="d-flex align-items-center mb-2">
                 <img src="../static/img/logo2.png" th:src="@{/img/logo2.png}" class=" imgreg img-fluid"
                     alt="Logo Pomodoro">
             </a>
             <ul class="nav col-lg-auto me-lg-auto mb-2 justify-content-center">
-                <li><a th:href="@{/principal}" class="linkheader nav-link px-2 text-white fs-3">Pomodoro app</a>
+                <li><a th:href="@{/main}" class="linkheader nav-link px-2 text-white fs-3">Pomodoro app</a>
                 </li>
             </ul>
             <div class="collapse navbar-collapse position-absolute top-25 end-0" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active link-secondary fs-4" aria-current="page" th:href="@{/principal}">Inicio</a>
+                        <a class="nav-link active link-secondary fs-4" aria-current="page" th:href="@{/main}">Inicio</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link link-secondary fs-4" th:href="@{/prueba}" >Reloj</a>

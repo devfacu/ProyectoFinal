@@ -86,7 +86,7 @@
                                                     <div class="input-group mb-3">
                                                         <select class="form-select" id="inputGroupSelect01"
                                                             name="proyecto_id">
-                                                            <option value="0" selected>Elije un project</option>
+                                                            <option value="0" selected>Elije un proyecto</option>
                                                             <div th:each="project : ${projects}">
                                                                 <option th:text="${project.nombre}"
                                                                     th:value="${project.id}">One</option>
