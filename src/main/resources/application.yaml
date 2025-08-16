@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: PomodoroServer
+
+  jpa:
+    hibernate:
+      ddl-auto: 'create'
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDB10Dialect
+    show-sql: true
+  datasource:
+    url: ${MARIADB_URL}
+    username: ${MARIADB_USER:admin}
+    password: ${MARIADB_PASSWORD:admin}
+    driver-class-name: org.mariadb.jdbc.Driver
