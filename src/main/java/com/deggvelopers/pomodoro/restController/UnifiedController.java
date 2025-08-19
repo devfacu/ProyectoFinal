@@ -5,7 +5,6 @@ import com.deggvelopers.pomodoro.service.TaskService;
 import java.util.Collections;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,24 +16,22 @@ import org.springframework.web.bind.annotation.RestController;
  * @author facundov
  */
 @RestController
-@CrossOrigin(origins = "*")
-@RequestMapping("/api")
-public class ControladorUnico {
+//@CrossOrigin(origins = "*")
+@RequestMapping("/internal")
+public class UnifiedController {
 	
 	@Autowired
     TaskService taskService;
 
-	//Recuperar informacion de los minutos del pomodoro de la tarea
-	@GetMapping("/tarea/{id}/minutos")
-	public Map<String, Integer> duracionPom(@PathVariable String id) {
-		Integer minutos = taskService.duracionPomTarea(id);
+	@GetMapping("/task/{id}/minutes")
+	public Map<String, Integer> pomDuration(@PathVariable String id) {
+		Integer minutes = taskService.duracionPomTarea(id);
 		
-		return Collections.singletonMap("minutos", minutos);
+		return Collections.singletonMap("minutes", minutes);
 	}
 
-	//Intercambiar el estado completado de las tareas
-	@PostMapping("/tarea/{id}")
-	public Map<String, String> cambioEstadoCompletado(@PathVariable String id) {
+	@PostMapping("/task/{id}")
+	public Map<String, String> toggleTaskState(@PathVariable String id) {
 		taskService.switchCompletado(id);
 		return Collections.singletonMap("ok", "ok");
 	}

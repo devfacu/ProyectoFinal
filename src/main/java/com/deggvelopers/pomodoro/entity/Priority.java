@@ -10,5 +10,5 @@ package com.deggvelopers.pomodoro.entity;
  * @author Administrador
  */
 public enum Priority {
-    BAJA, MEDIA, ALTA
+    LOW, MEDIUM, HIGH
 }

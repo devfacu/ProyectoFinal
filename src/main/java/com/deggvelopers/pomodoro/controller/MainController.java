@@ -5,6 +5,7 @@ import com.deggvelopers.pomodoro.entity.Project;
 import com.deggvelopers.pomodoro.entity.User;
 import com.deggvelopers.pomodoro.exception.NotFoundException;
 import com.deggvelopers.pomodoro.repository.ProjectRepository;
+import com.deggvelopers.pomodoro.service.ProjectService;
 import com.deggvelopers.pomodoro.service.UserService;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -22,11 +23,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/")
 public class MainController {
 
-	@Autowired
 	private UserService userService;
 
-	@Autowired
-	private ProjectRepository projectRepository;
+	private ProjectService projectService;
+
+	public MainController(UserService userService, ProjectService projectService) {
+		this.userService = userService;
+		this.projectService = projectService;
+	}
 
 	@GetMapping("/")
 	public String index(Model model) {
@@ -43,7 +47,7 @@ public class MainController {
 	public String main(ModelMap model, HttpSession session) {
 
 		User user = (User) session.getAttribute("userSession");
-		List<Project> projects = projectRepository.findByUserId(user.getId());
+		List<Project> projects = projectService.findByUserId(user.getId());
 
 		model.put("projects", projects);
 		return "mainView.html";
@@ -60,7 +64,9 @@ public class MainController {
 	}
 
 	@GetMapping("/registration")
-	public String registration() {
+	public String registration(ModelMap model) {
+		CreateUserRequest createUserRequest = new CreateUserRequest();
+        model.put("user", createUserRequest);
 		return "register.html";
 	}
 

@@ -4,6 +4,8 @@ import com.deggvelopers.pomodoro.entity.Project;
 import com.deggvelopers.pomodoro.entity.User;
 import com.deggvelopers.pomodoro.exception.NotFoundException;
 import com.deggvelopers.pomodoro.repository.ProjectRepository;
+
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -22,18 +24,18 @@ public class ProjectService {
 
 	public Project create(@Validated String name, @Validated User user) throws NotFoundException {
 		Project project = new Project();
-		validar(name);
+		validate(name);
 		project.setName(name);
 		project.setUser(user);
 
 		return projectRepository.save(project);
 	}
 
-	public void update(@Validated String id, @Validated String nombre) throws NotFoundException {
+	public void update(@Validated String id, @Validated String name) throws NotFoundException {
 
-		validar(nombre);
+		validate(name);
 		Project project = getById(id);
-		project.setName(nombre);
+		project.setName(name);
 
 		projectRepository.save(project);
 	}
@@ -45,13 +47,13 @@ public class ProjectService {
 				);
 	}
 
-	public void eliminarProyecto(@Validated String id, @Validated String nombre) throws NotFoundException {
+	public void eliminateProtect(@Validated String id, @Validated String name) throws NotFoundException {
 
-		long cantidadProyecto = projectRepository.count();
+		long projectQuantity = projectRepository.count();
 
-		if (cantidadProyecto > 1) {
-			Optional<Project> respuesta = projectRepository.findById(id);
-			if (respuesta.isPresent()) {
+		if (projectQuantity > 1) {
+			Optional<Project> response = projectRepository.findById(id);
+			if (response.isPresent()) {
 				projectRepository.deleteById(id);
 			} else {
 				throw new NotFoundException("El proyecto no existe");
@@ -61,10 +63,15 @@ public class ProjectService {
 		}
 	}
 
-	public void validar(@Validated String nombre) throws NotFoundException {
+	public void validate(@Validated String name) throws NotFoundException {
 
-		if (nombre == null || nombre.isEmpty()) {
+		if (name == null || name.isEmpty()) {
 			throw new NotFoundException("El nombre del Proyecto no puede ser nulo");
 		}
+	}
+
+	public List<Project> findByUserId(String userId) {
+
+        return projectRepository.findByUserId(userId);
 	}
 }

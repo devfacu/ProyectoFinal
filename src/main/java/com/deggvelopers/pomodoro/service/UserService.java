@@ -47,9 +47,9 @@ public class UserService implements UserDetailsService {
         User user = new User();
         Configuration configuration = configService.crear();
 
-        validacion(createUserRequest);
+        validation(createUserRequest);
 
-        user.setName(user.getName());
+        user.setName(createUserRequest.getName());
         user.setLastName(createUserRequest.getLastName());
         user.setEmail(createUserRequest.getEmail());
         user.setPassword(createUserRequest.getPassword());
@@ -89,7 +89,7 @@ public class UserService implements UserDetailsService {
                 .orElseThrow(() -> new NotFoundException("No se encontro el usuario solicitado."));
     }
 
-    public void validacion(CreateUserRequest createUserRequest) throws NotFoundException {
+    public void validation(CreateUserRequest createUserRequest) throws NotFoundException {
 
         if (createUserRequest.getName() == null || createUserRequest.getName().isEmpty() && !createUserRequest.getName().matches("^[a-zA-Z]*$")) {
             throw new NotFoundException("El nombre no puede estar vacio.");
@@ -112,25 +112,25 @@ public class UserService implements UserDetailsService {
         }
     }
 
-    public static boolean validacion(String datos) {
+    public static boolean validation(String datos) {
         return datos.matches("a-zA-Z*");
     }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User usuario = userRepository.findByEmail(email);
-        if (usuario != null) {
+        User user = userRepository.findByEmail(email);
+        if (user != null) {
 
-            List<GrantedAuthority> permisos = new ArrayList<>();
+            List<GrantedAuthority> permission = new ArrayList<>();
 
             GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_USUARIO_REGISTRADO");
-            permisos.add(p1);
+            permission.add(p1);
 
             ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
             HttpSession session = attr.getRequest().getSession(true);
-            session.setAttribute("userSession", usuario);
-            org.springframework.security.core.userdetails.User user = new org.springframework.security.core.userdetails.User(usuario.getEmail(), usuario.getPassword(), permisos);
-            return user;
+            session.setAttribute("userSession", user);
+            return new org.springframework.security.core.userdetails.User(user.getEmail(),
+                    user.getPassword(), permission);
         } else {
             return null;
         }

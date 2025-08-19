@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ProjectController {
 
     @Autowired
-    private UserRepository usuarioRepo;
+    private UserRepository userRepository;
 
     @Autowired
     private ProjectService projectService;
@@ -26,21 +26,21 @@ public class ProjectController {
     @GetMapping("/")
     public String gestion(ModelMap model, @RequestParam String id) {
         try {
-            Project proyectos = new Project();
-            model.put("proyectos", proyectos);
-            return "gestionProyecto.html";
+            Project project = new Project();
+            model.put("proyectos", project);
+            return "projectManagement.html";
         } catch (Exception e) {
             model.put("error", e.getMessage());
-            return "gestionProyecto.html";
+            return "projectManagement.html";
         }
 
     }
 
     @PostMapping("/nuevo")
-    public String crear(@RequestParam String nombre, @RequestParam String user_id, ModelMap model) {
+    public String create(@RequestParam String name, @RequestParam String user_id, ModelMap model) {
         try {
-            User user = usuarioRepo.getById(user_id);
-            projectService.create(nombre, user);
+            User user = userRepository.getById(user_id);
+            projectService.create(name, user);
             return "redirect:/mainView";
 
         } catch (NotFoundException ex) {
@@ -50,16 +50,16 @@ public class ProjectController {
     }
 
     @PostMapping("/modificar")
-    public String modificar(@RequestParam String nombre) throws NotFoundException {
+    public String update(@RequestParam String name) throws NotFoundException {
 
-        projectService.update(nombre, nombre);
-        return "gestionProyecto.html";
+        projectService.update(name, name);
+        return "projectManagement.html";
     }
 
     @PostMapping("/eliminar")
-    public String eliminar(@RequestParam String id, @RequestParam String nombre) throws NotFoundException {
+    public String delete(@RequestParam String id, @RequestParam String name) throws NotFoundException {
 
-        projectService.eliminarProyecto(id, nombre);
-        return "gestionProyecto.html";
+        projectService.eliminateProtect(id, name);
+        return "projectManagement.html";
     }
 }

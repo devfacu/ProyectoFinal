@@ -85,7 +85,7 @@
         <tr th:each="project : ${projects}">
           <br>
           <div class="col-9 container">
-            <a class="fs-2 btn butG btn-success" th:href="@{/task/(proyecto_id=__${project.id}__)}" method="get">
+            <a class="fs-2 btn butG btn-success" th:href="@{/task/(project_id=__${project.id}__)}" method="get">
               <div class="row">
                 <div class="col-1">
                   <img src="../static/img/task.png" th:src="@{/img/task.png}" alt="task" class="imagen-box">
@@ -123,7 +123,7 @@
       <div class="modal-dialog">
         <div class="modal-content borderedit">
           <div class="modal-header">
-            <h5 class="modal-title fs-2 text marca text-decoration-underline" id="nuevoProyecto">Nuevo
+            <h5 class="modal-title fs-2 text marca text-decoration-underline" id="nuevoProyect">Nuevo
               Proyecto</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
@@ -134,9 +134,9 @@
               </div>
               <div class="col mb-1">
                 <label for="inputname" class="col-sm-6 col-form-label pre-control">Nombre
-                  del project:</label>
+                  del proyecto:</label>
                 <div class="col-sm-12 borderbox">
-                  <input type="text" class="form-control" id="Nombre" name="nombre">
+                  <input type="text" class="form-control" id="inputname" name="name">
                 </div>
 
                 <div class="col mt-4">

@@ -4,16 +4,17 @@ $(document).ready(function () {
         let tareaId = $(this).attr("id");
 
         $.ajax({
-            url: "/api/tarea/" + tareaId,
+            url: "/internal/task/" + tareaId,
             contentType: "application/json",
             type: "POST",
             success: function () {
-                let text = $("#" + tareaId).html();
+                const $tarea = $("#" + tareaId);
+                let tareaHtml = $("#" + tareaId).html();
                 
-                if(text === `<span class="material-icons">radio_button_unchecked</span>`) {
-                    $("#" + tareaId).html(`<span class="material-icons">check_circle_outline</span>`);
+                if(tareaHtml === `<span class="material-icons">radio_button_unchecked</span>`) {
+                    $tarea.html(`<span class="material-icons">check_circle_outline</span>`);
                 } else {
-                    $("#" + tareaId).html(`<span class="material-icons">radio_button_unchecked</span>`);
+                    $tarea.html(`<span class="material-icons">radio_button_unchecked</span>`);
                 }
             }
         });
@@ -61,17 +62,7 @@ $(document).ready(function () {
         $("#seconds").text(seconds.toString().padStart(2, "0"));
     }
 
-    function updateInterfaceControls() {
-        if (interval === null) {
-            $("#btn-start").html(`<span class="material-icons">play_arrow</span>`);
-            $("#btn-start").addClass("timer_btn-start");
-            $("#btn-start").removeClass("timer_btn-pause");
-        } else {
-            $("#btn-start").html(`<span class="material-icons">pause</span>`);
-            $("#btn-start").addClass("timer_btn-pause");
-            $("#btn-start").removeClass("timer_btn-start");
-        }
-    }
+    const $btnStart = $("#btn-start");
 
     $("#btn-start").click(function () {
         if (interval === null) {
@@ -82,13 +73,27 @@ $(document).ready(function () {
         
     });
 
+    function updateInterfaceControls() {    
+        if (interval === null) {
+            $btnStart.html(`<span class="material-icons">play_arrow</span>`)
+                .addClass("timer_btn-start")
+                .removeClass("timer_btn-pause");
+        } else {
+            $btnStart.html(`<span class="material-icons">pause</span>`)
+                .addClass("timer_btn-pause")
+                .removeClass("timer_btn-start");
+        }
+    }
+
+
     let checked = false;
-    $("#btn-chk").click(function () {
+    const $btnChk = $("#btn-chk");
+    $btnChk.click(function () {
         if (checked) {
-            $("#btn-chk").html(`<span class="material-icons md-48">radio_button_unchecked</span>`);
+            $btnChk.html(`<span class="material-icons md-48">radio_button_unchecked</span>`);
             checked = false;
         } else {
-            $("#btn-chk").html(`<span class="material-icons md-48">check_circle_outline</span>`);
+            $btnChk.html(`<span class="material-icons md-48">check_circle_outline</span>`);
             checked = true;
         }
     });
