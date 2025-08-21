@@ -25,14 +25,14 @@ public class UnifiedController {
 
 	@GetMapping("/task/{id}/minutes")
 	public Map<String, Integer> pomDuration(@PathVariable String id) {
-		Integer minutes = taskService.duracionPomTarea(id);
+		Integer minutes = taskService.pomDurationTask(id);
 		
 		return Collections.singletonMap("minutes", minutes);
 	}
 
 	@PostMapping("/task/{id}")
 	public Map<String, String> toggleTaskState(@PathVariable String id) {
-		taskService.switchCompletado(id);
+		taskService.toggleDoneTask(id);
 		return Collections.singletonMap("ok", "ok");
 	}
 	

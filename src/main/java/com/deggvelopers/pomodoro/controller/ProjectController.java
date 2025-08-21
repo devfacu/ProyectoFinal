@@ -23,11 +23,11 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
 
-    @GetMapping("/")
+    @GetMapping
     public String gestion(ModelMap model, @RequestParam String id) {
         try {
             Project project = new Project();
-            model.put("proyectos", project);
+            model.put("projects", project);
             return "projectManagement.html";
         } catch (Exception e) {
             model.put("error", e.getMessage());
@@ -36,11 +36,11 @@ public class ProjectController {
 
     }
 
-    @PostMapping("/nuevo")
+    @PostMapping("/new")
     public String create(@RequestParam String name, @RequestParam String user_id, ModelMap model) {
         try {
             User user = userRepository.getById(user_id);
-            projectService.create(name, user);
+           projectService.create(name, user);
             return "redirect:/mainView";
 
         } catch (NotFoundException ex) {
@@ -49,17 +49,17 @@ public class ProjectController {
         }
     }
 
-    @PostMapping("/modificar")
+    @PostMapping("/update")
     public String update(@RequestParam String name) throws NotFoundException {
 
         projectService.update(name, name);
         return "projectManagement.html";
     }
 
-    @PostMapping("/eliminar")
+    @PostMapping("/delete")
     public String delete(@RequestParam String id, @RequestParam String name) throws NotFoundException {
 
-        projectService.eliminateProtect(id, name);
+        projectService.delete(id, name);
         return "projectManagement.html";
     }
 }

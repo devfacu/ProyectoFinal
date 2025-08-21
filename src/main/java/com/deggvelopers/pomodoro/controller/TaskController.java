@@ -39,7 +39,7 @@ public class TaskController {
 	@Autowired
 	private TaskService taskService;
 
-	@GetMapping("/")
+	@GetMapping
 	public String allProjectTasks(String attrPry_id, String project_id, ModelMap model) {
 
 		String pry_id;
@@ -71,17 +71,17 @@ public class TaskController {
 		}
 		Date hoy = new Date();
 		List<Project> projects = projectRepository.findByUserId(usr_id);
-		List<Task> tasks = taskService.buscarTareasPorProyectos(projects, hoy);
+		List<Task> tasks = taskService.findTasksOfEachProject(projects, hoy);
 
 		model.put("vista", "Hoy");
-		model.put("proyectos", projects);
-		model.put("listaProyectos", projects);
-		model.put("tareas", tasks);
+		model.put("projects", projects);
+		model.put("projectList", projects);
+		model.put("tasks", tasks);
 
 		return "tasks.html";
 	}
 
-	@GetMapping("/manana")
+	@GetMapping("/tomorrow")
 	public String listTomorrow(@ModelAttribute String attrUsr_id, String user_id, ModelMap model) {
 
 		String usr_id;
@@ -99,17 +99,17 @@ public class TaskController {
 		tomorrow = c.getTime();
 
 		List<Project> projects = projectRepository.findByUserId(usr_id);
-		List<Task> tasks = taskService.buscarTareasPorProyectos(projects, tomorrow);
+		List<Task> tasks = taskService.findTasksOfEachProject(projects, tomorrow);
 
 		model.put("vista", "Mañana");
-		model.put("proyectos", projects);
-		model.put("listaProyectos", projects);
+		model.put("projects", projects);
+		model.put("projectList", projects);
 		model.put("tareas", tasks);
 
 		return "tasks.html";
 	}
 
-	@GetMapping("/proximo")
+	@GetMapping("/next")
 	public String listNext(@ModelAttribute String attrUsr_id, String user_id, ModelMap model) {
 
 		String usr_id;
@@ -130,23 +130,23 @@ public class TaskController {
 		List<Task> tasks = taskRepository.findByDate(next);
 
 		model.put("vista", "Proximo");
-		model.put("proyectos", projects);
-		model.put("listaProyectos", projects);
+		model.put("projects", projects);
+		model.put("projectList", projects);
 		model.put("tareas", tasks);
 
 		return "tasks.html";
 	}
 
-	@GetMapping("/completado")
-	public String listCompleted(ModelMap model) {
+	@GetMapping("/completed")
+	public String listCompleted(ModelMap model, String user_id) {
 
-		List<Task> tasks = taskRepository.findByDone(Boolean.TRUE);
-		model.put("tareas", tasks);
+		List<Task> tasks = taskRepository.findByIdAndDone(user_id, Boolean.TRUE);
+		model.put("taskList", tasks);
 
 		return "tasks.html";
 	}
 
-	@PostMapping("/nueva")
+	@PostMapping("/new")
 	public String createTask(@RequestParam String view,
 							 @RequestParam String name,
 							 @RequestParam String date,
@@ -163,21 +163,21 @@ public class TaskController {
 			String config_id = userRepository.getById(user_id).getConfiguration().getId();
 			
 			Date parsedDate = stringToDate(date);
-			
-			taskService.crearTarea(name, parsedDate, project_id, priority, pomQuantity, config_id);
+
+			taskService.create(name, parsedDate, project_id, priority, pomQuantity, config_id);
 			attr.addAttribute("user_id", user_id);
 			attr.addAttribute("attrPry_id", project_id);
-			return "redirect:/task/" + view;
+			return "redirect:/task" + view;
 
 		} catch (NotFoundException ex) {
 			model.put("error", ex.getMessage());
 			attr.addAttribute("user_id", user_id);
 			attr.addAttribute("attrPry_id", project_id);
-			return "redirect:/task/" + view;
+			return "redirect:/task" + view;
 		}
 	}
 
-	@PostMapping("/eliminar")
+	@PostMapping("/delete")
 	public String delete(ModelMap model,
 						   RedirectAttributes attr,
 						   @RequestParam String task_id,
@@ -189,21 +189,21 @@ public class TaskController {
 
 		try {
 			model.put("vista", view);
-			attr.addAttribute("usuario_id", user_id);
+			attr.addAttribute("user_id", user_id);
 			attr.addAttribute("attrPry_id", project_id);
-			taskService.eliminarT(task_id);
-			return "redirect:/tarea/" + view;
+			taskService.delete(task_id);
+			return "redirect:/task/" + view;
 		} catch (NotFoundException ex) {
 			model.put("error", ex.getMessage());
 			model.put("vista", view);
 			attr.addAttribute("attrUsr_id", user_id);
 			attr.addAttribute("attrPry_id", project_id);
-			return "redirect:/tarea/" + view;
+			return "redirect:/task/" + view;
 		}
 
 	}
 
-	@PostMapping("/editar")
+	@PostMapping("/update")
 	public String update(
 			@RequestParam String view,
 			@RequestParam String user_id,
@@ -222,7 +222,7 @@ public class TaskController {
 		try {
 			Date parsedDate = stringToDate(date);
 			
-			taskService.editarT(task_id, name, parsedDate, project_id, priority, pomQuantity);
+			taskService.update(task_id, name, parsedDate, project_id, priority, pomQuantity);
 			model.put("vista", view);
 			attr.addAttribute("user_id", user_id);
 			attr.addAttribute("attrPry_id", project_id);

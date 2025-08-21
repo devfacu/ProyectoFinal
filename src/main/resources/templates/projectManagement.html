@@ -30,11 +30,11 @@
                     <div class="col-10 container borderbox-box">
                         <div class="row">
                             <div class="col-8">
-                                <label th:text="${project.nombre}" class="titulo">Tarea</label>
+                                <label th:text="${project.name}" class="titulo">Tarea</label>
                             </div>
 
                             <div class="col justify-content-center mt-2">
-                                <abbr title="Editar Proyecto"><a th:href="@{/project/editar}" type="button"
+                                <abbr title="Editar Proyecto"><a th:href="@{/project/update}" type="button"
                                         data-bs-toggle="modal" data-bs-target="#editarProyecto"
                                         class="but_tarea btn-success rounded-pill btn-lg">
                                         <span class="material-icons">
@@ -42,7 +42,7 @@
                                         </span></a></abbr>
                             </div>
                             <div class="col justify-content-center mt-2">
-                                <abbr title="Eliminar Proyecto"><a th:href="@{/project/eliminar}" type="button"
+                                <abbr title="Eliminar Proyecto"><a th:href="@{/project/delete}" type="button"
                                         data-bs-toggle="modal" data-bs-target="#eliminarProyecto"
                                         class="but_tarea btn-danger rounded-pill btn-lg">
                                         <span class="material-icons">
@@ -51,10 +51,10 @@
                             </div>
                         </div>
                     </div>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    </tr>
-    </tbody>
-    </table>
     <br>
     <br>
 
@@ -63,12 +63,12 @@
         <div class="modal-dialog">
             <div class="modal-content borderedit">
                 <div class="modal-header">
-                    <h5 class="modal-title fs-2 text marca text-decoration-underline" id="editarProyecto">Editar
+                    <h5 class="modal-title fs-2 text marca text-decoration-underline" id="editarProyectoH5">Editar
                         Proyecto</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body my-3">
-                    <form th:action="@{/project/modificar}" method="post">
+                    <form th:action="@{/project/update}" method="post">
                         <div>
                             <p th:if="${error!=null}" th:text="${error}"></p>
                         </div>
@@ -78,7 +78,7 @@
                             <div class="col-sm-12 borderbox">
                                 <input type="hidden" th:value="${project.id}">
                                 <input th:value="${project.nombre}" type="text" class="form-control" id="Nombre"
-                                    name="nombre">
+                                    name="name">
                             </div>
 
                             <div class="col mt-4">
@@ -97,12 +97,12 @@
         <div class="modal-dialog">
             <div class="modal-content borderedit">
                 <div class="modal-header">
-                    <h5 class="modal-title fs-2 text marca text-decoration-underline" id="eliminarProyecto">Eliminar
+                    <h5 class="modal-title fs-2 text marca text-decoration-underline" id="eliminarProyectoH5">Eliminar
                         Proyecto</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body my-3">
-                    <form th:action="@{/project/eliminar(proyecto_id=_${project.id}_)}" method="post">
+                    <form th:action="@{/project/delete(project_id=_${project.id}_)}" method="post">
                         <div>
                             <p th:if="${error!=null}" th:text="${error}"></p>
                         </div>

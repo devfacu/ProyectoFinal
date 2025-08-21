@@ -16,7 +16,7 @@ public class ConfigurationService {
 	@Autowired
 	private ConfigurationRepository configRepo;
 	
-	public Configuration crear() {
+	public Configuration create() {
 		//Se creara un objeto Configuracion con los valores predeterminados
 		Configuration config = new Configuration();
 		

@@ -45,7 +45,7 @@ public class UserService implements UserDetailsService {
     @Transactional
     public User register(CreateUserRequest createUserRequest) throws NotFoundException {
         User user = new User();
-        Configuration configuration = configService.crear();
+        Configuration configuration = configService.create();
 
         validation(createUserRequest);
 

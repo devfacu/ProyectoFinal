@@ -21,104 +21,99 @@ import org.springframework.validation.annotation.Validated;
 public class TaskService {
 
     @Autowired
-    private TaskRepository tareaRepo;
+    private TaskRepository taskRepository;
 
     @Autowired
-    private ProjectRepository proyectoRepo;
+    private ProjectRepository projectRepository;
 
     @Autowired
-    private ConfigurationRepository configRepo;
+    private ConfigurationRepository configurationRepository;
 
-    public void crearTarea(String nombre, Date fecha, String id_proyecto, Priority priority, Integer cantidadPom, String config_id) throws NotFoundException {
+    public void create(String name, Date date, String project_id, Priority priority, Integer pomQuantity, String config_id) throws NotFoundException {
 
-        validar(nombre);
+        validate(name);
 
-        Optional<Configuration> ansConfig = configRepo.findById(config_id);
-        if (!ansConfig.isPresent()) {
+        Optional<Configuration> ansConfig = configurationRepository.findById(config_id);
+        if (ansConfig.isEmpty()) {
             throw new NotFoundException("No se encontro la configuracion al crear la tarea");
         }
         Configuration config = ansConfig.get();
 
-        Optional<Project> ansProyecto = proyectoRepo.findById(id_proyecto);
-        if (!ansProyecto.isPresent()) {
+        Optional<Project> ansProtect = projectRepository.findById(project_id);
+        if (ansProtect.isEmpty()) {
             throw new NotFoundException("No se encontro el proyecto al crear la tarea");
         }
-        Project project = ansProyecto.get();
+        Project project = ansProtect.get();
 
         Task task = new Task();
 
-        task.setName(nombre);
-        task.setDate(fecha);
+        task.setName(name);
+        task.setDate(date);
         task.setProject(project);
         task.setPriority(priority);
         task.setInvestedTime(0);
         task.setDone(Boolean.FALSE);
-        task.setPomQuantity(cantidadPom);
-	task.setPomFinalized(0);
+        task.setPomQuantity(pomQuantity);
+	    task.setPomFinalized(0);
         task.setPomDuration(config.getDuracionPom());
-        tareaRepo.save(task);
+        taskRepository.save(task);
 
 //		return tarea;
     }
 
-    public void editarT(@Validated String id, @Validated String nombre, @Validated Date fecha, @Validated String id_proyecto, @Validated Priority priority, @Validated Integer cantidadPom) throws NotFoundException {
+    public void update(@Validated String id, @Validated String name, @Validated Date date, @Validated String projectId, @Validated Priority priority, @Validated Integer pomQuantity) throws NotFoundException {
 
-        validar(nombre);
+        validate(name);
 
-        Optional<Task> respuesta = tareaRepo.findById(id);
+        Optional<Task> response = taskRepository.findById(id);
 
-        Project project = proyectoRepo.findById(id_proyecto).get();
+        Project project = projectRepository.findById(projectId).get();
 
-        if (respuesta.isPresent()) {
-            Task task = tareaRepo.findById(id).get();
-            task.setName(nombre);
-            task.setDate(fecha);
+        if (response.isPresent()) {
+            Task task = taskRepository.findById(id).get();
+            task.setName(name);
+            task.setDate(date);
             task.setProject(project);
             task.setPriority(priority);
-            task.setPomQuantity(cantidadPom);
+            task.setPomQuantity(pomQuantity);
 
-            tareaRepo.save(task);
+            taskRepository.save(task);
         } else {
             throw new NotFoundException("No se encontro la tarea solicitada");
         }
     }
 
-    public void eliminarT(@Validated String id) throws NotFoundException {
-        tareaRepo.deleteById(id);
+    public void delete(@Validated String taskId) throws NotFoundException {
+        taskRepository.deleteById(taskId);
     }
 
-    public void validar(@Validated String nombre) throws NotFoundException {
+    public void validate(@Validated String name) throws NotFoundException {
 
-        if (nombre == null || nombre.isEmpty()) {
+        if (name == null || name.isEmpty()) {
             throw new NotFoundException("El nombre del Proyecto no puede ser nulo");
         }
     }
 
-    public List<Task> buscarTareasPorProyectos(List<Project> projects, Date fecha) {
-        List<Task> todasLasTasks = new ArrayList<>();
+    public List<Task> findTasksOfEachProject(List<Project> projects, Date date) {
+        List<Task> allTasksList = new ArrayList<>();
         projects.forEach((proyecto) -> {
-            List<Task> tasks = tareaRepo.findByIdAndDate(proyecto.getId(), fecha);
-            todasLasTasks.addAll(tasks);
+            List<Task> tasks = taskRepository.findByIdAndDate(proyecto.getId(), date);
+            allTasksList.addAll(tasks);
         });
-        return todasLasTasks;
+        return allTasksList;
     }
 	
-	public Integer duracionPomTarea(String id){
-		Task task = tareaRepo.getById(id);
-		Integer minutos = task.getPomDuration();
-		return minutos;
+	public Integer pomDurationTask(String taskId){
+		Task task = taskRepository.getById(taskId);
+        return task.getPomDuration();
 	}
 
-	public void switchCompletado(String id) {
-		Task task = tareaRepo.getById(id);
-		Boolean completado = task.isDone();
-		if (completado) {
-			task.setDone(false);
-		} else {
-			task.setDone(true);
-		}
+	public void toggleDoneTask(String id) {
+		Task task = taskRepository.getById(id);
+		boolean isDone = task.isDone();
+        task.setDone(!isDone);
 		
-		tareaRepo.save(task);
+		taskRepository.save(task);
 	}
 	
 }

@@ -36,7 +36,7 @@
     <br>
 
     <div class="col-9 container">
-      <a class="fs-2 btn butG btn-success" th:href="@{/task/manana(user_id=__${session.userSession.id}__)}" method="get">
+      <a class="fs-2 btn butG btn-success" th:href="@{/task/tomorrow(user_id=__${session.userSession.id}__)}" method="get">
         <div class="row">
           <div class="col-1">
             <img src="../static/img/flecha.png" th:src="@{/img/flecha.png}" alt="flecha" class="imagen-box">
@@ -51,7 +51,7 @@
     <br>
 
     <div class="col-9 container">
-      <a class="fs-2 btn butG btn-success" th:href="@{/task/proximo(user_id=__${session.userSession.id}__)}" method="get">
+      <a class="fs-2 btn butG btn-success" th:href="@{/task/next(user_id=__${session.userSession.id}__)}" method="get">
         <div class="row">
           <div class="col-1">
             <img src="../static/img/calendario.png" th:src="@{/img/calendario.png}" alt="calendario" class="imagen-box">
@@ -66,7 +66,7 @@
     <br>
 
     <div class="col-9 container">
-      <a class="fs-2 btn butG btn-success" th:href="@{/task/completado(user_id=__${session.userSession.id}__)}" method="get">
+      <a class="fs-2 btn butG btn-success" th:href="@{/task/completed(user_id=__${session.userSession.id}__)}" method="get">
         <div class="row">
           <div class="col-1">
             <img src="../static/img/chek.png" th:src="@{/img/chek.png}" alt="chek" class="imagen-box">
@@ -85,7 +85,7 @@
         <tr th:each="project : ${projects}">
           <br>
           <div class="col-9 container">
-            <a class="fs-2 btn butG btn-success" th:href="@{/task/(project_id=__${project.id}__)}" method="get">
+            <a class="fs-2 btn butG btn-success" th:href="@{/task(project_id=__${project.id}__)}" method="get">
               <div class="row">
                 <div class="col-1">
                   <img src="../static/img/task.png" th:src="@{/img/task.png}" alt="task" class="imagen-box">
@@ -128,7 +128,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body my-3">
-            <form th:action="@{/project/nuevo(user_id=__${session.userSession.id}__)}" method="post">
+            <form th:action="@{/project/new(user_id=__${session.userSession.id}__)}" method="post">
               <div>
                 <p th:if="${error!=null}" th:text="${error}"></p>
               </div>

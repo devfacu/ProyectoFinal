@@ -31,7 +31,7 @@
                     </div>
                     <div class="col-3 mt-3 align-content-end">
                         <div class="row">
-                            <abbr title="Agregar task"><button type="button"
+                            <abbr title="Agregar tarea"><button type="button"
                                     class="but_tarea btn-success rounded-pill btn-lg" data-bs-toggle="modal"
                                     data-bs-target="#addModal">
                                     <span class="material-icons">
@@ -49,7 +49,7 @@
                                         </div>
                                         <div class="modal-body my-3">
                                             <form
-                                                th:action="@{/task/nueva(view=__${vista}__, user_id=__${session.userSession.id}__)}"
+                                                th:action="@{/task/new(view=__${vista}__, user_id=__${session.userSession.id}__)}"
                                                 method="post">
                                                 <div>
                                                     <p th:if="${error!=null}" th:text="${error}"></p>
@@ -203,7 +203,7 @@
                                                                 </div>
                                                                 <div class="modal-body my-3">
                                                                     <form
-                                                                        th:action="@{/task/editar(task_id=__${task.id}__, view=__${vista}__, user_id=__${session.userSession.id}__, project_id=__${project.id}__)}"
+                                                                        th:action="@{/task/update(task_id=__${task.id}__, view=__${vista}__, user_id=__${session.userSession.id}__, project_id=__${project.id}__)}"
                                                                         method="post">
                                                                         <div>
                                                                             <p th:if="${error!=null}"
@@ -253,7 +253,7 @@
                                                                                             th:if="${task.project.name == projects.name}">
                                                                                             <option selected
                                                                                                 th:text="${task.project.name}">
-                                                                                                Elije un project
+                                                                                                Elije un proyecto
                                                                                             </option>
                                                                                         </div>
                                                                                     </div>
@@ -337,7 +337,7 @@
                                                                 </div>
                                                                 <div class="modal-body my-3">
                                                                     <form
-                                                                        th:action="@{/task/eliminar(task_id=__${task.id}__, view=__${vista}__, user_id=__${session.userSession.id}__, project_id=__${project.id}__)}"
+                                                                        th:action="@{/task/delete(task_id=__${task.id}__, view=__${vista}__, user_id=__${session.userSession.id}__, project_id=__${project.id}__)}"
                                                                         method="post">
                                                                         <div class="col-12 text-start">
                                                                             <p class="text-secondary fs-4"> ¿Estas

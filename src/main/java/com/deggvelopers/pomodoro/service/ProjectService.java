@@ -47,7 +47,7 @@ public class ProjectService {
 				);
 	}
 
-	public void eliminateProtect(@Validated String id, @Validated String name) throws NotFoundException {
+	public void delete(@Validated String id, @Validated String name) throws NotFoundException {
 
 		long projectQuantity = projectRepository.count();
 

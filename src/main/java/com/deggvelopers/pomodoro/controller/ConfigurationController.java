@@ -23,7 +23,7 @@ public class ConfigurationController {
 	@Autowired
 	private UserRepository userRepository;
 	
-	@GetMapping("/")
+	@GetMapping
 	public String config(@RequestParam String user_id, ModelMap model) {
 		
 		User user = userRepository.getById(user_id);
