@@ -30,13 +30,13 @@ public class Login extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests()
-                .antMatchers("/css/", "/js/", "/img/", "/audio/", "/registrar").permitAll()
+                .antMatchers("/css/", "/js/", "/img/", "/audio/", "/register").permitAll()
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/logincheck")
                 .usernameParameter("email")
-                .passwordParameter("contrasena")
+                .passwordParameter("password")
                 .defaultSuccessUrl("/main")
                 .permitAll()
                 .and()

@@ -32,7 +32,7 @@ public class MainController {
 		this.projectService = projectService;
 	}
 
-	@GetMapping("/")
+	@GetMapping
 	public String index(Model model) {
 		return "index.html";
 	}
@@ -44,6 +44,7 @@ public class MainController {
 
 	@PreAuthorize("hasAnyRole('ROLE_USUARIO_REGISTRADO')")
 	@GetMapping("/main")
+    // TODO: rename the method and the endpoint
 	public String main(ModelMap model, HttpSession session) {
 
 		User user = (User) session.getAttribute("userSession");
@@ -57,7 +58,7 @@ public class MainController {
 	public String login(@RequestParam(required = false) String error, ModelMap model) {
 
 		if (error != null) {
-			model.put("error", "El mail o la contraseña son incorrectos");
+			model.put("error", "El mail o la contraseña son incorrectos.");
 		}
 
 		return "login.html";

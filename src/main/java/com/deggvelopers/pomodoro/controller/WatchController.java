@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/reloj")
 public class WatchController {
 	
-	@GetMapping("")
-	public String devolverReloj(ModelMap model, String nombreTarea) {
-		model.addAttribute("nombre_tarea", nombreTarea);
+	@GetMapping
+	public String clockView(ModelMap model, String taskName) {
+		model.addAttribute("taskName", taskName);
 		return "clock.html";
 	}
 	
