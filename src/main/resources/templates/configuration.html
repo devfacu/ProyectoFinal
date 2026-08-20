@@ -40,7 +40,7 @@
     </div>
     <br>
     <br>
-<form th:action="@{/configuration/guardar}" method="post">
+<form th:action="@{/configuration/save}" method="post">
     <div class="col-9 container borderbox-box">
       <div class="row">
         <div class="col justify-content-center mt-2">
@@ -102,19 +102,19 @@
         </div>
         <div class="duracion justify-content-center mt-4">
             <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="duracionPom" id="duracionPom1">
+            <input class="form-check-input" type="radio" name="pomDuration" id="pomDuration1">
             <label class="form-check-label" for="flexRadioDefault1">
               20 minutos
             </label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="duracionPom" id="duracionPom2" checked>
+            <input class="form-check-input" type="radio" name="pomDuration" id="pomDuration2" checked>
             <label class="form-check-label" for="flexRadioDefault2">
               25 minutos
             </label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="duracionPom" id="duracionPom3">
+            <input class="form-check-input" type="radio" name="pomDuration" id="pomDuration3">
             <label class="form-check-label" for="flexRadioDefault1">
               30 minutos
             </label>
@@ -134,19 +134,19 @@
       <div class="duracion justify-content-center mt-4">
       
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="descansoCorto" id="descansoCorto1">
+          <input class="form-check-input" type="radio" name="shortBreak" id="shortBreak1">
           <label class="form-check-label" for="flexRadioDefault1">
             4 minutos
           </label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="descansoCorto" id="descansoCorto2" checked>
+          <input class="form-check-input" type="radio" name="shortBreak" id="shortBreak2" checked>
           <label class="form-check-label" for="flexRadioDefault2">
             5 minutos
           </label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="descansoCorto" id="descansoCorto3">
+          <input class="form-check-input" type="radio" name="shortBreak" id="shortBreak3">
           <label class="form-check-label" for="flexRadioDefault1">
             6 minutos
           </label>
@@ -166,19 +166,19 @@
     <div class="duracion justify-content-center mt-4">
       
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="descansoLargo" id="descansoLargo1">
+        <input class="form-check-input" type="radio" name="longBreak" id="longBreak1">
         <label class="form-check-label" for="flexRadioDefault1">
           15 minutos
         </label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="descansoLargo" id="descansoLargo2" checked>
+        <input class="form-check-input" type="radio" name="longBreak" id="longBreak2" checked>
         <label class="form-check-label" for="flexRadioDefault2">
           20 minutos
         </label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="descansoLargo" id="descansoLargo3">
+        <input class="form-check-input" type="radio" name="longBreak" id="longBreak3">
         <label class="form-check-label" for="flexRadioDefault1">
           30 minutos
         </label>
@@ -199,19 +199,19 @@
     <div class="duracion justify-content-center mt-4">
       
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="Intervalo" id="Intervalo1">
+        <input class="form-check-input" type="radio" name="longBreakInterval" id="longBreakInterval1">
         <label class="form-check-label" for="flexRadioDefault1">
           4 poms
         </label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="Intervalo" id="Intervalo2" checked>
+        <input class="form-check-input" type="radio" name="longBreakInterval" id="longBreakInterval2" checked>
         <label class="form-check-label" for="flexRadioDefault2">
           5 poms
         </label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="Intervalo" id="Intervalo3">
+        <input class="form-check-input" type="radio" name="longBreakInterval" id="longBreakInterval3">
         <label class="form-check-label" for="flexRadioDefault1">
           6 poms
         </label>

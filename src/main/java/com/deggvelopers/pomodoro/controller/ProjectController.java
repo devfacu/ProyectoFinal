@@ -24,7 +24,7 @@ public class ProjectController {
     private ProjectService projectService;
 
     @GetMapping
-    public String gestion(ModelMap model, @RequestParam String id) {
+    public String manage(ModelMap model, @RequestParam String id) {
         try {
             Project project = new Project();
             model.put("projects", project);

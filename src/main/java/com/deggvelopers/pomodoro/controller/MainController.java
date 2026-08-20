@@ -9,7 +9,6 @@ import com.deggvelopers.pomodoro.service.ProjectService;
 import com.deggvelopers.pomodoro.service.UserService;
 import java.util.List;
 import javax.servlet.http.HttpSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,7 +41,7 @@ public class MainController {
 		return "trialClock.html";
 	}
 
-	@PreAuthorize("hasAnyRole('ROLE_USUARIO_REGISTRADO')")
+	@PreAuthorize("hasAnyRole('ROLE_REGISTERED_USER')")
 	@GetMapping("/main")
     // TODO: rename the method and the endpoint
 	public String main(ModelMap model, HttpSession session) {
@@ -58,7 +57,7 @@ public class MainController {
 	public String login(@RequestParam(required = false) String error, ModelMap model) {
 
 		if (error != null) {
-			model.put("error", "El mail o la contraseña son incorrectos.");
+			model.put("error", "The email or password is incorrect.");
 		}
 
 		return "login.html";
@@ -82,8 +81,13 @@ public class MainController {
 			return "register.html";
 		}
 
-		model.put("titulo", "Bienvenido a Pomodoro App");
-		model.put("descripcion", "Tu usuario fue registrado satisfactoriamente.");
+		model.put("title", "Bienvenido a Pomodoro App");
+		model.put("description", "Tu usuario fue registrado satisfactoriamente.");
 		return "thanks.html";
+	}
+
+	@GetMapping("/modern")
+	public String modernView(ModelMap model) {
+		return "modernMainView.html";
 	}
 }

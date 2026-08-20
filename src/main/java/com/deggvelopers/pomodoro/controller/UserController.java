@@ -32,10 +32,10 @@ public class UserController {
             userService.update(updateUserRequest);
             User user = userRepository.getById(updateUserRequest.getId());
             session.setAttribute("userSession", user);
-            return "redirect:/principal";
+            return "redirect:/main";
         } catch (NotFoundException ex) {
             model.put("error", ex.getMessage());
-            return "redirect:/principal";
+            return "redirect:/main";
         }
     }
 

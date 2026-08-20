@@ -17,16 +17,16 @@ public class ConfigurationService {
 	private ConfigurationRepository configRepo;
 	
 	public Configuration create() {
-		//Se creara un objeto Configuracion con los valores predeterminados
+		//A Configuration object will be created with default values
 		Configuration config = new Configuration();
 		
-		config.setAlarmaTrabajo("alarmaTrabajo");
-		config.setAlarmaDescanso("alarmaDescanso");
-		config.setAmbiente("ambiente");
-		config.setDuracionPom(25);
-		config.setDescansoCorto(5);
-		config.setDescansoLargo(20);
-		config.setIntervaloDescansoLargo(4);
+		config.setWorkAlarm("workAlarm");
+		config.setRestAlarm("restAlarm");
+		config.setAmbiance("ambiance");
+		config.setPomDuration(25);
+		config.setShortBreak(5);
+		config.setLongBreak(20);
+		config.setLongBreakInterval(4);
 		
 		config = configRepo.save(config);
 		

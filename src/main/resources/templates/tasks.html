@@ -27,7 +27,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-9 text-start">
-                        <p class="marca fs-1 text text-decoration-underline" th:text="${vista}"> Tareas</p>
+                        <p class="marca fs-1 text text-decoration-underline" th:text="${view}"> Tareas</p>
                     </div>
                     <div class="col-3 mt-3 align-content-end">
                         <div class="row">
@@ -49,7 +49,7 @@
                                         </div>
                                         <div class="modal-body my-3">
                                             <form
-                                                th:action="@{/task/new(view=__${vista}__, user_id=__${session.userSession.id}__)}"
+                                                th:action="@{/task/new(view=__${view}__, user_id=__${session.userSession.id}__)}"
                                                 method="post">
                                                 <div>
                                                     <p th:if="${error!=null}" th:text="${error}"></p>
@@ -108,13 +108,13 @@
                                                             </div>
                                                             <div class=" col-3 form-check form-check-inline">
                                                                 <input class="form-check-input" type="radio"
-                                                                    name="priority" id="media" value="MEDIUM">
+                                                                    name="priority" id="medium" value="MEDIUM">
                                                                 <label class="form-check-label obs text-secondary"
                                                                     for="inputPriority">Media</label>
                                                             </div>
                                                             <div class=" col-3 form-check form-check-inline">
                                                                 <input class="form-check-input obs" type="radio"
-                                                                    name="priority" id="baja" value="LOW">
+                                                                    name="priority" id="low" value="LOW">
                                                                 <label class="form-check-label obs text-secondary"
                                                                     for="inputPriority">Baja</label>
                                                             </div>
@@ -203,7 +203,7 @@
                                                                 </div>
                                                                 <div class="modal-body my-3">
                                                                     <form
-                                                                        th:action="@{/task/update(task_id=__${task.id}__, view=__${vista}__, user_id=__${session.userSession.id}__, project_id=__${project.id}__)}"
+                                                                        th:action="@{/task/update(task_id=__${task.id}__, view=__${view}__, user_id=__${session.userSession.id}__, project_id=__${project.id}__)}"
                                                                         method="post">
                                                                         <div>
                                                                             <p th:if="${error!=null}"
@@ -215,7 +215,7 @@
                                                                                 class="col-sm-2 col-form-label pre-control">Nombre</label>
                                                                             <div class="col-sm-12 borderbox">
                                                                                 <input type="text" class="form-control"
-                                                                                    id="Nombre" name="name"
+                                                                                    id="name" name="name"
                                                                                     th:value="${task.name}">
                                                                             </div>
                                                                         </div>
@@ -224,7 +224,7 @@
                                                                                 class="col-sm-2 col-form-label pre-control">Fecha</label>
                                                                             <div class="col-sm-12 borderbox">
                                                                                 <input type="date" class="form-control"
-                                                                                    id="fecha" name="date"
+                                                                                    id="date" name="date"
                                                                                     th:value="${task.date}">
                                                                             </div>
                                                                         </div>
@@ -236,7 +236,7 @@
                                                                             <div class="col-sm-12 borderbox">
                                                                                 <input type="number"
                                                                                     class="form-control"
-                                                                                    id="cantidadPom" name="pomQuantity"
+                                                                                    id="pomQuantity" name="pomQuantity"
                                                                                     th:value="${task.pomQuantity}">
                                                                             </div>
                                                                         </div>
@@ -272,34 +272,34 @@
                                                                                         <input class="form-check-input"
                                                                                             type="radio"
                                                                                             name="priority"
-                                                                                            id="prioridad1" value="HIGH"
+                                                                                            id="priority1" value="HIGH"
                                                                                             th:checked="${task.priority.name()  == 'HIGH'}">
                                                                                         <label
                                                                                             class="form-check-label obs text-secondary"
-                                                                                            for="prioridad1">Alta</label>
+                                                                                            for="priority1">Alta</label>
                                                                                     </div>
                                                                                     <div
                                                                                         class=" col-3 form-check form-check-inline">
                                                                                         <input class="form-check-input"
                                                                                             type="radio"
                                                                                             name="priority"
-                                                                                            id="prioridad2"
+                                                                                            id="priority2"
                                                                                             value="MEDIUM"
                                                                                             th:checked="${task.priority.name()  == 'MEDIUM'}">
                                                                                         <label
                                                                                             class="form-check-label obs text-secondary"
-                                                                                            for="prioridad2">Media</label>
+                                                                                            for="priority2">Media</label>
                                                                                     </div>
                                                                                     <div
                                                                                         class="col-3 form-check form-check-inline">
                                                                                         <input class="form-check-input"
                                                                                             type="radio"
                                                                                             name="priority"
-                                                                                            id="prioridad3" value="LOW"
+                                                                                            id="priority3" value="LOW"
                                                                                             th:checked="${task.priority.name() == 'LOW'}">
                                                                                         <label
                                                                                             class="form-check-label obs text-secondary"
-                                                                                            for="prioridad3">Baja</label>
+                                                                                            for="priority3">Baja</label>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -337,7 +337,7 @@
                                                                 </div>
                                                                 <div class="modal-body my-3">
                                                                     <form
-                                                                        th:action="@{/task/delete(task_id=__${task.id}__, view=__${vista}__, user_id=__${session.userSession.id}__, project_id=__${project.id}__)}"
+                                                                        th:action="@{/task/delete(task_id=__${task.id}__, view=__${view}__, user_id=__${session.userSession.id}__, project_id=__${project.id}__)}"
                                                                         method="post">
                                                                         <div class="col-12 text-start">
                                                                             <p class="text-secondary fs-4"> ¿Estas
@@ -370,7 +370,7 @@
                                             <div class="row mx-auto">
                                                 <abbr title="Empezar ciclo"><button type="button"
                                                         class="btn but_tarea btn-success rounded-pill btn-lg"
-                                                        th:href="@{/reloj}"><span class="material-icons">
+                                                        th:href="@{/watch}"><span class="material-icons">
                                                             play_circle_filled
                                                         </span></button>
                                                 </abbr>

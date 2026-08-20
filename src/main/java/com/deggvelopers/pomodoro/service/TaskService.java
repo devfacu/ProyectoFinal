@@ -55,10 +55,10 @@ public class TaskService {
         task.setDone(Boolean.FALSE);
         task.setPomQuantity(pomQuantity);
 	    task.setPomFinalized(0);
-        task.setPomDuration(config.getDuracionPom());
+        task.setPomDuration(config.getPomDuration());
         taskRepository.save(task);
 
-//		return tarea;
+//		return task;
     }
 
     public void update(@Validated String id, @Validated String name, @Validated Date date, @Validated String projectId, @Validated Priority priority, @Validated Integer pomQuantity) throws NotFoundException {
@@ -96,8 +96,8 @@ public class TaskService {
 
     public List<Task> findTasksOfEachProject(List<Project> projects, Date date) {
         List<Task> allTasksList = new ArrayList<>();
-        projects.forEach((proyecto) -> {
-            List<Task> tasks = taskRepository.findByIdAndDate(proyecto.getId(), date);
+        projects.forEach((project) -> {
+            List<Task> tasks = taskRepository.findByIdAndDate(project.getId(), date);
             allTasksList.addAll(tasks);
         });
         return allTasksList;

@@ -69,11 +69,11 @@ public class TaskController {
 		} else {
 			usr_id = user_id;
 		}
-		Date hoy = new Date();
+		Date today = new Date();
 		List<Project> projects = projectRepository.findByUserId(usr_id);
-		List<Task> tasks = taskService.findTasksOfEachProject(projects, hoy);
+		List<Task> tasks = taskService.findTasksOfEachProject(projects, today);
 
-		model.put("vista", "Hoy");
+		model.put("view", "Hoy");
 		model.put("projects", projects);
 		model.put("projectList", projects);
 		model.put("tasks", tasks);
@@ -101,10 +101,10 @@ public class TaskController {
 		List<Project> projects = projectRepository.findByUserId(usr_id);
 		List<Task> tasks = taskService.findTasksOfEachProject(projects, tomorrow);
 
-		model.put("vista", "Mañana");
+		model.put("view", "Mañana");
 		model.put("projects", projects);
 		model.put("projectList", projects);
-		model.put("tareas", tasks);
+		model.put("tasks", tasks);
 
 		return "tasks.html";
 	}
@@ -129,10 +129,10 @@ public class TaskController {
 		List<Project> projects = projectRepository.findByUserId(usr_id);
 		List<Task> tasks = taskRepository.findByDate(next);
 
-		model.put("vista", "Proximo");
+		model.put("view", "Proximo");
 		model.put("projects", projects);
 		model.put("projectList", projects);
-		model.put("tareas", tasks);
+		model.put("tasks", tasks);
 
 		return "tasks.html";
 	}
@@ -188,14 +188,14 @@ public class TaskController {
 		view = checkView(view);
 
 		try {
-			model.put("vista", view);
+			model.put("view", view);
 			attr.addAttribute("user_id", user_id);
 			attr.addAttribute("attrPry_id", project_id);
 			taskService.delete(task_id);
 			return "redirect:/task/" + view;
 		} catch (NotFoundException ex) {
 			model.put("error", ex.getMessage());
-			model.put("vista", view);
+			model.put("view", view);
 			attr.addAttribute("attrUsr_id", user_id);
 			attr.addAttribute("attrPry_id", project_id);
 			return "redirect:/task/" + view;
@@ -223,13 +223,13 @@ public class TaskController {
 			Date parsedDate = stringToDate(date);
 			
 			taskService.update(task_id, name, parsedDate, project_id, priority, pomQuantity);
-			model.put("vista", view);
+			model.put("view", view);
 			attr.addAttribute("user_id", user_id);
 			attr.addAttribute("attrPry_id", project_id);
 			return "redirect:/task/" + view;
 		} catch (NotFoundException e) {
 			model.put("error", e.getMessage());
-			model.put("vista", view);
+			model.put("view", view);
 			attr.addAttribute("user_id", user_id);
 			attr.addAttribute("attrPry_id", project_id);
 			return "redirect:/task/" + view;
@@ -251,7 +251,7 @@ public class TaskController {
 			return "";
 		}else switch (view) {
 			case "Mañana":
-				return "manana";
+				return "tomorrow";
 			default:
 				return view.toLowerCase();
 		}

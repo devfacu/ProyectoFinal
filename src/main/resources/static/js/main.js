@@ -1,20 +1,20 @@
 $(document).ready(function () {
 
-    $(".tarea-chk").click(function () {
-        let tareaId = $(this).attr("id");
+    $(".task-chk").click(function () {
+        let taskId = $(this).attr("id");
 
         $.ajax({
-            url: "/internal/task/" + tareaId,
+            url: "/internal/task/" + taskId,
             contentType: "application/json",
             type: "POST",
             success: function () {
-                const $tarea = $("#" + tareaId);
-                let tareaHtml = $("#" + tareaId).html();
+                const $task = $("#" + taskId);
+                let taskHtml = $("#" + taskId).html();
                 
-                if(tareaHtml === `<span class="material-icons">radio_button_unchecked</span>`) {
-                    $tarea.html(`<span class="material-icons">check_circle_outline</span>`);
+                if(taskHtml === `<span class="material-icons">radio_button_unchecked</span>`) {
+                    $task.html(`<span class="material-icons">check_circle_outline</span>`);
                 } else {
-                    $tarea.html(`<span class="material-icons">radio_button_unchecked</span>`);
+                    $task.html(`<span class="material-icons">radio_button_unchecked</span>`);
                 }
             }
         });

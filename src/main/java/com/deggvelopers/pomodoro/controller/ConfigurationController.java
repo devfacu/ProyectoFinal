@@ -39,7 +39,10 @@ public class ConfigurationController {
 			@RequestParam String workAlarm,
 			@RequestParam String restAlarm,
 			@RequestParam String ambiance,
-			@RequestParam Integer pomDuration) {
+			@RequestParam Integer pomDuration,
+			@RequestParam Integer shortBreak,
+			@RequestParam Integer longBreak,
+			@RequestParam Integer longBreakInterval) {
 		
 		return "redirect:/configuration/";
 	}

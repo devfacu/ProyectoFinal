@@ -61,7 +61,7 @@ public class UserService implements UserDetailsService {
         user.setConfiguration(configuration);
         userRepository.save(user);
 
-        projectService.create("Tareas", user);
+        projectService.create("Tasks", user);
 
         return user;
     }
@@ -86,7 +86,7 @@ public class UserService implements UserDetailsService {
 
     private User findById(String id) throws NotFoundException {
         return userRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("No se encontro el usuario solicitado."));
+                .orElseThrow(() -> new NotFoundException("The requested user was not found."));
     }
 
     public void validation(CreateUserRequest createUserRequest) throws NotFoundException {
@@ -112,8 +112,8 @@ public class UserService implements UserDetailsService {
         }
     }
 
-    public static boolean validation(String datos) {
-        return datos.matches("a-zA-Z*");
+    public static boolean validation(String data) {
+        return data.matches("a-zA-Z*");
     }
 
     @Override
@@ -123,7 +123,7 @@ public class UserService implements UserDetailsService {
 
             List<GrantedAuthority> permission = new ArrayList<>();
 
-            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_USUARIO_REGISTRADO");
+            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_REGISTERED_USER");
             permission.add(p1);
 
             ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();

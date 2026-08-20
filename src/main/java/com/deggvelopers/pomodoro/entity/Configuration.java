@@ -1,6 +1,7 @@
 package com.deggvelopers.pomodoro.entity;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -21,13 +22,20 @@ public class Configuration implements Serializable {
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
-	private String alarmaTrabajo;
-	private String alarmaDescanso;
-	private String ambiente;
-	private Integer duracionPom;
-	private Integer descansoCorto;
-	private Integer descansoLargo;
-	private Integer intervaloDescansoLargo;
+	@Column(name = "alarma_trabajo")
+	private String workAlarm;
+	@Column(name = "alarma_descanso")
+	private String restAlarm;
+	@Column(name = "ambiente")
+	private String ambiance;
+	@Column(name = "duracion_pom")
+	private Integer pomDuration;
+	@Column(name = "descanso_corto")
+	private Integer shortBreak;
+	@Column(name = "descanso_largo")
+	private Integer longBreak;
+	@Column(name = "intervalo_descanso_largo")
+	private Integer longBreakInterval;
 
 	public Configuration() {
 	}
@@ -40,62 +48,60 @@ public class Configuration implements Serializable {
 		this.id = id;
 	}
 
-	public String getAlarmaTrabajo() {
-		return alarmaTrabajo;
+	public String getWorkAlarm() {
+		return workAlarm;
 	}
 
-	public void setAlarmaTrabajo(String alarmaTrabajo) {
-		this.alarmaTrabajo = alarmaTrabajo;
+	public void setWorkAlarm(String workAlarm) {
+		this.workAlarm = workAlarm;
 	}
 
-	public String getAlarmaDescanso() {
-		return alarmaDescanso;
+	public String getRestAlarm() {
+		return restAlarm;
 	}
 
-	public void setAlarmaDescanso(String alarmaDescanso) {
-		this.alarmaDescanso = alarmaDescanso;
+	public void setRestAlarm(String restAlarm) {
+		this.restAlarm = restAlarm;
 	}
 
-	public String getAmbiente() {
-		return ambiente;
+	public String getAmbiance() {
+		return ambiance;
 	}
 
-	public void setAmbiente(String ambiente) {
-		this.ambiente = ambiente;
+	public void setAmbiance(String ambiance) {
+		this.ambiance = ambiance;
 	}
 
-	public Integer getDuracionPom() {
-		return duracionPom;
+	public Integer getPomDuration() {
+		return pomDuration;
 	}
 
-	public void setDuracionPom(Integer duracionPom) {
-		this.duracionPom = duracionPom;
+	public void setPomDuration(Integer pomDuration) {
+		this.pomDuration = pomDuration;
 	}
 
-	public Integer getDescansoCorto() {
-		return descansoCorto;
+	public Integer getShortBreak() {
+		return shortBreak;
 	}
 
-	public void setDescansoCorto(Integer descansoCorto) {
-		this.descansoCorto = descansoCorto;
+	public void setShortBreak(Integer shortBreak) {
+		this.shortBreak = shortBreak;
 	}
 
-	public Integer getDescansoLargo() {
-		return descansoLargo;
+	public Integer getLongBreak() {
+		return longBreak;
 	}
 
-	public void setDescansoLargo(Integer descansoLargo) {
-		this.descansoLargo = descansoLargo;
+	public void setLongBreak(Integer longBreak) {
+		this.longBreak = longBreak;
 	}
 
-	public Integer getIntervaloDescansoLargo() {
-		return intervaloDescansoLargo;
+	public Integer getLongBreakInterval() {
+		return longBreakInterval;
 	}
 
-	public void setIntervaloDescansoLargo(Integer intervaloDescansoLargo) {
-		this.intervaloDescansoLargo = intervaloDescansoLargo;
+	public void setLongBreakInterval(Integer longBreakInterval) {
+		this.longBreakInterval = longBreakInterval;
 	}
-
-	
 
 }
