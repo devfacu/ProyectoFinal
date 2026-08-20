@@ -1,9 +1,9 @@
 HELP.md
+nbactions.xml
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-/src/main/resources/application.properties
 
 ### STS ###
 .apt_generated
@@ -32,3 +32,16 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Cypress binary cache (platform-specific builds)
+frontend-tests/node_modules/
+frontend-tests/cache/
+frontend-tests/.cypress/
+frontend-tests/.settings
+
+# Cypress screenshots and videos (if you use them)
+frontend-tests/screenshots/
+frontend-tests/videos/
+
+# Cypress log files
+frontend-tests/logs/

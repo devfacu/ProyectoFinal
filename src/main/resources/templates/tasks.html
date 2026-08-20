@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Font Pacifico -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <!-- https://material.io/resources/icons/?style=baseline -->
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}">
+    <title>Tareas</title>
+</head>
+
+
+<body class="bodyIndex">
+
+    <nav th:replace="template.html :: nav"></nav>
+    <div class="container-lg col-6 my-5 borderedit">
+
+        <header>
+            <div class="container">
+                <div class="row">
+                    <div class="col-9 text-start">
+                        <p class="marca fs-1 text text-decoration-underline" th:text="${view}"> Tareas</p>
+                    </div>
+                    <div class="col-3 mt-3 align-content-end">
+                        <div class="row">
+                            <abbr title="Agregar tarea"><button type="button"
+                                    class="but_tarea btn-success rounded-pill btn-lg" data-bs-toggle="modal"
+                                    data-bs-target="#addModal">
+                                    <span class="material-icons">
+                                        add_task
+                                    </span></button></abbr>
+                            <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content borderedit">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title fs-2 text marca text-decoration-underline"
+                                                id="NewTaskModalLabel">Nueva Tarea</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body my-3">
+                                            <form
+                                                th:action="@{/task/new(view=__${view}__, user_id=__${session.userSession.id}__)}"
+                                                method="post">
+                                                <div>
+                                                    <p th:if="${error!=null}" th:text="${error}"></p>
+                                                </div>
+                                                <div class="col mb-1">
+                                                    <label for="inputname"
+                                                        class="col-sm-2 col-form-label pre-control">Nombre</label>
+                                                    <div class="col-sm-12 borderbox">
+                                                        <input type="text" class="form-control" id="inputname"
+                                                            name="name">
+                                                    </div>
+                                                </div>
+                                                <div class="col mb-1">
+                                                    <label for="inputdate"
+                                                        class="col-sm-2 col-form-label pre-control">Fecha</label>
+                                                    <div class="col-sm-12 borderbox">
+                                                        <input type="date" class="form-control" id="inputdate"
+                                                            name="date">
+                                                    </div>
+                                                </div>
+                                                <div class="col mb-1">
+                                                    <label for="inputtime"
+                                                        class="col-sm-6 col-form-label pre-control">Cantidad de
+                                                        pom</label>
+                                                    <div class="col-sm-12 borderbox">
+                                                        <input type="number" class="form-control" id="inputtime"
+                                                            name="pomQuantity">
+                                                    </div>
+                                                </div>
+                                                <div class="col mb-1">
+                                                    <label for="inputproyect"
+                                                        class="col-sm-6 col-form-label pre-control">Proyecto
+                                                    </label>
+                                                    <div class="input-group mb-3">
+                                                        <select class="form-select" id="inputproyect"
+                                                            name="project_id">
+                                                            <option value="0" selected>Elije un proyecto</option>
+                                                            <div th:each="project : ${projects}">
+                                                                <option th:text="${project.name}"
+                                                                    th:value="${project.id}">One</option>
+                                                            </div>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col my-1">
+                                                    <label for="inputPriority"
+                                                        class="col-sm-6 col-form-label pre-control">Prioridad
+                                                    </label>
+                                                    <div class="col ms-5 mb-5">
+                                                        <div class="row">
+                                                            <div class=" col-3 form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="priority" id="inputPriority" value="HIGH">
+                                                                <label class="form-check-label obs text-secondary"
+                                                                    for="inputPriority">Alta</label>
+                                                            </div>
+                                                            <div class=" col-3 form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="priority" id="medium" value="MEDIUM">
+                                                                <label class="form-check-label obs text-secondary"
+                                                                    for="inputPriority">Media</label>
+                                                            </div>
+                                                            <div class=" col-3 form-check form-check-inline">
+                                                                <input class="form-check-input obs" type="radio"
+                                                                    name="priority" id="low" value="LOW">
+                                                                <label class="form-check-label obs text-secondary"
+                                                                    for="inputPriority">Baja</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col mt-4">
+                                                    <button type="submit"
+                                                        class="btn but btn-success me-3">Guardar</button>
+                                                    <button type="button" class="btn but btn-success"
+                                                        data-bs-dismiss="modal">Cancelar</button>
+                                                </div>
+
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="container">
+            <div class="container" th:each="project : ${projects}">
+                <div>
+                    <p th:text="${project.name}" class="fs-3 text titulo my-3">Proyecto:</p>
+                </div>
+                <table>
+                    <tbody>
+                        <tr th:each="task : ${tasks}">
+                            <div th:if="${task.project.name == project.name}">
+                                <div class="container borderbox my-2">
+                                    <div class="row">
+                                        <div class="col-2 my-auto">
+                                            <div class="row ms-auto">
+                                                <abbr title="Tarea Terminada">
+                                                    <button type="button"
+                                                        class="task-chk btn but_tarea btn-success rounded-pill btn-lg"
+                                                        th:id="${task.id}"><span
+                                                            th:text="${task.done} ? check_circle_outline : radio_button_unchecked"
+                                                            class="material-icons"></span></button>
+                                                </abbr>
+                                            </div>
+                                        </div>
+                                        <div class="col-8 my-1">
+                                            <div class="row">
+                                                <p th:text="${task.name}"
+                                                    class="boxtarea text-center text-secondary">
+                                                    Tarea:</p>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <p th:text="${'Pomodoros: ' + task.pomFinalized + '/' + task.pomQuantity}"
+                                                        class="boxtarea2 text-center text-secondary">5
+                                                    </p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <p th:text="${'Fecha: ' + task.date}"
+                                                        class="boxtarea2 text-center text-secondary">
+                                                        2021-12-15</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <p th:text="${'Prioridad: ' + task.priority.name()}"
+                                                        class="boxtarea2 text-center text-secondary">Prioridad:</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col text-start">
+                                                    <a href="#" class="link-success text-decoration-none"
+                                                        data-bs-toggle="modal" data-bs-target="#editModal">Editar</a>
+                                                    <div class="modal fade" id="editModal" tabindex="-1"
+                                                        aria-labelledby="exampleModalLabel1" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content borderedit">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title fs-2 text marca text-decoration-underline"
+                                                                        id="exampleModalLabel1">Editar Tarea</h5>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body my-3">
+                                                                    <form
+                                                                        th:action="@{/task/update(task_id=__${task.id}__, view=__${view}__, user_id=__${session.userSession.id}__, project_id=__${project.id}__)}"
+                                                                        method="post">
+                                                                        <div>
+                                                                            <p th:if="${error!=null}"
+                                                                                th:text="${error}">
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="col mb-1">
+                                                                            <label for="inputname"
+                                                                                class="col-sm-2 col-form-label pre-control">Nombre</label>
+                                                                            <div class="col-sm-12 borderbox">
+                                                                                <input type="text" class="form-control"
+                                                                                    id="name" name="name"
+                                                                                    th:value="${task.name}">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col mb-1">
+                                                                            <label for="inputdate"
+                                                                                class="col-sm-2 col-form-label pre-control">Fecha</label>
+                                                                            <div class="col-sm-12 borderbox">
+                                                                                <input type="date" class="form-control"
+                                                                                    id="date" name="date"
+                                                                                    th:value="${task.date}">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col mb-1">
+                                                                            <label for="inputtime"
+                                                                                class="col-sm-6 col-form-label pre-control">Cantidad
+                                                                                de
+                                                                                pom</label>
+                                                                            <div class="col-sm-12 borderbox">
+                                                                                <input type="number"
+                                                                                    class="form-control"
+                                                                                    id="pomQuantity" name="pomQuantity"
+                                                                                    th:value="${task.pomQuantity}">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col mb-1">
+                                                                            <label for="inputproyect"
+                                                                                class="col-sm-6 col-form-label pre-control">Proyecto
+                                                                            </label>
+                                                                            <div class="input-group mb-3">
+                                                                                <select class="form-select"
+                                                                                    id="inputGroupSelect01">
+                                                                                    <div
+                                                                                        th:each="projects : ${projectList}">
+                                                                                        <div
+                                                                                            th:if="${task.project.name == projects.name}">
+                                                                                            <option selected
+                                                                                                th:text="${task.project.name}">
+                                                                                                Elije un proyecto
+                                                                                            </option>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col my-1">
+                                                                            <label for="inputpriority"
+                                                                                class="col-sm-6 col-form-label pre-control">Prioridad
+                                                                            </label>
+                                                                            <div class="col ms-5 mb-5">
+                                                                                <div class="row">
+                                                                                    <div
+                                                                                        class=" col-3 form-check form-check-inline ">
+                                                                                        <input class="form-check-input"
+                                                                                            type="radio"
+                                                                                            name="priority"
+                                                                                            id="priority1" value="HIGH"
+                                                                                            th:checked="${task.priority.name()  == 'HIGH'}">
+                                                                                        <label
+                                                                                            class="form-check-label obs text-secondary"
+                                                                                            for="priority1">Alta</label>
+                                                                                    </div>
+                                                                                    <div
+                                                                                        class=" col-3 form-check form-check-inline">
+                                                                                        <input class="form-check-input"
+                                                                                            type="radio"
+                                                                                            name="priority"
+                                                                                            id="priority2"
+                                                                                            value="MEDIUM"
+                                                                                            th:checked="${task.priority.name()  == 'MEDIUM'}">
+                                                                                        <label
+                                                                                            class="form-check-label obs text-secondary"
+                                                                                            for="priority2">Media</label>
+                                                                                    </div>
+                                                                                    <div
+                                                                                        class="col-3 form-check form-check-inline">
+                                                                                        <input class="form-check-input"
+                                                                                            type="radio"
+                                                                                            name="priority"
+                                                                                            id="priority3" value="LOW"
+                                                                                            th:checked="${task.priority.name() == 'LOW'}">
+                                                                                        <label
+                                                                                            class="form-check-label obs text-secondary"
+                                                                                            for="priority3">Baja</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col mt-4">
+                                                                            <button type="submit"
+                                                                                class="btn but btn-success me-3">Guardar</button>
+                                                                            <button type="button"
+                                                                                class="btn but btn-success"
+                                                                                data-bs-dismiss="modal">Cancelar</button>
+
+                                                                        </div>
+
+                                                                    </form>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col text-end">
+                                                    <a href="#" class="link-success text-decoration-none"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#eliminateModal">Eliminar</a>
+                                                    <div class="modal fade" id="eliminateModal" tabindex="-1"
+                                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content borderedit">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title fs-2 text marca text-decoration-underline text-white"
+                                                                        id="exampleModalLabel">Eliminar Tarea</h5>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body my-3">
+                                                                    <form
+                                                                        th:action="@{/task/delete(task_id=__${task.id}__, view=__${view}__, user_id=__${session.userSession.id}__, project_id=__${project.id}__)}"
+                                                                        method="post">
+                                                                        <div class="col-12 text-start">
+                                                                            <p class="text-secondary fs-4"> ¿Estas
+                                                                                seguro que
+                                                                                quieres eliminar la task?
+                                                                            </p>
+                                                                            <p class="text-secondary fs-4"> Perderas
+                                                                                toda la
+                                                                                información de la misma</p>
+                                                                        </div>
+                                                                        <div class="col mt-4 modal-footer">
+                                                                            <button type="submit"
+                                                                                class="btn but btn-success me-3">Eliminar</button>
+                                                                            <button type="button"
+                                                                                class="btn but btn-success"
+                                                                                data-bs-dismiss="modal">Cancelar</button>
+
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-2 my-auto">
+                                            <div class="row mx-auto">
+                                                <abbr title="Empezar ciclo"><button type="button"
+                                                        class="btn but_tarea btn-success rounded-pill btn-lg"
+                                                        th:href="@{/watch}"><span class="material-icons">
+                                                            play_circle_filled
+                                                        </span></button>
+                                                </abbr>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+        </section>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+    <!-- jQuery -->
+    <script src="../static/js/jquery-3.6.0.js" th:src="@{/js/jquery-3.6.0.js}"></script>
+    <!-- Personalized JS -->
+    <script src="../static/js/main.js" th:src="@{/js/main.js}"></script>
+</body>
+
+</html>
